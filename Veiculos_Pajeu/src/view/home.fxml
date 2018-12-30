@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControladorHome">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" layoutX="262.0" layoutY="13.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/logo.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="carrosPanel" layoutX="62.0" layoutY="158.0" onMouseClicked="#carrosPanelClicked" onMouseEntered="#carrosPanelEntered" onMouseExited="#carrosPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-engarrafamento-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="60.0" layoutY="107.0" text="Carros" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane fx:id="clientesPanel" layoutX="271.0" layoutY="158.0" onMouseClicked="#clientesPanelClicked" onMouseEntered="#clientesPanelEntred" onMouseExited="#clientesPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-grupo-de-usuário-homem-mulher-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="61.0" layoutY="108.0" text="Clientes" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane fx:id="funcionariosPanel" layoutX="478.0" layoutY="158.0" onMouseClicked="#funcionariosPanelClicked" onMouseEntered="#funcionariosPanelEntered" onMouseExited="#funcionariosPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-crachá-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="43.0" layoutY="109.0" text="Funcionários" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane fx:id="financeiroPanel" layoutX="62.0" layoutY="334.0" onMouseClicked="#financeiroPanelClick" onMouseEntered="#financeiroPanelEntered" onMouseExited="#financeiroPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-caixa-registradora-filled-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="55.0" layoutY="109.0" text="Financeiro" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane fx:id="relatoriosPanel" layoutX="271.0" layoutY="334.0" onMouseClicked="#relatoriosPanelClicked" onMouseEntered="#relatoriosPanelEntered" onMouseExited="#relatoriosPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-arquivo-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="51.0" layoutY="109.0" text="Relatórios" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane fx:id="configuracoesPanel" layoutX="478.0" layoutY="334.0" onMouseClicked="#configuracoesPanelClicked" onMouseEntered="#configuracoesPanelEntered" onMouseExited="#configuracoesPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-configurações-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="38.0" layoutY="109.0" text="Configurações" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Carros">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Aluguel" />
+                  <MenuItem mnemonicParsing="false" text="Reserva" />
+                  <MenuItem mnemonicParsing="false" text="Manutenção" />
+                  <MenuItem mnemonicParsing="false" text="Limpeza" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Clientes">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Cadastrar Cliente" />
+                  <MenuItem mnemonicParsing="false" text="Listar Clientes" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Configurações">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView fx:id="voltarButton" fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="54.0" onMouseClicked="#voltarButtonClicked" onMouseEntered="#voltarButtonEntered" onMouseExited="#voltarButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-esquerda-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="irButton" fitHeight="25.0" fitWidth="25.0" layoutX="62.0" layoutY="54.0" onMouseClicked="#irButtonClicled" onMouseEntered="#irButtonEntered" onMouseExited="#irButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

@@ -1,0 +1,15 @@
+.backgroud {
+	-fx-backgroud-color: #ffffff
+}
+.button {
+    -fx-padding: 3 3 3 3;   
+    -fx-border-color:  #508699;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color:  #DC143C;
+    -fx-font-family: "Arial", Helvetica, Arial, sans-serif;
+    -fx-font-size: 9pt;
+    -fx-text-fill: #ffffff;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
