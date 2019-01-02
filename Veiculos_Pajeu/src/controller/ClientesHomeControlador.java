@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class ControladorClientesHome {
+public class ClientesHomeControlador {
 
     @FXML
     private ImageView voltarButton;

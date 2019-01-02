@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane;
 import util.Util;
 import view.AppTelas;
 
-public class ControladorHome implements Initializable{
+public class HomeControlador implements Initializable{
 
     @FXML
     private Pane carrosPanel;
@@ -157,43 +157,43 @@ public class ControladorHome implements Initializable{
 
     @FXML
     void voltarButtonEntered(MouseEvent event) {
-
+        voltarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void voltarButtonExited(MouseEvent event) {
-
+        voltarButton.setCursor(Cursor.DEFAULT);
     }
     
     
     @FXML
     void homeButtonClicked(MouseEvent event) {
-
+        
     }
 
     @FXML
     void homeButtonEntered(MouseEvent event) {
-
+        homeButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void homeButtonExited(MouseEvent event) {
-
+        voltarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-
+        AppTelas.proximo();
     }
 
     @FXML
     void irButtonEntered(MouseEvent event) {
-
+        irButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void irButtonExited(MouseEvent event) {
-
+        irButton.setCursor(Cursor.DEFAULT);
     }
 
 }

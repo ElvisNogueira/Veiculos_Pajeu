@@ -1,12 +1,16 @@
 package controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import view.AppTelas;
 
-public class ControladorCarrosHome {
+public class CarrosHomeControlador implements Initializable{
 
     @FXML
     private ImageView voltarButton;
@@ -92,18 +96,16 @@ public class ControladorCarrosHome {
     @FXML
     void voltarButtonClicked(MouseEvent event) {
         AppTelas.voltar();
-        for(String c : AppTelas.getTelasAcessadas())
-            System.out.println(c);
     }
 
     @FXML
     void voltarButtonEntered(MouseEvent event) {
-
+        voltarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void voltarButtonExited(MouseEvent event) {
-
+        voltarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -113,12 +115,12 @@ public class ControladorCarrosHome {
 
     @FXML
     void homeButtonEntered(MouseEvent event) {
-
+        homeButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void homeButtonExited(MouseEvent event) {
-
+        homeButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -134,6 +136,11 @@ public class ControladorCarrosHome {
     @FXML
     void irButtonExited(MouseEvent event) {
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
     }
 
 }

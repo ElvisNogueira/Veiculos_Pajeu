@@ -37,21 +37,23 @@ public class AppTelas extends Application {
         login = FXMLLoader.load(getClass().getResource("login.fxml"));
         home = FXMLLoader.load(getClass().getResource("home.fxml"));
         carrosHome = FXMLLoader.load(getClass().getResource("CarrosHome.fxml"));
-//        clientesHome = FXMLLoader.load(getClass().getResource("/view/ClientesHome.fxml"));
-//        financeiroHome = FXMLLoader.load(getClass().getResource("/view/FinanceiroHome.fxml"));
-//        funcionariosHome = FXMLLoader.load(getClass().getResource("/view/FuncionariosHome.fxml"));
+        clientesHome = FXMLLoader.load(getClass().getResource("/view/ClientesHome.fxml"));
+        financeiroHome = FXMLLoader.load(getClass().getResource("/view/FinanceiroHome.fxml"));
+        funcionariosHome = FXMLLoader.load(getClass().getResource("/view/FuncionariosHome.fxml"));
 
         loginScene = new Scene(login);
         homeScene = new Scene(home);
         carrosHomeScene = new Scene(carrosHome);
-//        clientesHomeScene = new Scene(clientesHome);
-//        financeiroHomeScene = new Scene(financeiroHome);
-//        funcionariosHomeScene = new Scene(funcionariosHome);
+        clientesHomeScene = new Scene(clientesHome);
+        financeiroHomeScene = new Scene(financeiroHome);
+        funcionariosHomeScene = new Scene(funcionariosHome);
         stage.setScene(homeScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);
+        palco.setResizable(false);
         palco.show();
+        
         telasAcessadas.add(Util.TELA_HOME);
         indice_tela_atual++;
 
@@ -59,36 +61,35 @@ public class AppTelas extends Application {
 
     public static void trocarTela(String tela) {
         if (!tela.equals(telasAcessadas.get(indice_tela_atual))) {
-            System.out.println("view.AppTelas.trocarTela()");
             if (tela.equals(Util.TELA_HOME)) {
                 palco.setScene(homeScene);
             } else if (tela.equals(Util.TELA_CARROS_HOME)) {
                 palco.setScene(carrosHomeScene);
             }
-//        else if(tela.equals(Util.TELA_LOGIN))
-//            palco.setScene(loginScene);
-//        else if(tela.equals(Util.TELA_CLIENTES_HOME))
-//            palco.setScene(clientesHomeScene);
-//        else if(tela.equals(Util.TELA_FINANCEIRO_HOME))
-//            palco.setScene(financeiroHomeScene);
-//        else if(tela.equals(Util.TELA_FUNCIONARIOS_HOME))
-//            palco.setScene(funcionariosHomeScene);
+        else if(tela.equals(Util.TELA_LOGIN))
+            palco.setScene(loginScene);
+        else if(tela.equals(Util.TELA_CLIENTES_HOME))
+            palco.setScene(clientesHomeScene);
+        else if(tela.equals(Util.TELA_FINANCEIRO_HOME))
+            palco.setScene(financeiroHomeScene);
+        else if(tela.equals(Util.TELA_FUNCIONARIOS_HOME))
+            palco.setScene(funcionariosHomeScene);
             telasAcessadas.add(tela);
-            indice_tela_atual++;
+            indice_tela_atual=telasAcessadas.size()-1;
         }
     }
 
     public static void proximo() {
-        if (telasAcessadas.size() > (indice_tela_atual + 1)) {
-            trocarTela(telasAcessadas.get(indice_tela_atual+1));
-            indice_tela_atual++;
+        if (telasAcessadas.size() > (indice_tela_atual)) {
+            trocarTela(telasAcessadas.get(indice_tela_atual-1));
+//            indice_tela_atual++;
         }
     }
 
     public static void voltar() {
         if (indice_tela_atual > 0) {
             trocarTela(telasAcessadas.get(indice_tela_atual-1));
-            indice_tela_atual--;
+//            indice_tela_atual++;
             
         }
     }

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CarrosHomeControlador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FuncionariosHomeControlador">
    <children>
       <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
          <menus>
@@ -52,12 +53,25 @@
             <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
          </image>
       </ImageView>
-      <TableView layoutX="36.0" layoutY="182.0" prefHeight="306.0" prefWidth="631.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-      <TextField layoutX="36.0" layoutY="142.0" prefHeight="25.0" prefWidth="540.0" promptText="Buscar por modelo, placa ou chassi..." />
+      <Label layoutX="25.0" layoutY="154.0" text="Cód.:" />
+      <TextField editable="false" layoutX="75.0" layoutY="150.0" prefHeight="25.0" prefWidth="183.0" />
+      <Label layoutX="24.0" layoutY="197.0" text="Nome:" />
+      <TextField layoutX="75.0" layoutY="193.0" prefHeight="25.0" prefWidth="568.0" />
+      <RadioButton layoutX="401.0" layoutY="154.0" mnemonicParsing="false" text="Pessoa Física" />
+      <RadioButton layoutX="542.0" layoutY="154.0" mnemonicParsing="false" text="Pessoa Jurídica" />
+      <Label layoutX="24.0" layoutY="238.0" text="Telefone:" />
+      <TextField layoutX="460.0" layoutY="234.0" prefHeight="25.0" prefWidth="183.0" />
+      <Label layoutX="24.0" layoutY="320.0" text="CEP:" />
+      <TextField layoutX="72.0" layoutY="316.0" prefHeight="25.0" prefWidth="183.0" />
+      <Label layoutX="24.0" layoutY="360.0" text="Rua:" />
+      <Label layoutX="280.0" layoutY="320.0" text="Bairro" />
+      <Label layoutX="276.0" layoutY="279.0" text="Cidade:" />
+      <TextField layoutX="323.0" layoutY="275.0" prefHeight="25.0" prefWidth="213.0" />
+      <Label layoutX="551.0" layoutY="279.0" text="UF:" />
+      <ComboBox layoutX="579.0" layoutY="275.0" prefHeight="25.0" prefWidth="60.0" promptText="---" />
+      <TextField layoutX="324.0" layoutY="316.0" prefHeight="25.0" prefWidth="317.0" />
+      <TextField layoutX="72.0" layoutY="356.0" prefHeight="25.0" prefWidth="457.0" />
+      <Label layoutX="537.0" layoutY="360.0" text="Nº:" />
+      <TextField layoutX="561.0" layoutY="356.0" prefHeight="25.0" prefWidth="78.0" />
    </children>
 </Pane>

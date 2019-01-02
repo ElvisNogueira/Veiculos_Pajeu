@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import util.Util;
 import view.AppTelas;
 
-public class ControladorLogin implements Initializable {
+public class LoginControlador implements Initializable {
 
     @FXML
     private TextField loginField;

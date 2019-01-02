@@ -24,7 +24,7 @@ public class App{
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args){
+//    public static void main(String[] args){
 //        new AppTelas();
 //        Fachada.getInstance().loginUsuario("elvis150", "Elvis1574!");
 //        Fachada.getInstance().trocarSenha("Elvis1574!", "Elvis150!");
@@ -275,7 +275,7 @@ public class App{
 //        System.out.println("\n\n\n");
         
     
-    }
+//   }
     
     
     
