@@ -7,13 +7,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FuncionariosHomeControlador">
    <children>
@@ -41,7 +40,7 @@
          </menus>
       </MenuBar>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
-      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" layoutX="262.0" layoutY="13.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/logo.png" />
          </image>
@@ -56,37 +55,22 @@
             <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
          </image>
       </ImageView>
-      <Label layoutX="48.0" layoutY="154.0" text="Cód.:" />
-      <TextField editable="false" layoutX="98.0" layoutY="150.0" prefHeight="25.0" prefWidth="183.0" />
-      <Label layoutX="47.0" layoutY="197.0" text="Nome:" />
-      <TextField layoutX="96.0" layoutY="193.0" prefHeight="25.0" prefWidth="568.0" />
-      <RadioButton layoutX="424.0" layoutY="154.0" mnemonicParsing="false" selected="true" text="Pessoa Física">
-         <toggleGroup>
-            <ToggleGroup fx:id="TipoCliente" />
-         </toggleGroup></RadioButton>
-      <RadioButton layoutX="559.0" layoutY="154.0" mnemonicParsing="false" text="Pessoa Jurídica" toggleGroup="$TipoCliente" />
-      <Label layoutX="50.0" layoutY="279.0" text="Tel.:" />
-      <TextField layoutX="97.0" layoutY="275.0" prefHeight="25.0" prefWidth="183.0" />
-      <Label layoutX="47.0" layoutY="320.0" text="CEP:" />
-      <TextField layoutX="98.0" layoutY="316.0" prefHeight="25.0" prefWidth="183.0" />
-      <Label layoutX="47.0" layoutY="360.0" text="Rua:" />
-      <Label layoutX="303.0" layoutY="320.0" text="Bairro" />
-      <Label layoutX="299.0" layoutY="279.0" text="Cidade:" />
-      <TextField layoutX="349.0" layoutY="275.0" prefHeight="25.0" prefWidth="213.0" />
-      <Label layoutX="574.0" layoutY="279.0" text="UF:" />
-      <ComboBox layoutX="602.0" layoutY="275.0" prefHeight="25.0" prefWidth="60.0" promptText="---" />
-      <TextField layoutX="347.0" layoutY="316.0" prefHeight="25.0" prefWidth="317.0" />
-      <TextField layoutX="99.0" layoutY="356.0" prefHeight="25.0" prefWidth="457.0" />
-      <Label layoutX="560.0" layoutY="360.0" text="Nº:" />
-      <TextField layoutX="584.0" layoutY="356.0" prefHeight="25.0" prefWidth="78.0" />
-      <Label layoutX="47.0" layoutY="235.0" text="CPF:" />
-      <TextField layoutX="98.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
-      <DatePicker layoutX="490.0" layoutY="231.0" />
-      <Label layoutX="397.0" layoutY="235.0" text="Data de Nasc.:" />
-      <Label layoutX="47.0" layoutY="404.0" text="CNPJ:" />
-      <TextField layoutX="99.0" layoutY="400.0" prefHeight="25.0" prefWidth="213.0" />
-      <Label layoutX="332.0" layoutY="404.0" text="Inscrição Estadual:" />
-      <TextField layoutX="434.0" layoutY="400.0" prefHeight="25.0" prefWidth="231.0" />
-      <Button layoutX="601.0" layoutY="475.0" mnemonicParsing="false" text="Cadastrar" />
+      <Button layoutX="583.0" layoutY="486.0" mnemonicParsing="false" text="Cadastrar" />
+      <Label layoutX="236.0" layoutY="38.0" text="CADASTRO DE MOTORISTA" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="39.0" layoutY="147.0" text="Data Venc. CNH:" />
+      <DatePicker layoutX="140.0" layoutY="143.0" />
+      <Label layoutX="338.0" layoutY="147.0" text="Num. da CNH:" />
+      <TextField layoutX="423.0" layoutY="143.0" prefHeight="25.0" prefWidth="227.0" />
+      <Label layoutX="39.0" layoutY="192.0" text="Cliente:" />
+      <ComboBox layoutX="100.0" layoutY="188.0" prefHeight="25.0" prefWidth="525.0" promptText="                                                      &lt;Selecione o motorista&gt;" />
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="629.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-plus-math-20.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

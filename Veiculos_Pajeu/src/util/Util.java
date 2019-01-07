@@ -26,9 +26,10 @@ public class Util {
     private static Matcher matcher;
     public static String PANE_SELEC = "-fx-background-color: #e3e3e3;";
     public static String PANE_DESSELEC = "-fx-background-color:  #ebebeb;";
-    public static String TELA_CARROS_HOME = "carrosHome", TELA_CLIENTES_HOME = "clientesHome", 
+    public final static String TELA_CARROS_HOME = "carrosHome", TELA_CLIENTES_HOME = "clientesHome", 
             TELA_FINANCEIRO_HOME = "financeiroHome", TELA_FUNCIONARIOS_HOME = "funcionariosHome",
-            TELA_LOGIN = "login", TELA_HOME = "home";
+            TELA_LOGIN = "login", TELA_HOME = "home", TELA_CADASTRAR_CATEGORIA = "cadCategoria";
+    public final static int IR = 0, VOLTAR = 1, ABRIR = 2;
 
     private static final String RESTRICOES = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*]).{6,11})";
 

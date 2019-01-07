@@ -1,16 +1,26 @@
 package controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import view.AppTelas;
 
-public class CarrosHomeControlador implements Initializable{
+public class CarrosHomeControlador {
+
+    @FXML
+    private ImageView homeButton;
+
+    @FXML
+    private Pane locacaoPanel;
+
+    @FXML
+    private Pane reservaPanel;
+
+    @FXML
+    private Pane cadastrarCarrosPanel;
+
+    @FXML
+    private Pane carrosCadastradosPanel;
 
     @FXML
     private ImageView voltarButton;
@@ -19,93 +29,33 @@ public class CarrosHomeControlador implements Initializable{
     private ImageView irButton;
 
     @FXML
-    private ImageView homeButton;
+    void cadastrarCarrosPanelClick(MouseEvent event) {
+        
+    }
 
     @FXML
-    private Pane carrosPanel;
-
-    @FXML
-    private Pane clientesPanel;
-
-    @FXML
-    private Pane financeiroPanel;
-
-    @FXML
-    private Pane relatoriosPanel;
-
-    @FXML
-    void carrosPanelClicked(MouseEvent event) {
+    void cadastrarCarrosPanelEntered(MouseEvent event) {
 
     }
 
     @FXML
-    void carrosPanelEntered(MouseEvent event) {
+    void cadastrarCarrosPanelExited(MouseEvent event) {
 
     }
 
     @FXML
-    void carrosPanelExited(MouseEvent event) {
+    void carrosCadastradosPanelClicked(MouseEvent event) {
 
     }
 
     @FXML
-    void clientesPanelClicked(MouseEvent event) {
+    void carrosCadastradosPanelEntered(MouseEvent event) {
 
     }
 
     @FXML
-    void clientesPanelEntred(MouseEvent event) {
+    void carrosCadastradosPanelExited(MouseEvent event) {
 
-    }
-
-    @FXML
-    void clientesPanelExited(MouseEvent event) {
-
-    }
-
-    @FXML
-    void financeiroPanelClick(MouseEvent event) {
-
-    }
-
-    @FXML
-    void financeiroPanelEntered(MouseEvent event) {
-
-    }
-
-    @FXML
-    void financeiroPanelExited(MouseEvent event) {
-
-    }
-
-    @FXML
-    void relatoriosPanelClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void relatoriosPanelEntered(MouseEvent event) {
-
-    }
-
-    @FXML
-    void relatoriosPanelExited(MouseEvent event) {
-
-    }
-
-    @FXML
-    void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
-    }
-
-    @FXML
-    void voltarButtonEntered(MouseEvent event) {
-        voltarButton.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void voltarButtonExited(MouseEvent event) {
-        voltarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -115,12 +65,12 @@ public class CarrosHomeControlador implements Initializable{
 
     @FXML
     void homeButtonEntered(MouseEvent event) {
-        homeButton.setCursor(Cursor.HAND);
+
     }
 
     @FXML
     void homeButtonExited(MouseEvent event) {
-        homeButton.setCursor(Cursor.DEFAULT);
+
     }
 
     @FXML
@@ -138,9 +88,49 @@ public class CarrosHomeControlador implements Initializable{
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
+    @FXML
+    void locacaoPanelClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void locacaoPanelEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void locacaoPanelExited(MouseEvent event) {
+
+    }
+
+    @FXML
+    void reservaPanelClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void reservaPanelEntred(MouseEvent event) {
+
+    }
+
+    @FXML
+    void reservaPanelExited(MouseEvent event) {
+
+    }
+
+    @FXML
+    void voltarButtonClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void voltarButtonEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void voltarButtonExited(MouseEvent event) {
+
     }
 
 }

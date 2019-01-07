@@ -46,7 +46,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void carrosPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CARROS_HOME);
+        AppTelas.trocarTela(Util.TELA_CARROS_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -63,7 +63,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void clientesPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CLIENTES_HOME);
+        AppTelas.trocarTela(Util.TELA_CLIENTES_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -97,7 +97,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void financeiroPanelClick(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_FINANCEIRO_HOME);
+        AppTelas.trocarTela(Util.TELA_FINANCEIRO_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -114,7 +114,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void funcionariosPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_FUNCIONARIOS_HOME);
+        AppTelas.trocarTela(Util.TELA_FUNCIONARIOS_HOME, Util.ABRIR);
     }
 
     @FXML
