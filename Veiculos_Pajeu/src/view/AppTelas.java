@@ -21,9 +21,9 @@ import util.Util;
 public class AppTelas extends Application {
     
     private static Stage palco;
-    Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria;
+    Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad;
     static Scene loginScene, homeScene, carrosHomeScene, clientesHomeScene, financeiroHomeScene,
-            funcionariosHomeScene, cadCategoriaScene;
+            funcionariosHomeScene, cadCategoriaScene, carrosCadScene;
     private static ArrayList<String> telasAcessadas;
     private static int indice_tela_atual = -1;
     
@@ -42,6 +42,7 @@ public class AppTelas extends Application {
         financeiroHome = FXMLLoader.load(getClass().getResource("FinanceiroHome.fxml"));
         funcionariosHome = FXMLLoader.load(getClass().getResource("FuncionariosHome.fxml"));
         cadCategoria = FXMLLoader.load(getClass().getResource("CadastrarCategoria.fxml"));
+        carrosCad = FXMLLoader.load(getClass().getResource("CarrosCadastrados.fxml"));
         
         loginScene = new Scene(login);
         homeScene = new Scene(home);
@@ -50,6 +51,7 @@ public class AppTelas extends Application {
         financeiroHomeScene = new Scene(financeiroHome);
         funcionariosHomeScene = new Scene(funcionariosHome);
         cadCategoriaScene = new Scene(cadCategoria);
+        carrosCadScene = new Scene(carrosCad);
         
         stage.setScene(homeScene);
         palco.setTitle("Pajeú Veículos");
@@ -79,6 +81,9 @@ public class AppTelas extends Application {
                 palco.setScene(funcionariosHomeScene);
             else if (tela.equals(Util.TELA_CADASTRAR_CATEGORIA))
                 palco.setScene(cadCategoriaScene);
+            else if (tela.equals(Util.TELA_CARROS_CADASTRADOS))
+                palco.setScene(carrosCadScene);
+            
             if(tipo == Util.ABRIR){
                if(!telasAcessadas.get(telasAcessadas.size()-1).equals(tela)){
                    telasAcessadas.add(tela);
