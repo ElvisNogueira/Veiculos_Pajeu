@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FuncionariosHomeControlador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroFuncionarioControlador">
    <children>
       <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
          <menus>
@@ -56,24 +56,24 @@
          </image>
       </ImageView>
       <Label layoutX="54.0" layoutY="148.0" text="Nome:" />
-      <TextField layoutX="103.0" layoutY="144.0" prefHeight="25.0" prefWidth="568.0" />
+      <TextField fx:id="nomeField" layoutX="103.0" layoutY="144.0" prefHeight="25.0" prefWidth="568.0" />
       <Label layoutX="57.0" layoutY="230.0" text="Tel.:" />
-      <TextField layoutX="104.0" layoutY="226.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="telefoneField" layoutX="104.0" layoutY="226.0" onKeyReleased="#telefoneFieldReleased" prefHeight="25.0" prefWidth="183.0" />
       <Label layoutX="54.0" layoutY="271.0" text="CEP:" />
-      <TextField layoutX="105.0" layoutY="267.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="cepField" layoutX="105.0" layoutY="267.0" onKeyReleased="#cepFieldReleased" prefHeight="25.0" prefWidth="183.0" />
       <Label layoutX="54.0" layoutY="311.0" text="Rua:" />
       <Label layoutX="310.0" layoutY="271.0" text="Bairro" />
       <Label layoutX="306.0" layoutY="230.0" text="Cidade:" />
-      <TextField layoutX="356.0" layoutY="226.0" prefHeight="25.0" prefWidth="213.0" />
+      <TextField fx:id="cidadeField" layoutX="356.0" layoutY="226.0" prefHeight="25.0" prefWidth="213.0" />
       <Label layoutX="583.0" layoutY="230.0" text="UF:" />
-      <ComboBox layoutX="609.0" layoutY="226.0" prefHeight="25.0" prefWidth="60.0" promptText="---" />
-      <TextField layoutX="354.0" layoutY="267.0" prefHeight="25.0" prefWidth="317.0" />
-      <TextField layoutX="106.0" layoutY="307.0" prefHeight="25.0" prefWidth="457.0" />
+      <ComboBox fx:id="ufComboBox" layoutX="609.0" layoutY="226.0" prefHeight="25.0" prefWidth="60.0" promptText="---" />
+      <TextField fx:id="bairroField" layoutX="354.0" layoutY="267.0" prefHeight="25.0" prefWidth="317.0" />
+      <TextField fx:id="ruaField" layoutX="106.0" layoutY="307.0" prefHeight="25.0" prefWidth="457.0" />
       <Label layoutX="567.0" layoutY="311.0" text="Nº:" />
-      <TextField layoutX="591.0" layoutY="307.0" prefHeight="25.0" prefWidth="78.0" />
+      <TextField fx:id="numeroField" layoutX="591.0" layoutY="307.0" prefHeight="25.0" prefWidth="78.0" />
       <Label layoutX="54.0" layoutY="186.0" text="CPF:" />
-      <TextField layoutX="105.0" layoutY="182.0" prefHeight="25.0" prefWidth="183.0" />
-      <DatePicker layoutX="497.0" layoutY="182.0" />
+      <TextField fx:id="cpfField" layoutX="105.0" layoutY="182.0" onKeyReleased="#cpfFieldReleased" prefHeight="25.0" prefWidth="183.0" />
+      <DatePicker fx:id="dataNascField" layoutX="497.0" layoutY="182.0" />
       <Label layoutX="416.0" layoutY="186.0" text="Data de Nasc.:" />
       <Button layoutX="601.0" layoutY="475.0" mnemonicParsing="false" text="Cadastrar" />
       <Label layoutX="371.0" layoutY="349.0" text="Login:" />

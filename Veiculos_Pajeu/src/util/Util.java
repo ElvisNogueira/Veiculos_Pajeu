@@ -29,7 +29,8 @@ public class Util {
     public final static String TELA_CADASTRAR_CATEGORIA = "cadCategoria", TELA_CARROS_CADASTRADOS = "carrosCad",
             TELA_CARROS_HOME = "carrosHome", TELA_CLIENTES_HOME = "clientesHome", 
             TELA_FINANCEIRO_HOME = "financeiroHome", TELA_FUNCIONARIOS_HOME = "funcionariosHome", 
-            TELA_LOGIN = "login", TELA_HOME = "home";
+            TELA_LOGIN = "login", TELA_HOME = "home", TELA_CAD_FUNCIONARIO = "cadFuncionario";
+    public final static int ERRO_CADASTRO = 0, ERRO_LOGIN = 1, SUCESSO_CADASTRO = 2;
     public final static int IR = 0, VOLTAR = 1, ABRIR = 2;
 
     private static final String RESTRICOES = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*]).{6,11})";

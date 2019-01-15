@@ -3,24 +3,24 @@
   <persistence-unit name="Veiculos_PajeuPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>model.Conta </class>
-    <class>model.Categoria</class>
-    <class>model.Cliente</class>
-    <class>model.Endereco</class>
-    <class>model.Funcionario</class>
-    <class>model.Usuario</class>
-    <class>model.Camioneta_carga</class>
-    <class>model.Camioneta_passageiro</class>
-    <class>model.Conta</class>
-    <class>model.Financeiro</class>
     <class>model.Limpeza</class>
-    <class>model.Locacao</class>
-    <class>model.Locadora</class>
-    <class>model.Motorista</class>
-    <class>model.Pessoa_Fisica</class>
-    <class>model.Pessoa_Juridica</class>
-    <class>model.Reserva</class>
     <class>model.Revisao</class>
     <class>model.Veiculo</class>
+    <class>model.Cliente</class>
+    <class>model.Camioneta_carga</class>
+    <class>model.Pessoa_Juridica</class>
+    <class>model.Usuario</class>
+    <class>model.Locacao</class>
+    <class>model.Endereco</class>
+    <class>model.Funcionario</class>
+    <class>model.Conta</class>
+    <class>model.Motorista</class>
+    <class>model.Pessoa_Fisica</class>
+    <class>model.Camioneta_passageiro</class>
+    <class>model.Categoria</class>
+    <class>model.Financeiro</class>
+    <class>model.Locadora</class>
+    <class>model.Reserva</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/veiculos_pajeu"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

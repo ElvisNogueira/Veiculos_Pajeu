@@ -5,10 +5,12 @@
  */
 package view;
 
+import controller.CadastroFuncionarioControlador;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -21,11 +23,13 @@ import util.Util;
 public class AppTelas extends Application {
     
     private static Stage palco;
-    Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad;
+    Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad,
+            cadFuncionario;
     static Scene loginScene, homeScene, carrosHomeScene, clientesHomeScene, financeiroHomeScene,
-            funcionariosHomeScene, cadCategoriaScene, carrosCadScene;
+            funcionariosHomeScene, cadCategoriaScene, carrosCadScene,cadFuncionarioScene;
     private static ArrayList<String> telasAcessadas;
     private static int indice_tela_atual = -1;
+    private static Alert alert = new Alert(Alert.AlertType.ERROR);
     
     public static void main(String[] args) {
         launch(args);
@@ -43,6 +47,7 @@ public class AppTelas extends Application {
         funcionariosHome = FXMLLoader.load(getClass().getResource("FuncionariosHome.fxml"));
         cadCategoria = FXMLLoader.load(getClass().getResource("CadastrarCategoria.fxml"));
         carrosCad = FXMLLoader.load(getClass().getResource("CarrosCadastrados.fxml"));
+        cadFuncionario = FXMLLoader.load(getClass().getResource("CadastroFuncionario.fxml"));
         
         loginScene = new Scene(login);
         homeScene = new Scene(home);
@@ -52,8 +57,10 @@ public class AppTelas extends Application {
         funcionariosHomeScene = new Scene(funcionariosHome);
         cadCategoriaScene = new Scene(cadCategoria);
         carrosCadScene = new Scene(carrosCad);
+        cadFuncionarioScene = new Scene(cadFuncionario);
         
-        stage.setScene(homeScene);
+        
+        stage.setScene(cadFuncionarioScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);
@@ -83,6 +90,8 @@ public class AppTelas extends Application {
                 palco.setScene(cadCategoriaScene);
             else if (tela.equals(Util.TELA_CARROS_CADASTRADOS))
                 palco.setScene(carrosCadScene);
+            else if (tela.equals(Util.TELA_CAD_FUNCIONARIO))
+                palco.setScene(cadFuncionarioScene);
             
             if(tipo == Util.ABRIR){
                if(!telasAcessadas.get(telasAcessadas.size()-1).equals(tela)){
@@ -110,6 +119,31 @@ public class AppTelas extends Application {
         }else
             System.out.println("view.AppTelas.voltar()");
         
+    }
+    
+    public static void mostrarAlert(int tipo){
+        switch(tipo){
+            case 0:
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setTitle("ERRO");
+                alert.setContentText("Erro ao efetuar cadastro!");
+                alert.show();
+                break;
+            case 1:
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setTitle("ERRO");
+                alert.setContentText("Erro ao efetuar login!");
+                alert.show();
+                break;
+            case 2:
+                alert.setAlertType(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Sucesso");
+                alert.setContentText("Cadastro efetuado com sucesso!");
+                alert.show();
+                break;
+                
+        }
+                
     }
     
     public static int getIndice_tela_atual() {
