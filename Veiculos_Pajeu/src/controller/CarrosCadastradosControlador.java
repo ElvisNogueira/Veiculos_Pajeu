@@ -1,15 +1,25 @@
 package controller;
 
+import fachada.Fachada;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import model.Veiculo;
+import org.hibernate.PropertyValueException;
 
-public class CarrosCadastradosControlador {
+public class CarrosCadastradosControlador implements Initializable{
 
     @FXML
     private ImageView homeButton;
@@ -21,7 +31,22 @@ public class CarrosCadastradosControlador {
     private ImageView irButton;
 
     @FXML
-    private TableView<?> carrosTable;
+    private TableView<Veiculo> carrosTable;
+    
+     @FXML
+    private TableColumn<Veiculo,Long> idColuna;
+
+    @FXML
+    private TableColumn<Veiculo, String> placaColuna;
+
+    @FXML
+    private TableColumn<Veiculo, String> modeloColuna;
+
+    @FXML
+    private TableColumn<Veiculo, String> marcaColuna;
+
+    @FXML
+    private TableColumn<Veiculo, Integer> categoriaColuna;
 
     @FXML
     private TextField buscarField;
@@ -37,7 +62,18 @@ public class CarrosCadastradosControlador {
 
     @FXML
     private Button cancelarButton;
-
+    
+    @FXML
+    private Button devolverCarroButton;
+    
+    private Button excluirButton;
+    
+    @FXML
+    void excluirButtonAction(ActionEvent event) {
+        Fachada.getInstance().removeVeiculo(carrosTable.getSelectionModel().getSelectedItem());
+        carregarTabela();
+    }
+    
     @FXML
     void buscaFieldKeyPressed(KeyEvent event) {
 
@@ -77,6 +113,11 @@ public class CarrosCadastradosControlador {
     void carrosTableClicked(MouseEvent event) {
 
     }
+    
+    @FXML
+    void devolverCarroButtonAction(ActionEvent event) {
+
+    }
 
     @FXML
     void editarButtonAction(ActionEvent event) {
@@ -90,7 +131,7 @@ public class CarrosCadastradosControlador {
 
     @FXML
     void editarButtonExited(MouseEvent event) {
-
+       
     }
 
     @FXML
@@ -151,6 +192,25 @@ public class CarrosCadastradosControlador {
     @FXML
     void voltarButtonExited(MouseEvent event) {
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        iniciarTabela();
+    }
+    
+    public void iniciarTabela(){
+        idColuna.setCellValueFactory(new PropertyValueFactory("id"));
+        categoriaColuna.setCellValueFactory(new PropertyValueFactory("num_passageiros"));
+        marcaColuna.setCellValueFactory(new PropertyValueFactory("fabricante"));
+        modeloColuna.setCellValueFactory(new PropertyValueFactory("modelo"));
+        placaColuna.setCellValueFactory(new PropertyValueFactory("placa"));
+        
+        carrosTable.setItems(carregarTabela());
+    }
+    
+    public ObservableList carregarTabela(){
+        return FXCollections.observableArrayList(Fachada.getInstance().getAllVeiculo());
     }
 
 }

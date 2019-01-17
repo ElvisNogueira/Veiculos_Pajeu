@@ -24,9 +24,10 @@ public class AppTelas extends Application {
     
     private static Stage palco;
     Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad,
-            cadFuncionario;
+            cadFuncionario, cadCarro, reserva, locacao;
     static Scene loginScene, homeScene, carrosHomeScene, clientesHomeScene, financeiroHomeScene,
-            funcionariosHomeScene, cadCategoriaScene, carrosCadScene,cadFuncionarioScene;
+            funcionariosHomeScene, cadCategoriaScene, carrosCadScene,cadFuncionarioScene, cadCarroScene,
+            reservaScene, locacaoScene;
     private static ArrayList<String> telasAcessadas;
     private static int indice_tela_atual = -1;
     private static Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -48,6 +49,9 @@ public class AppTelas extends Application {
         cadCategoria = FXMLLoader.load(getClass().getResource("CadastrarCategoria.fxml"));
         carrosCad = FXMLLoader.load(getClass().getResource("CarrosCadastrados.fxml"));
         cadFuncionario = FXMLLoader.load(getClass().getResource("CadastroFuncionario.fxml"));
+        cadCarro = FXMLLoader.load(getClass().getResource("CadastroVeiculo.fxml"));
+        reserva = FXMLLoader.load(getClass().getResource("Reserva.fxml"));
+        locacao = FXMLLoader.load(getClass().getResource("Locacao.fxml"));
         
         loginScene = new Scene(login);
         homeScene = new Scene(home);
@@ -58,22 +62,26 @@ public class AppTelas extends Application {
         cadCategoriaScene = new Scene(cadCategoria);
         carrosCadScene = new Scene(carrosCad);
         cadFuncionarioScene = new Scene(cadFuncionario);
+        cadCarroScene = new Scene(cadCarro);
+        reservaScene = new Scene(reserva);
+        locacaoScene = new Scene(locacao);
         
-        
-        stage.setScene(cadFuncionarioScene);
+        stage.setScene(loginScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);
         palco.setResizable(false);
         palco.show();
         
-        telasAcessadas.add(Util.TELA_HOME);
+        telasAcessadas.add(Util.TELA_LOGIN);
         indice_tela_atual++;
         
     }
     
     public static void trocarTela(String tela, int tipo) {
+        
         if (!tela.equals(telasAcessadas.get(indice_tela_atual))) {
+            System.err.println(tela);
             if (tela.equals(Util.TELA_HOME))
                 palco.setScene(homeScene);
             else if (tela.equals(Util.TELA_CARROS_HOME))
@@ -92,6 +100,12 @@ public class AppTelas extends Application {
                 palco.setScene(carrosCadScene);
             else if (tela.equals(Util.TELA_CAD_FUNCIONARIO))
                 palco.setScene(cadFuncionarioScene);
+            else if (tela.equals(Util.TELA_CAD_CARRO))
+                palco.setScene(cadCarroScene);
+            else if (tela.equals(Util.TELA_RESERVA))
+                palco.setScene(reservaScene);
+            else if (tela.equals(Util.TELA_LOCACAO))
+                palco.setScene(locacaoScene);
             
             if(tipo == Util.ABRIR){
                if(!telasAcessadas.get(telasAcessadas.size()-1).equals(tela)){

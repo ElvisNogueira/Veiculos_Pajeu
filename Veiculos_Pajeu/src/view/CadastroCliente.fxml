@@ -14,6 +14,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FuncionariosHomeControlador">
    <children>
@@ -41,7 +42,7 @@
          </menus>
       </MenuBar>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
-      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" layoutX="262.0" layoutY="13.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" layoutX="-1.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/logo.png" />
          </image>
@@ -88,5 +89,10 @@
       <Label layoutX="332.0" layoutY="404.0" text="Inscrição Estadual:" />
       <TextField layoutX="434.0" layoutY="400.0" prefHeight="25.0" prefWidth="231.0" />
       <Button layoutX="601.0" layoutY="475.0" mnemonicParsing="false" text="Cadastrar" />
+      <Label layoutX="243.0" layoutY="38.0" text="CADASTRO DE CLIENTE" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

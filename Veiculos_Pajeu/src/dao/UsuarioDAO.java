@@ -16,6 +16,7 @@ import javax.persistence.Persistence;
 import model.Conta;
 import model.Usuario;
 import util.Util;
+import view.AppTelas;
 
 /**
  *
@@ -111,11 +112,10 @@ public class UsuarioDAO {
                     + " and u.senha='" + senha + "'";
             Usuario usuario = (Usuario) entityManager.createQuery(jpaQuery).getSingleResult();
             Fachada.setUserLogado(usuario);
-            System.err.println("Conectado: "+Fachada.getUserLogado().toString());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("Erro ao fazer login! ");
+            AppTelas.mostrarAlert(Util.ERRO_LOGIN);
         }
         
         return false;

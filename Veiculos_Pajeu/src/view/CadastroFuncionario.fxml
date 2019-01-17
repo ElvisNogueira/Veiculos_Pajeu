@@ -13,6 +13,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroFuncionarioControlador">
    <children>
@@ -40,7 +41,7 @@
          </menus>
       </MenuBar>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
-      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" layoutX="262.0" layoutY="13.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" layoutX="3.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/logo.png" />
          </image>
@@ -75,14 +76,19 @@
       <TextField fx:id="cpfField" layoutX="105.0" layoutY="182.0" onKeyReleased="#cpfFieldReleased" prefHeight="25.0" prefWidth="183.0" />
       <DatePicker fx:id="dataNascField" layoutX="497.0" layoutY="182.0" />
       <Label layoutX="416.0" layoutY="186.0" text="Data de Nasc.:" />
-      <Button layoutX="601.0" layoutY="475.0" mnemonicParsing="false" text="Cadastrar" />
+      <Button fx:id="cadastrarButon" layoutX="601.0" layoutY="475.0" mnemonicParsing="false" onAction="#cadastrarButonAction" onMouseEntered="#cadastrarButonEntered" onMouseExited="#cadastrarButonExited" text="Cadastrar" />
       <Label layoutX="371.0" layoutY="349.0" text="Login:" />
-      <TextField layoutX="445.0" layoutY="345.0" prefHeight="25.0" prefWidth="222.0" />
+      <TextField fx:id="loginField" layoutX="445.0" layoutY="345.0" prefHeight="25.0" prefWidth="222.0" />
       <Label layoutX="50.0" layoutY="393.0" text="Senha:" />
-      <PasswordField layoutX="106.0" layoutY="389.0" prefHeight="25.0" prefWidth="228.0" />
+      <PasswordField fx:id="senhaField" layoutX="106.0" layoutY="389.0" onKeyReleased="#senhaFieldKeyReleased" prefHeight="25.0" prefWidth="228.0" />
       <Label layoutX="368.0" layoutY="393.0" text="Conf. Senha:" />
-      <PasswordField layoutX="447.0" layoutY="389.0" prefHeight="25.0" prefWidth="222.0" />
+      <PasswordField fx:id="confSenhaField" layoutX="447.0" layoutY="389.0" onKeyReleased="#confSenhaFieldKeyReleased" prefHeight="25.0" prefWidth="222.0" />
       <Label layoutX="53.0" layoutY="349.0" text="Tipo de Usuário:" />
-      <ComboBox layoutX="150.0" layoutY="345.0" prefHeight="25.0" prefWidth="183.0" promptText="            &lt;Nenhum&gt;" />
+      <ComboBox fx:id="tipoUsuariosComboBox" layoutX="150.0" layoutY="345.0" prefHeight="25.0" prefWidth="183.0" promptText="            &lt;Nenhum&gt;" />
+      <Label layoutX="245.0" layoutY="38.0" text="CADASTRO DE FUNCIONARIO" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
