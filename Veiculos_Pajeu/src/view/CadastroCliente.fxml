@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FuncionariosHomeControlador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroClienteControlador">
    <children>
       <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
          <menus>
@@ -58,37 +59,40 @@
          </image>
       </ImageView>
       <Label layoutX="48.0" layoutY="154.0" text="Cód.:" />
-      <TextField editable="false" layoutX="98.0" layoutY="150.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="codField" editable="false" layoutX="98.0" layoutY="150.0" prefHeight="25.0" prefWidth="183.0" />
       <Label layoutX="47.0" layoutY="197.0" text="Nome:" />
-      <TextField layoutX="96.0" layoutY="193.0" prefHeight="25.0" prefWidth="568.0" />
-      <RadioButton layoutX="424.0" layoutY="154.0" mnemonicParsing="false" selected="true" text="Pessoa Física">
+      <TextField fx:id="nomeField" layoutX="96.0" layoutY="193.0" prefHeight="25.0" prefWidth="568.0" />
+      <RadioButton fx:id="pessoaFisicaRadioButton" layoutX="424.0" layoutY="154.0" mnemonicParsing="false" onAction="#pessoaFisicaRadioButtonAction" selected="true" text="Pessoa Física">
          <toggleGroup>
             <ToggleGroup fx:id="TipoCliente" />
          </toggleGroup></RadioButton>
-      <RadioButton layoutX="559.0" layoutY="154.0" mnemonicParsing="false" text="Pessoa Jurídica" toggleGroup="$TipoCliente" />
+      <RadioButton fx:id="pessoaJuridicaRadioButton" layoutX="559.0" layoutY="154.0" mnemonicParsing="false" onAction="#pessoaJuridicaRadioButtonAction" text="Pessoa Jurídica" toggleGroup="$TipoCliente" />
       <Label layoutX="50.0" layoutY="279.0" text="Tel.:" />
-      <TextField layoutX="97.0" layoutY="275.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="telefoneField" layoutX="97.0" layoutY="275.0" onKeyReleased="#telefoneFieldReleased" prefHeight="25.0" prefWidth="183.0" />
       <Label layoutX="47.0" layoutY="320.0" text="CEP:" />
-      <TextField layoutX="98.0" layoutY="316.0" prefHeight="25.0" prefWidth="183.0" />
+      <TextField fx:id="cepField" layoutX="98.0" layoutY="316.0" onKeyReleased="#cepFieldReleased" prefHeight="25.0" prefWidth="183.0" />
       <Label layoutX="47.0" layoutY="360.0" text="Rua:" />
       <Label layoutX="303.0" layoutY="320.0" text="Bairro" />
       <Label layoutX="299.0" layoutY="279.0" text="Cidade:" />
-      <TextField layoutX="349.0" layoutY="275.0" prefHeight="25.0" prefWidth="213.0" />
+      <TextField fx:id="cidadeField" layoutX="349.0" layoutY="275.0" prefHeight="25.0" prefWidth="213.0" />
       <Label layoutX="574.0" layoutY="279.0" text="UF:" />
-      <ComboBox layoutX="602.0" layoutY="275.0" prefHeight="25.0" prefWidth="60.0" promptText="---" />
-      <TextField layoutX="347.0" layoutY="316.0" prefHeight="25.0" prefWidth="317.0" />
-      <TextField layoutX="99.0" layoutY="356.0" prefHeight="25.0" prefWidth="457.0" />
+      <ComboBox fx:id="ufComboBox" layoutX="602.0" layoutY="275.0" prefHeight="25.0" prefWidth="60.0" promptText="---" />
+      <TextField fx:id="bairroField" layoutX="347.0" layoutY="316.0" prefHeight="25.0" prefWidth="317.0" />
+      <TextField fx:id="ruaField" layoutX="99.0" layoutY="356.0" prefHeight="25.0" prefWidth="457.0" />
       <Label layoutX="560.0" layoutY="360.0" text="Nº:" />
-      <TextField layoutX="584.0" layoutY="356.0" prefHeight="25.0" prefWidth="78.0" />
-      <Label layoutX="47.0" layoutY="235.0" text="CPF:" />
-      <TextField layoutX="98.0" layoutY="231.0" prefHeight="25.0" prefWidth="183.0" />
-      <DatePicker layoutX="490.0" layoutY="231.0" />
-      <Label layoutX="397.0" layoutY="235.0" text="Data de Nasc.:" />
-      <Label layoutX="47.0" layoutY="404.0" text="CNPJ:" />
-      <TextField layoutX="99.0" layoutY="400.0" prefHeight="25.0" prefWidth="213.0" />
-      <Label layoutX="332.0" layoutY="404.0" text="Inscrição Estadual:" />
-      <TextField layoutX="434.0" layoutY="400.0" prefHeight="25.0" prefWidth="231.0" />
-      <Button layoutX="601.0" layoutY="475.0" mnemonicParsing="false" text="Cadastrar" />
+      <TextField fx:id="numeroField" layoutX="584.0" layoutY="356.0" prefHeight="25.0" prefWidth="78.0" />
+      <Label fx:id="cpfLabel" layoutX="47.0" layoutY="235.0" text="CPF:" />
+      <TextField fx:id="cpfField" layoutX="98.0" layoutY="231.0" onKeyReleased="#cpfFieldReleased" prefHeight="25.0" prefWidth="183.0" />
+      <DatePicker fx:id="dataNasc" layoutX="490.0" layoutY="231.0" />
+      <Label fx:id="dataNascLabel" layoutX="397.0" layoutY="235.0" text="Data de Nasc.:" />
+      <Label fx:id="cnpjLabel" layoutX="47.0" layoutY="404.0" text="CNPJ:" />
+      <TextField fx:id="cnpjField" layoutX="99.0" layoutY="400.0" onKeyReleased="#cnpjFieldReleased" prefHeight="25.0" prefWidth="213.0" />
+      <Label fx:id="inscricaoEstadualLabel" layoutX="332.0" layoutY="404.0" text="Inscrição Estadual:" />
+      <TextField fx:id="inscricaoEstadual" layoutX="434.0" layoutY="400.0" prefHeight="25.0" prefWidth="231.0" />
+      <Button fx:id="cadastrarButon" layoutX="601.0" layoutY="475.0" mnemonicParsing="false" onAction="#cadastrarButonAction" text="Cadastrar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="243.0" layoutY="38.0" text="CADASTRO DE CLIENTE" textFill="WHITE">
          <font>
             <Font name="Impact" size="25.0" />

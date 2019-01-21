@@ -35,6 +35,9 @@ public class Reserva {
     @Column(nullable = false)
     private float valor_entrada;
     @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
+    @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 

@@ -10,6 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Endereco;
+import model.Funcionario;
+import model.Usuario;
 import util.Util;
 import view.AppTelas;
 
@@ -26,6 +29,10 @@ public class App{
      */
 //    public static void main(String[] args){
 //        new AppTelas();
+//        Endereco endereco = new Endereco("Rua Manoel Ferraz", "DNER", "Floresta", "PE", "56400-000", "70");
+//        Funcionario funcionario = new Funcionario("Elvis", "(87)99612-2609", "113.000.434-74", Util.getDate("1997-12-02"),
+//                endereco);
+//        Usuario usuario = new Usuario("Administrador", "elvis", "elvis150", funcionario);
 //        Fachada.getInstance().loginUsuario("elvis150", "Elvis1574!");
 //        Fachada.getInstance().trocarSenha("Elvis1574!", "Elvis150!");
 

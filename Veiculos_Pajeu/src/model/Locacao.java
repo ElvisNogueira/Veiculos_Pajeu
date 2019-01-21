@@ -44,6 +44,9 @@ public class Locacao {
     @JoinColumn(name = "id_veiculo")
     private Veiculo veiculo;
     @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
+    @ManyToOne
     @JoinColumn(name = "id_motorista")
     private Motorista motorista;
     @OneToOne

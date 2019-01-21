@@ -1,7 +1,9 @@
 package controller;
 
+import fachada.Fachada;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -81,12 +83,12 @@ public class LocacaoControlador implements Initializable{
 
     @FXML
     void atualizarBuuttonEntered(MouseEvent event) {
-
+        atualizarBuutton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void atualizarBuuttonExited(MouseEvent event) {
-
+        atualizarBuutton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -96,17 +98,17 @@ public class LocacaoControlador implements Initializable{
 
     @FXML
     void devolverVeiculoAction(ActionEvent event) {
-
+        
     }
 
     @FXML
     void devolverVeiculoEntered(MouseEvent event) {
-
+        devolverVeiculo.setCursor(Cursor.HAND);
     }
 
     @FXML
     void devolverVeiculoExited(MouseEvent event) {
-
+        devolverVeiculo.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -115,18 +117,19 @@ public class LocacaoControlador implements Initializable{
     }
 
     @FXML
-    void editarButtonPressed(KeyEvent event) {
-
+    void editarButtonEntered(MouseEvent event) {
+        editarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
-    void editarButtonReleased(KeyEvent event) {
-
+    void editarButtonExited(MouseEvent event) {
+        editarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
     void excluirButtonAction(ActionEvent event) {
-
+        Fachada.getInstance().removeLocacao(locacaoTable.getSelectionModel().getSelectedItem());
+        inicializarTabela();
     }
 
     @FXML
@@ -136,7 +139,7 @@ public class LocacaoControlador implements Initializable{
 
     @FXML
     void excluirButtonEntered(MouseEvent event) {
-
+        excluirButton.setCursor(Cursor.HAND);
     }
 
     @FXML
@@ -171,17 +174,17 @@ public class LocacaoControlador implements Initializable{
 
     @FXML
     void novoButtonAction(ActionEvent event) {
-
+        AppTelas.trocarTela(Util.TELA_CAD_LOCACAO, Util.ABRIR);
     }
 
     @FXML
     void novoButtonEntered(MouseEvent event) {
-
+        novoButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void novoButtonExited(MouseEvent event) {
-
+        novoButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -191,12 +194,12 @@ public class LocacaoControlador implements Initializable{
 
     @FXML
     void pesquisarButtonEntered(MouseEvent event) {
-
+        pesquisarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void pesquisarButtonExited(MouseEvent event) {
-
+        pesquisarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -226,7 +229,7 @@ public class LocacaoControlador implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        inicializarTabela();
     }
 
     public void inicializarTabela(){
@@ -234,9 +237,10 @@ public class LocacaoControlador implements Initializable{
         nomeColuna.setCellValueFactory(new PropertyValueFactory(""));
         placaColuna.setCellValueFactory(new PropertyValueFactory("placa"));
         tipoLocacaoColuna.setCellValueFactory(new PropertyValueFactory("tipo_locacao"));
+        carregarTabela();
     }
     
     private ObservableList carregarTabela(){
-        
+        return FXCollections.observableArrayList(Fachada.getInstance().getAllLocacao());
     }
 }

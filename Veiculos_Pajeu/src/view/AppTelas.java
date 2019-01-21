@@ -6,6 +6,7 @@
 package view;
 
 import controller.CadastroFuncionarioControlador;
+import fachada.Fachada;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Endereco;
+import model.Funcionario;
+import model.Usuario;
 import util.Util;
 
 /**
@@ -24,15 +28,20 @@ public class AppTelas extends Application {
     
     private static Stage palco;
     Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad,
-            cadFuncionario, cadCarro, reserva, locacao;
+            cadFuncionario, cadCarro, reserva, locacao, cadLocacao, cadReserva,cadCliente;
     static Scene loginScene, homeScene, carrosHomeScene, clientesHomeScene, financeiroHomeScene,
             funcionariosHomeScene, cadCategoriaScene, carrosCadScene,cadFuncionarioScene, cadCarroScene,
-            reservaScene, locacaoScene;
+            reservaScene, locacaoScene, cadLocacaoScene,cadReservaScene,cadClienteScene;
     private static ArrayList<String> telasAcessadas;
     private static int indice_tela_atual = -1;
     private static Alert alert = new Alert(Alert.AlertType.ERROR);
     
     public static void main(String[] args) {
+//        Endereco endereco = new Endereco("Rua Manoel Ferraz", "DNER", "Floresta", "PE", "56400-000", "70");
+//        Funcionario funcionario = new Funcionario("Elvis", "(87)99612-2609", "113.000.434-74", Util.getDate("1997-12-02"),
+//                endereco);
+//        Usuario usuario = new Usuario("Administrador", "elvis", "elvis150", funcionario);
+//        Fachada.getInstance().persistUsuario(usuario);
         launch(args);
     }
     
@@ -52,6 +61,9 @@ public class AppTelas extends Application {
         cadCarro = FXMLLoader.load(getClass().getResource("CadastroVeiculo.fxml"));
         reserva = FXMLLoader.load(getClass().getResource("Reserva.fxml"));
         locacao = FXMLLoader.load(getClass().getResource("Locacao.fxml"));
+        cadLocacao = FXMLLoader.load(getClass().getResource("CadastroLocacao.fxml"));
+        cadReserva = FXMLLoader.load(getClass().getResource("CadastroReserva.fxml"));
+        cadCliente = FXMLLoader.load(getClass().getResource("CadastroCliente.fxml"));
         
         loginScene = new Scene(login);
         homeScene = new Scene(home);
@@ -65,6 +77,9 @@ public class AppTelas extends Application {
         cadCarroScene = new Scene(cadCarro);
         reservaScene = new Scene(reserva);
         locacaoScene = new Scene(locacao);
+        cadLocacaoScene = new Scene(cadLocacao);
+        cadReservaScene = new Scene(cadReserva);
+        cadClienteScene = new Scene(cadCliente);
         
         stage.setScene(loginScene);
         palco.setTitle("Pajeú Veículos");
@@ -106,6 +121,12 @@ public class AppTelas extends Application {
                 palco.setScene(reservaScene);
             else if (tela.equals(Util.TELA_LOCACAO))
                 palco.setScene(locacaoScene);
+            else if (tela.equals(Util.TELA_CAD_LOCACAO))
+                palco.setScene(cadLocacaoScene);
+            else if (tela.equals(Util.TELA_CAD_RESERVA))
+                palco.setScene(cadReservaScene);
+            else if (tela.equals(Util.TELA_CAD_CLIENTE))
+                palco.setScene(cadClienteScene);
             
             if(tipo == Util.ABRIR){
                if(!telasAcessadas.get(telasAcessadas.size()-1).equals(tela)){

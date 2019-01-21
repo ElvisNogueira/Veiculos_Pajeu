@@ -30,7 +30,8 @@ public class Util {
             TELA_CARROS_HOME = "carrosHome", TELA_CLIENTES_HOME = "clientesHome", 
             TELA_FINANCEIRO_HOME = "financeiroHome", TELA_FUNCIONARIOS_HOME = "funcionariosHome", 
             TELA_LOGIN = "login", TELA_HOME = "home", TELA_CAD_FUNCIONARIO = "cadFuncionario", 
-            TELA_CAD_CARRO = "cadCarro", TELA_RESERVA = "reserva", TELA_LOCACAO = "locacao";
+            TELA_CAD_CARRO = "cadCarro", TELA_RESERVA = "reserva", TELA_LOCACAO = "locacao", 
+            TELA_CAD_LOCACAO = "cadLocacao", TELA_CAD_CLIENTE = "cadCliente", TELA_CAD_RESERVA = "cadReserva";
     public final static int ERRO_CADASTRO = 0, ERRO_LOGIN = 1, SUCESSO_CADASTRO = 2;
     public final static int IR = 0, VOLTAR = 1, ABRIR = 2;
 
@@ -82,7 +83,6 @@ public class Util {
     public static  Time horaAtual(){
         Calendar hora = Calendar.getInstance();
         Time time = new Time(hora.getTime().getHours(), hora.getTime().getMinutes(), hora.getTime().getSeconds());
-        System.out.println("util.Util.horaAtual() "+time.toString());
         return time;
     }
 

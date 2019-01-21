@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,6 +19,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Veiculo;
 import org.hibernate.PropertyValueException;
+import util.Util;
+import view.AppTelas;
 
 public class CarrosCadastradosControlador implements Initializable{
 
@@ -136,62 +139,62 @@ public class CarrosCadastradosControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-
+        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
     void homeButtonEntered(MouseEvent event) {
-
+        homeButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void homeButtonExited(MouseEvent event) {
-
+        homeButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-
+        AppTelas.proximo();
     }
 
     @FXML
     void irButtonEntered(MouseEvent event) {
-
+        irButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void irButtonExited(MouseEvent event) {
-
+        irButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
     void novoButtonAction(ActionEvent event) {
-
+        AppTelas.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
     }
 
     @FXML
     void novoButtonEntered(MouseEvent event) {
-
+        novoButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void novoButtonExited(MouseEvent event) {
-
+        novoButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-
+        AppTelas.voltar();
     }
 
     @FXML
     void voltarButtonEntered(MouseEvent event) {
-
+        voltarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void voltarButtonExited(MouseEvent event) {
-
+        voltarButton.setCursor(Cursor.DEFAULT);
     }
 
     @Override

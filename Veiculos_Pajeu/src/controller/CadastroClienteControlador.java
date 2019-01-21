@@ -4,10 +4,8 @@ import fachada.Fachada;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,24 +13,25 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Endereco;
-import model.Funcionario;
-import model.Usuario;
+import model.Pessoa_Fisica;
+import model.Pessoa_Juridica;
 import util.Mascara;
 import util.Util;
 import view.AppTelas;
 
-public class CadastroFuncionarioControlador implements Initializable{
-    private Usuario usuario;
-    private Funcionario funcionario;
-    private Endereco endereco;
-    
+public class CadastroClienteControlador implements Initializable{
     Mascara mascara = new Mascara();
+    Pessoa_Fisica pessoa_Fisica = new Pessoa_Fisica();
+    Pessoa_Juridica pessoa_Juridica = new Pessoa_Juridica();
+    Endereco endereco = new Endereco();
     
     @FXML
     private ImageView homeButton;
@@ -44,7 +43,19 @@ public class CadastroFuncionarioControlador implements Initializable{
     private ImageView irButton;
 
     @FXML
+    private TextField codField;
+
+    @FXML
     private TextField nomeField;
+
+    @FXML
+    private RadioButton pessoaFisicaRadioButton;
+
+    @FXML
+    private ToggleGroup TipoCliente;
+
+    @FXML
+    private RadioButton pessoaJuridicaRadioButton;
 
     @FXML
     private TextField telefoneField;
@@ -71,38 +82,28 @@ public class CadastroFuncionarioControlador implements Initializable{
     private TextField cpfField;
 
     @FXML
-    private DatePicker dataNascField;
+    private DatePicker dataNasc;
+
+    @FXML
+    private TextField cnpjField;
+
+    @FXML
+    private TextField inscricaoEstadual;
 
     @FXML
     private Button cadastrarButon;
-
+    
     @FXML
-    private TextField loginField;
-
+    private Label cpfLabel;
     @FXML
-    private PasswordField senhaField;
-
+    private Label dataNascLabel;
     @FXML
-    private PasswordField confSenhaField;
-
+    private Label cnpjLabel;
     @FXML
-    private ComboBox<String> tipoUsuariosComboBox;
-
+    private Label inscricaoEstadualLabel;
+    
     @FXML
     void cadastrarButonAction(ActionEvent event) {
-         usuario.setLogin(loginField.getText());
-         if(senhaField.getText().equals(confSenhaField.getText()))
-             usuario.setSenha(senhaField.getText());
-         usuario.setTipo(tipoUsuariosComboBox.getSelectionModel().getSelectedItem());
-         
-         
-        LocalDate ld = dataNascField.getValue();
-        Date data = Util.getDate(ld.toString());
-        funcionario.setCpf(cpfField.getText());
-        funcionario.setData_nasc(data);
-        funcionario.setTelefone(telefoneField.getText());
-        funcionario.setNome(nomeField.getText());
-        
         endereco.setBairro(bairroField.getText());
         endereco.setCep(cepField.getText());
         endereco.setCidade(cidadeField.getText());
@@ -110,26 +111,28 @@ public class CadastroFuncionarioControlador implements Initializable{
         endereco.setRua(ruaField.getText());
         endereco.setUf(ufComboBox.getSelectionModel().getSelectedItem());
         
-        funcionario.setEnd(endereco);
-        usuario.setFuncionario(funcionario);
+        if(pessoaFisicaRadioButton.isSelected()){        
+            LocalDate ld = dataNasc.getValue();
+            Date data = Util.getDate(ld.toString());
+            
+            pessoa_Fisica.setCpf(cpfField.getText());            
+            pessoa_Fisica.setData_nasc(data);
+            pessoa_Fisica.setEndereco(endereco);
+            pessoa_Fisica.setNome(nomeField.getText());
+            pessoa_Fisica.setTelefone(telefoneField.getText());
+            
+            Fachada.getInstance().persistPessoa_Fisica(pessoa_Fisica);
+        }else{
+            pessoa_Juridica.setCnpj(cnpjField.getText());
+            pessoa_Juridica.setEndereco(endereco);
+            pessoa_Juridica.setInscricao_estadual(inscricaoEstadual.getText());
+            pessoa_Juridica.setNome(nomeField.getText());
+            pessoa_Juridica.setTelefone(telefoneField.getText());
+            
+            Fachada.getInstance().persistPessoa_Juridica(pessoa_Juridica);
+        }
         
-        Fachada.getInstance().persistUsuario(usuario);
-        
-    }
-
-    @FXML
-    void cadastrarButonEntered(MouseEvent event) {
-        cadastrarButon.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void cadastrarButonExited(MouseEvent event) {
-        cadastrarButon.setCursor(Cursor.DEFAULT);
-    }
-
-    @FXML
-    void cadastrarButonReleased(KeyEvent event) {
-        
+        AppTelas.voltar();
     }
 
     @FXML
@@ -137,6 +140,14 @@ public class CadastroFuncionarioControlador implements Initializable{
         mascara.setMask("#####-###");
         mascara.setCaracteresValidos("0123456789");
         mascara.setTf(cepField);
+        mascara.formatter();
+    }
+
+    @FXML
+    void cnpjFieldReleased(KeyEvent event) {
+        mascara.setMask("##.###.###/####-##");
+        mascara.setCaracteresValidos("0123456789");
+        mascara.setTf(cnpjField);
         mascara.formatter();
     }
 
@@ -179,6 +190,36 @@ public class CadastroFuncionarioControlador implements Initializable{
     }
 
     @FXML
+    void pessoaFisicaRadioButtonAction(ActionEvent event) {
+        cnpjField.setVisible(false);
+        inscricaoEstadual.setVisible(false);
+        
+        cnpjLabel.setVisible(false);
+        inscricaoEstadualLabel.setVisible(false);
+        
+        cpfField.setVisible(true);
+        dataNasc.setVisible(true);
+        
+        cpfLabel.setVisible(true);
+        dataNascLabel.setVisible(true);
+    }
+
+    @FXML
+    void pessoaJuridicaRadioButtonAction(ActionEvent event) {
+        cnpjField.setVisible(true);
+        inscricaoEstadual.setVisible(true);
+        
+        cnpjLabel.setVisible(true);
+        inscricaoEstadualLabel.setVisible(true);
+        
+        cpfField.setVisible(false);
+        dataNasc.setVisible(false);
+        
+        cpfLabel.setVisible(false);
+        dataNascLabel.setVisible(false);
+    }
+
+    @FXML
     void telefoneFieldReleased(KeyEvent event) {
         mascara.setMask("(##)#####-####");
         mascara.setCaracteresValidos("0123456789");
@@ -200,29 +241,21 @@ public class CadastroFuncionarioControlador implements Initializable{
     void voltarButtonExited(MouseEvent event) {
         voltarButton.setCursor(Cursor.DEFAULT);
     }
-    
-        @FXML
-    void senhaFieldKeyReleased(KeyEvent event) {
-
-    }
-    
-    @FXML
-    void confSenhaFieldKeyReleased(KeyEvent event) {
-
-    }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        usuario = new Usuario();
-        funcionario = new Funcionario();
-//        carregarComboBoxes();
+    public void initialize(URL location, ResourceBundle resources) {      
+        cnpjField.setVisible(false);
+        inscricaoEstadual.setVisible(false);
+        
+        cnpjLabel.setVisible(false);
+        inscricaoEstadualLabel.setVisible(false);
+        carregarUFComboBox();
     }
     
-    public void carregarComboBoxes(){
+    public void carregarUFComboBox(){
         ufComboBox.getItems().addAll("AC","AL","AP","AM","BA","CE","DF","ES","GO",
             "MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR",
             "SC","SP","SE","TO");
-        tipoUsuariosComboBox.getItems().addAll("Administrador","Atendente");        
     }
 
 }

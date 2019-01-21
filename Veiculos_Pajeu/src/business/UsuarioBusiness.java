@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import model.Usuario;
 import util.Util;
+import view.AppTelas;
 
 /**
  *
@@ -42,12 +43,17 @@ public class UsuarioBusiness {
     }
 
     public void persist(Usuario usuario) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        if (Util.validarSenha(usuario.getSenha())) {
+//        if (Util.validarSenha(usuario.getSenha())) {
+            try {
             usuario.setSenha(Util.criptografar(usuario.getSenha()));
             dao.persist(usuario);
-        } else {
-            System.err.println("Senha inválida!");
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO);
+        } catch (Exception e) {
+                AppTelas.mostrarAlert(Util.ERRO_CADASTRO);
         }
+//        } else {
+//            System.err.println("Senha inválida!");
+//        }
     }
 
     public void merge(Usuario usuario) {
