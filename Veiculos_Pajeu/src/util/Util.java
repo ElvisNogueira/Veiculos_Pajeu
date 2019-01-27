@@ -31,22 +31,25 @@ public class Util {
             TELA_FINANCEIRO_HOME = "financeiroHome", TELA_FUNCIONARIOS_HOME = "funcionariosHome", 
             TELA_LOGIN = "login", TELA_HOME = "home", TELA_CAD_FUNCIONARIO = "cadFuncionario", 
             TELA_CAD_CARRO = "cadCarro", TELA_RESERVA = "reserva", TELA_LOCACAO = "locacao", 
-            TELA_CAD_LOCACAO = "cadLocacao", TELA_CAD_CLIENTE = "cadCliente", TELA_CAD_RESERVA = "cadReserva";
+            TELA_CAD_LOCACAO = "cadLocacao", TELA_CAD_CLIENTE = "cadCliente", TELA_CAD_RESERVA = "cadReserva",
+            TELA_CAD_FINANCEIRO = "cadFinanceiro", TELA_RELATORIO_FINANCEIRO = "relatoriooFinanceiro", 
+            TELA_CONFIGURACOES = "configuracoes",TELA_CAD_LOCADORA="cadLocadora", TELA_CATEGORIA = "categoria",
+            TELA_CAD_CONTA = "cadConta";
     public final static int ERRO_CADASTRO = 0, ERRO_LOGIN = 1, SUCESSO_CADASTRO = 2;
     public final static int IR = 0, VOLTAR = 1, ABRIR = 2;
 
     private static final String RESTRICOES = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*]).{6,11})";
 
-    public static String criptografar(String original) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
-        byte messageDigest[] = algorithm.digest(original.getBytes("UTF-8"));
-
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : messageDigest) {
-            hexString.append(String.format("%02X", 0xFF & b));
-        }
-        return hexString.toString();
-    }
+//    public static String criptografar(String original) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+//        MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+//        byte messageDigest[] = algorithm.digest(original.getBytes("UTF-8"));
+//
+//        StringBuilder hexString = new StringBuilder();
+//        for (byte b : messageDigest) {
+//            hexString.append(String.format("%02X", 0xFF & b));
+//        }
+//        return hexString.toString();
+//    }
 
     public static Date getDate(String d) {
         d = d.replaceAll("-", "");

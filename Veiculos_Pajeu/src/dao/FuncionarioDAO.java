@@ -47,6 +47,12 @@ public class FuncionarioDAO {
         return (ArrayList<Funcionario>) entityManager.createQuery("from "+
                 Funcionario.class.getSimpleName()).getResultList();
     }
+    
+    public ArrayList<Funcionario> getBusca(String busca) {
+        return (ArrayList<Funcionario>) entityManager.createQuery("from "+
+                Funcionario.class.getSimpleName()+" where nome like '%"+busca+"%' or"
+                        + " cpf like '%"+busca+"%'").getResultList();
+    }
 
     public void persist(Funcionario funcionario) {
         try {

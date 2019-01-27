@@ -45,7 +45,7 @@ public class UsuarioBusiness {
     public void persist(Usuario usuario) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 //        if (Util.validarSenha(usuario.getSenha())) {
             try {
-            usuario.setSenha(Util.criptografar(usuario.getSenha()));
+//            usuario.setSenha(Util.criptografar(usuario.getSenha()));
             dao.persist(usuario);
             AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO);
         } catch (Exception e) {
@@ -68,18 +68,16 @@ public class UsuarioBusiness {
         dao.removeById(id);
     }
 
-    public boolean login(String login, String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        senha = Util.criptografar(senha);
-        
+    public boolean login(String login, String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {      
         return dao.login(login, senha);
     }
 
     public boolean trocarSenha(String novaSenha, String antigaSenha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        if(Util.validarSenha(novaSenha))
+//        if(Util.validarSenha(novaSenha))
             return dao.trocarSenha(Fachada.getUserLogado(), novaSenha, antigaSenha);
-        else
-            System.err.println("Senha iinválida!");
-        return false;
+//        else
+//            System.err.println("Senha iinválida!");
+//        return false;
     }
 
     public boolean redefinirSenha(String login) {

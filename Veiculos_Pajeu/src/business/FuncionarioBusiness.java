@@ -39,6 +39,10 @@ public class FuncionarioBusiness {
         return dao.getAll();
     }
     
+    public ArrayList<Funcionario> getBusca(String busca){
+        return dao.getBusca(busca);                
+    }
+    
     public void persist(Funcionario funcionario){
         dao.persist(funcionario);
     }

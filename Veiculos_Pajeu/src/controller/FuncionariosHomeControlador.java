@@ -18,10 +18,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Funcionario;
+import model.Usuario;
 import util.Util;
 import view.AppTelas;
 
-public class FuncionariosHomeControlador implements Initializable{
+public class FuncionariosHomeControlador implements Initializable {
 
     @FXML
     private TableView<Funcionario> funcionariosTable;
@@ -67,37 +68,39 @@ public class FuncionariosHomeControlador implements Initializable{
 
     @FXML
     void atualizarButtonClicked(MouseEvent event) {
-
+        inicializarTabela();
     }
 
     @FXML
     void atualizarButtonEntered(MouseEvent event) {
-
+        atualizarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void atualizarButtonExited(MouseEvent event) {
-
+        atualizarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
     void buscaFieldReleased(KeyEvent event) {
-
+//        Fachada.getInstance().getBuscaFuncionario(buscaField.getText());
+        inicializarTabela();
     }
 
     @FXML
     void buscarButtonClicked(MouseEvent event) {
-
+//        Fachada.getInstance().getBuscaFuncionario(buscaField.getText());
+        inicializarTabela();
     }
 
     @FXML
     void buscarButtonEntered(MouseEvent event) {
-
+        buscarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void buscarButtonExited(MouseEvent event) {
-
+        buscarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -107,7 +110,31 @@ public class FuncionariosHomeControlador implements Initializable{
 
     @FXML
     void editarButtonAction(ActionEvent event) {
+        Funcionario funcionario = Fachada.getInstance().getByIdFuncionario(funcionariosTable.
+                getSelectionModel().getSelectedItem().getId());
+        for (Usuario usuario : Fachada.getInstance().getAllUsuario()) {
+            if (usuario.getFuncionario().getId() == funcionario.getId()) {
+                CadastroFuncionarioControlador.get().setFuncionario(usuario);
+                AppTelas.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
+            }
 
+        }
+
+    }
+
+    @FXML
+    void funcionariosTableClicked(MouseEvent event) {
+        if (event.getClickCount() == 2 && funcionariosTable.getSelectionModel().getSelectedIndex() > -1) {
+            Funcionario funcionario = Fachada.getInstance().getByIdFuncionario(funcionariosTable.
+                    getSelectionModel().getSelectedItem().getId());
+            for (Usuario usuario : Fachada.getInstance().getAllUsuario()) {
+                if (usuario.getFuncionario().getId() == funcionario.getId()) {
+                    CadastroFuncionarioControlador.get().bloquearCampos(usuario);
+                    AppTelas.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
+                }
+
+            }
+        }
     }
 
     @FXML
@@ -165,17 +192,17 @@ public class FuncionariosHomeControlador implements Initializable{
     void voltarButtonExited(MouseEvent event) {
         voltarButton.setCursor(Cursor.DEFAULT);
     }
-    
-    public void inicializarTabela(){
+
+    public void inicializarTabela() {
         idColumn.setCellValueFactory(new PropertyValueFactory("id"));
         nomeColumn.setCellValueFactory(new PropertyValueFactory("nome"));
         tipoContaColumn.setCellValueFactory(new PropertyValueFactory(""));
-        
+
         funcionariosTable.setItems(carregarTabela());
     }
-    
-    public ObservableList carregarTabela(){
-        return FXCollections.observableList(Fachada.getInstance().getAllFuncionario());
+
+    public ObservableList carregarTabela() {
+        return FXCollections.observableList(Fachada.getInstance().getBuscaFuncionario(buscaField.getText()));
     }
 
     @Override

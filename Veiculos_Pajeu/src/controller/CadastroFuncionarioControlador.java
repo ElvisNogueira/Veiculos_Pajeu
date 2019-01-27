@@ -4,6 +4,8 @@ import fachada.Fachada;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -20,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.util.converter.LocalDateTimeStringConverter;
 import model.Endereco;
 import model.Funcionario;
 import model.Usuario;
@@ -28,9 +31,11 @@ import util.Util;
 import view.AppTelas;
 
 public class CadastroFuncionarioControlador implements Initializable{
-    private Usuario usuario;
-    private Funcionario funcionario;
-    private Endereco endereco;
+    private Usuario usuario = new Usuario();
+    private Funcionario funcionario = new Funcionario();
+    private Endereco endereco = new Endereco();
+    private static boolean flag=false;
+    private static CadastroFuncionarioControlador controlador;
     
     Mascara mascara = new Mascara();
     
@@ -63,7 +68,7 @@ public class CadastroFuncionarioControlador implements Initializable{
 
     @FXML
     private TextField ruaField;
-
+    
     @FXML
     private TextField numeroField;
 
@@ -113,8 +118,74 @@ public class CadastroFuncionarioControlador implements Initializable{
         funcionario.setEnd(endereco);
         usuario.setFuncionario(funcionario);
         
-        Fachada.getInstance().persistUsuario(usuario);
+        if(flag)
+//            Fachada.getInstance().mergeFuncionario(funcionario);
+            limparCampos();
+        else            
+            Fachada.getInstance().persistUsuario(usuario);
+        flag = false;
         
+    }
+    
+    public void limparCampos(){
+        loginField.setText("");
+        senhaField.setText("");
+        confSenhaField.setText("");
+        tipoUsuariosComboBox.getSelectionModel().select(0);
+        dataNascField.setValue(null);
+        cpfField.setText("");
+        telefoneField.setText("");
+        nomeField.setText("");
+        bairroField.setText("");
+        cepField.setText("");
+        cidadeField.setText("");
+        numeroField.setText("");
+        ruaField.setText("");
+        ufComboBox.getSelectionModel().select(0);
+    }
+    
+    public void setFuncionario(Usuario usuario){
+        loginField.setText(usuario.getLogin());
+        senhaField.setText(usuario.getSenha());
+        confSenhaField.setText(usuario.getSenha());
+//        tipoUsuariosComboBox.getSelectionModel().select(usuario.getTipo());
+        
+        Date d = usuario.getFuncionario().getData_nasc();
+        
+        dataNascField.setValue(LocalDate.of(d.getYear(), d.getMonth(), d.getDay()));
+        cpfField.setText(usuario.getFuncionario().getCpf());
+        telefoneField.setText(usuario.getFuncionario().getTelefone());
+        nomeField.setText(usuario.getFuncionario().getNome());
+        bairroField.setText(usuario.getFuncionario().getEnd().getBairro());
+        cepField.setText(usuario.getFuncionario().getEnd().getCep());
+        cidadeField.setText(usuario.getFuncionario().getEnd().getCidade());
+        numeroField.setText(usuario.getFuncionario().getEnd().getNumero());
+        ruaField.setText(usuario.getFuncionario().getEnd().getRua());
+        ufComboBox.getSelectionModel().select(usuario.getFuncionario().getEnd().getUf());    
+        
+        flag = true;
+    }
+    
+    public void bloquearCampos(Usuario usuario){
+        setFuncionario(usuario);
+        loginField.setEditable(false);
+        senhaField.setEditable(false);
+        confSenhaField.setEditable(false);
+//        tipoUsuariosComboBox.getSelectionModel().select(usuario.getTipo());
+        
+        
+        dataNascField.setEditable(false);
+        cpfField.setEditable(false);
+        telefoneField.setEditable(false);
+        nomeField.setEditable(false);
+        bairroField.setEditable(false);
+        cepField.setEditable(false);
+        cidadeField.setEditable(false);
+        numeroField.setEditable(false);
+        ruaField.setEditable(false);
+        ufComboBox.setEditable(false);    
+        
+        flag = true;
     }
 
     @FXML
@@ -210,12 +281,17 @@ public class CadastroFuncionarioControlador implements Initializable{
     void confSenhaFieldKeyReleased(KeyEvent event) {
 
     }
+    
+    public static CadastroFuncionarioControlador get(){
+        return controlador;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        controlador = this;
         usuario = new Usuario();
         funcionario = new Funcionario();
-//        carregarComboBoxes();
+        carregarComboBoxes();
     }
     
     public void carregarComboBoxes(){

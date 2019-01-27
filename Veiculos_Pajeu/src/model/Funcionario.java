@@ -14,14 +14,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 
 /**
  *
  * @author Elvis Nogueira
  */
 @Entity
-
+@NamedStoredProcedureQuery(
+	name = "criptografar_senha", 
+	procedureName = "criptografar_senha", 
+	parameters = { 
+		@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "SENHA"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "SAIDA")
+	}
+)
 public class Funcionario {
      @Id
      @GeneratedValue (strategy = GenerationType.AUTO)

@@ -9,6 +9,7 @@ import business.Camioneta_cargaBusiness;
 import business.Camioneta_passageiroBusiness;
 import business.CategoriaBusiness;
 import business.ClienteBusiness;
+import business.ConfiguracoesBusiness;
 import business.ContaBusiness;
 import business.EnderecoBusiness;
 import business.FinanceiroBusiness;
@@ -31,6 +32,7 @@ import model.Camioneta_carga;
 import model.Camioneta_passageiro;
 import model.Categoria;
 import model.Cliente;
+import model.Configuracoes;
 import model.Conta;
 import model.Endereco;
 import model.Financeiro;
@@ -66,6 +68,7 @@ public class Fachada {
     private ReservaBusiness reservaBusiness;
     private UsuarioBusiness usuarioBusiness;
     private VeiculoBusiness veiculoBusiness;
+    private ConfiguracoesBusiness configuracoesBusiness;
     private static Usuario userLogado;
 
     private static Fachada instance;
@@ -94,6 +97,7 @@ public class Fachada {
         reservaBusiness = reservaBusiness.getInstance();
         usuarioBusiness = usuarioBusiness.getInstance();
         veiculoBusiness = veiculoBusiness.getInstance();
+        configuracoesBusiness = configuracoesBusiness.getInstance();
 
     }
 
@@ -292,6 +296,10 @@ public class Fachada {
 
     public ArrayList<Funcionario> getAllFuncionario() {
         return funcionarioBusiness.getAll();
+    }
+    
+    public ArrayList<Funcionario> getBuscaFuncionario(String busca){
+         return funcionarioBusiness.getBusca(busca);
     }
 
     public void persistFuncionario(Funcionario funcionario) {
@@ -549,6 +557,18 @@ public class Fachada {
 
     public void removeByIdVeiculo(int id) {
         veiculoBusiness.removeById(id);
+    }
+    
+    public ArrayList<Configuracoes> getAllConfiguracoes() {
+        return configuracoesBusiness.getAll();
+    }
+
+    public void persistConfiguracoes(Configuracoes configuracoes) {
+        configuracoesBusiness.persist(configuracoes);
+    }
+
+    public void mergeConfiguracoes(Configuracoes configuracoes) {
+        configuracoesBusiness.merge(configuracoes);
     }
     
     

@@ -13,13 +13,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 
 /**
  *
  * @author Elvis Nogueira
  */
 @Entity
+@NamedStoredProcedureQuery(
+	name = "login", 
+	procedureName = "login", 
+	parameters = { 
+		@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "LOGINPARAM"), 
+		@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "SENHAPARAM"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = Integer.class, name = "SAIDA")
+	}
+)
+
+
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

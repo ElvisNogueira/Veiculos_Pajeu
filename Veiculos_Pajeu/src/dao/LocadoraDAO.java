@@ -12,6 +12,8 @@ import javax.persistence.Persistence;
 import model.Conta;
 import model.Locacao;
 import model.Locadora;
+import util.Util;
+import view.AppTelas;
 
 /**
  *
@@ -53,9 +55,11 @@ public class LocadoraDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(locadora);
             entityManager.getTransaction().commit();
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO);
         } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
+            AppTelas.mostrarAlert(Util.ERRO_CADASTRO);
         }
     }
     

@@ -11,8 +11,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.NoResultException;
+import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
+import javax.persistence.StoredProcedureParameter;
+import javax.persistence.StoredProcedureQuery;
 import model.Conta;
 import model.Usuario;
 import util.Util;
@@ -66,10 +70,18 @@ public class UsuarioDAO {
 
     public void persist(Usuario usuario) {
         try {
+            StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("criptografar_senha");
+            query.setParameter("SENHA", usuario.getSenha());
+            query.execute();
+            
+            String senha = (String) query.getOutputParameterValue("SAIDA");
+            usuario.setSenha(senha);
             entityManager.getTransaction().begin();
             entityManager.persist(usuario);
             entityManager.getTransaction().commit();
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO);
         } catch (Exception e) {
+            AppTelas.mostrarAlert(Util.ERRO_CADASTRO);
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -108,22 +120,40 @@ public class UsuarioDAO {
 
     public boolean login(String login, String senha) {
         try {
-            String jpaQuery = "from " + Usuario.class.getSimpleName() + " u where u.login='" + login + "'"
-                    + " and u.senha='" + senha + "'";
-            Usuario usuario = (Usuario) entityManager.createQuery(jpaQuery).getSingleResult();
-            Fachada.setUserLogado(usuario);
+//            String jpaQuery = "from " + Usuario.class.getSimpleName() + " u where u.login='" + login + "'"
+//                    + " and u.senha='" + senha + "'";
+//            Usuario usuario = (Usuario) entityManager.createQuery(jpaQuery).getSingleResult();
+//            Fachada.setUserLogado(usuario);
+//            return true;
+            StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("login");
+            query.setParameter("LOGINPARAM", login);
+            query.setParameter("SENHAPARAM", senha);
+            query.execute();
+            Integer id = (Integer) query.getOutputParameterValue("SAIDA");
+            Fachada.setUserLogado(getById(id));
+             
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             AppTelas.mostrarAlert(Util.ERRO_LOGIN);
         }
-        
+
         return false;
+    }
+    
+    private String criptografar(String texto){
+        StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("criptografar_senha");
+            query.setParameter("SENHA", texto);
+            query.execute();
+            
+            return (String) query.getOutputParameterValue("SAIDA");
     }
 
     public boolean trocarSenha(Usuario user, String novaSenha, String antigaSenha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        if (user.getSenha().equals(Util.criptografar(antigaSenha))) {
-            user.setSenha(Util.criptografar(novaSenha));
+            
+            antigaSenha = criptografar(antigaSenha);
+        if (user.getSenha().equals(antigaSenha)) {
+            user.setSenha(criptografar(novaSenha));
             merge(user);
             return true;
         }
@@ -133,7 +163,7 @@ public class UsuarioDAO {
     public boolean redefinirSenha(String login) {
         try {
             Usuario u = getByLogin(login);
-            u.setSenha(Util.criptografar(login));
+            u.setSenha(criptografar(login));
             merge(u);
             Fachada.setUserLogado(u);
             return true;

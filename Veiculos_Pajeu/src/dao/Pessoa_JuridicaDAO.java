@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.StoredProcedureQuery;
 import model.Conta;
 import model.Endereco;
 import model.Pessoa_Juridica;
@@ -50,6 +51,12 @@ public class Pessoa_JuridicaDAO {
 
     public void persist(Pessoa_Juridica pessoa_Juridica) {
         try {
+            StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("criarcodigo");
+            query.setParameter("tipo", "PJ");
+            query.execute();
+            
+            String cod = (String) query.getOutputParameterValue("SAIDA");
+            pessoa_Juridica.setCodigo(cod);
             entityManager.getTransaction().begin();
             entityManager.persist(pessoa_Juridica);
             entityManager.getTransaction().commit();

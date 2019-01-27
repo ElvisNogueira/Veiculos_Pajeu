@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfiguracoesControlador">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/logo.png" />
+         </image>
+      </ImageView>
+      <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Carros">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Aluguel" />
+                  <MenuItem mnemonicParsing="false" text="Reserva" />
+                  <MenuItem mnemonicParsing="false" text="Manutenção" />
+                  <MenuItem mnemonicParsing="false" text="Limpeza" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Clientes">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Cadastrar Cliente" />
+                  <MenuItem mnemonicParsing="false" text="Listar Clientes" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Configurações">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView fx:id="voltarButton" fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="54.0" onMouseClicked="#voltarButtonClicked" onMouseEntered="#voltarButtonEntered" onMouseExited="#voltarButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-esquerda-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="irButton" fitHeight="25.0" fitWidth="25.0" layoutX="62.0" layoutY="54.0" onMouseClicked="#irButtonClicled" onMouseEntered="#irButtonEntered" onMouseExited="#irButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="321.0" layoutY="38.0" text="CONFIGURAÇÕES" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="97.0" layoutY="410.0" text="Hora de Backup:" />
+      <Label layoutX="100.0" layoutY="360.0" text="Locadora:" />
+      <ComboBox fx:id="filialComboBox" layoutX="163.0" layoutY="357.0" prefHeight="25.0" prefWidth="400.0" />
+      <ImageView fx:id="addFilialButton" fitHeight="20.0" fitWidth="20.0" layoutX="574.0" layoutY="360.0" onMouseClicked="#addFilialButtonClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-plus-math-20.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Spinner fx:id="horaBackup_hora" editable="true" layoutX="197.0" layoutY="406.0" prefHeight="25.0" prefWidth="54.0" />
+      <Spinner fx:id="horaBackup_min" editable="true" layoutX="249.0" layoutY="406.0" prefHeight="25.0" prefWidth="54.0" />
+      <Pane fx:id="cadastrarCategoriaPanel" layoutX="63.0" layoutY="180.0" onMouseClicked="#cadastrarCategoriaPanelClicked" onMouseEntered="#cadastrarCategoriaPanelEntered" onMouseExited="#cadastrarCategoriaPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-categoria-lista-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="53.0" layoutY="109.0" text="Categoria" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+      <Pane fx:id="backupPanel" layoutX="272.0" layoutY="180.0" onMouseClicked="#backupPanelClicked" onMouseEntered="#backupPanelEntred" onMouseExited="#backupPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-backup-de-dados-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="61.0" layoutY="108.0" text="Backup" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="restaurarPanel" layoutX="480.0" layoutY="180.0" onMouseClicked="#restaurarPanelClicked" onMouseEntered="#restaurarPanelEntred" onMouseExited="#restaurarPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-repeticao-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="52.0" layoutY="109.0" text="Restaurar" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+      <Button fx:id="salvarButton" layoutX="574.0" layoutY="484.0" mnemonicParsing="false" onAction="#salvarButtonAction" text="Salvar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="618.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-sincronizar-20.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

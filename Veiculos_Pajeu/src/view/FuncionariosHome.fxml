@@ -40,7 +40,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <TableView fx:id="funcionariosTable" layoutX="28.0" layoutY="183.0" prefHeight="299.0" prefWidth="639.0">
+      <TableView fx:id="funcionariosTable" layoutX="28.0" layoutY="183.0" onMouseClicked="#funcionariosTableClicked" prefHeight="299.0" prefWidth="639.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="nomeColumn" prefWidth="441.0" text="Nome" />

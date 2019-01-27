@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Categoria;
 import model.Endereco;
 import model.Funcionario;
 import model.Usuario;
@@ -28,10 +29,14 @@ public class AppTelas extends Application {
     
     private static Stage palco;
     Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad,
-            cadFuncionario, cadCarro, reserva, locacao, cadLocacao, cadReserva,cadCliente;
+            cadFuncionario, cadCarro, reserva, locacao, cadLocacao, cadReserva,cadCliente,cadFinanceiro,
+            relatorioFinanceiro,cadLocadora,configuracoes, categoria,cadConta;
     static Scene loginScene, homeScene, carrosHomeScene, clientesHomeScene, financeiroHomeScene,
             funcionariosHomeScene, cadCategoriaScene, carrosCadScene,cadFuncionarioScene, cadCarroScene,
-            reservaScene, locacaoScene, cadLocacaoScene,cadReservaScene,cadClienteScene;
+            reservaScene, locacaoScene, cadLocacaoScene,cadReservaScene,cadClienteScene,cadFinanceiroScene,
+            relatorioFinanceiroScene, cadLocadoraScene, configuracoesScene, categoriaScene,cadContaScene;
+    
+    
     private static ArrayList<String> telasAcessadas;
     private static int indice_tela_atual = -1;
     private static Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -64,6 +69,13 @@ public class AppTelas extends Application {
         cadLocacao = FXMLLoader.load(getClass().getResource("CadastroLocacao.fxml"));
         cadReserva = FXMLLoader.load(getClass().getResource("CadastroReserva.fxml"));
         cadCliente = FXMLLoader.load(getClass().getResource("CadastroCliente.fxml"));
+        cadFinanceiro = FXMLLoader.load(getClass().getResource("CadastrarFinanceiro.fxml"));
+        relatorioFinanceiro = FXMLLoader.load(getClass().getResource("RelatorioFinanceiro.fxml"));
+        cadLocadora = FXMLLoader.load(getClass().getResource("CadastroLocadora.fxml"));
+        configuracoes = FXMLLoader.load(getClass().getResource("Configuracoes.fxml"));
+        categoria = FXMLLoader.load(getClass().getResource("Categoia.fxml"));
+        cadConta = FXMLLoader.load(getClass().getResource("CadastrarConta.fxml"));
+        
         
         loginScene = new Scene(login);
         homeScene = new Scene(home);
@@ -80,8 +92,14 @@ public class AppTelas extends Application {
         cadLocacaoScene = new Scene(cadLocacao);
         cadReservaScene = new Scene(cadReserva);
         cadClienteScene = new Scene(cadCliente);
+        cadFinanceiroScene = new Scene(cadFinanceiro);
+        relatorioFinanceiroScene = new Scene(relatorioFinanceiro);
+        cadLocadoraScene = new Scene(cadLocadora);
+        configuracoesScene = new Scene(configuracoes);
+        categoriaScene = new Scene(categoria);
+        cadContaScene = new Scene(cadConta);
         
-        stage.setScene(loginScene);
+        stage.setScene(funcionariosHomeScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);
@@ -127,6 +145,18 @@ public class AppTelas extends Application {
                 palco.setScene(cadReservaScene);
             else if (tela.equals(Util.TELA_CAD_CLIENTE))
                 palco.setScene(cadClienteScene);
+            else if (tela.equals(Util.TELA_CAD_FINANCEIRO))
+                palco.setScene(cadFinanceiroScene);
+            else if (tela.equals(Util.TELA_RELATORIO_FINANCEIRO))
+                palco.setScene(relatorioFinanceiroScene);
+            else if(Util.TELA_CONFIGURACOES.equals(tela))
+                palco.setScene(configuracoesScene);
+            else if(tela.equals(Util.TELA_CADASTRAR_CATEGORIA))
+                palco.setScene(cadLocadoraScene);
+            else if(tela.equals(Util.TELA_CADASTRAR_CATEGORIA))
+                palco.setScene(categoriaScene);
+            else if(tela.equals(Util.TELA_CAD_CONTA))
+                palco.setScene(cadContaScene);
             
             if(tipo == Util.ABRIR){
                if(!telasAcessadas.get(telasAcessadas.size()-1).equals(tela)){

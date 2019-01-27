@@ -11,6 +11,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.Cliente;
 import model.Conta;
+import util.Util;
+import view.AppTelas;
 
 /**
  *
@@ -67,7 +69,9 @@ public class ContaDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(conta);
             entityManager.getTransaction().commit();
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO);
         } catch (Exception e) {
+            AppTelas.mostrarAlert(Util.ERRO_CADASTRO);
             entityManager.getTransaction().rollback();
             e.printStackTrace();
         }

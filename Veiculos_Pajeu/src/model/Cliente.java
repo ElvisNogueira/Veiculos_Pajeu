@@ -14,13 +14,24 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 
 /**
  *
  * @author Elvis Nogueira
  */
 @Entity
+@NamedStoredProcedureQuery(
+	name = "criarcodigo", 
+	procedureName = "criarcodigo", 
+	parameters = { 
+		@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "tipo"),
+                @StoredProcedureParameter(mode = ParameterMode.OUT, type = String.class, name = "SAIDA")
+	}
+)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cliente {
     @Id
