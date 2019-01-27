@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroDeLocadora">
+   <children>
+      <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Carros">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Aluguel" />
+                  <MenuItem mnemonicParsing="false" text="Reserva" />
+                  <MenuItem mnemonicParsing="false" text="Manutenção" />
+                  <MenuItem mnemonicParsing="false" text="Limpeza" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Clientes">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Cadastrar Cliente" />
+                  <MenuItem mnemonicParsing="false" text="Listar Clientes" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Configurações">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" layoutX="3.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="voltarButton" fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="54.0" onMouseClicked="#voltarButtonClicked" onMouseEntered="#voltarButtonEntered" onMouseExited="#voltarButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-esquerda-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="irButton" fitHeight="25.0" fitWidth="25.0" layoutX="62.0" layoutY="54.0" onMouseClicked="#irButtonClicled" onMouseEntered="#irButtonEntered" onMouseExited="#irButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="57.0" layoutY="192.0" text="Tel.:" />
+      <TextField fx:id="telefoneField" layoutX="104.0" layoutY="188.0" onKeyReleased="#telefoneFieldReleased" prefHeight="25.0" prefWidth="183.0" />
+      <Label layoutX="54.0" layoutY="233.0" text="CEP:" />
+      <TextField fx:id="cepField" layoutX="105.0" layoutY="229.0" onKeyReleased="#cepFieldReleased" prefHeight="25.0" prefWidth="183.0" />
+      <Label layoutX="310.0" layoutY="233.0" text="Bairro" />
+      <Label layoutX="306.0" layoutY="192.0" text="Cidade:" />
+      <TextField fx:id="cidadeField" layoutX="356.0" layoutY="188.0" prefHeight="25.0" prefWidth="213.0" />
+      <Label layoutX="583.0" layoutY="192.0" text="UF:" />
+      <ComboBox fx:id="ufComboBox" layoutX="609.0" layoutY="188.0" prefHeight="25.0" prefWidth="60.0" promptText="---" />
+      <TextField fx:id="bairroField" layoutX="354.0" layoutY="229.0" prefHeight="25.0" prefWidth="317.0" />
+      <Button fx:id="cadastrarButon" layoutX="601.0" layoutY="475.0" mnemonicParsing="false" onAction="#cadastrarButonAction" onMouseEntered="#cadastrarButonEntered" onMouseExited="#cadastrarButonExited" text="Cadastrar" />
+      <Label layoutX="245.0" layoutY="38.0" text="CADASTRO DE LOCADORA" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="cnpjLabel" layoutX="54.0" layoutY="148.0" text="CNPJ:" />
+      <TextField fx:id="cnpjField" layoutX="106.0" layoutY="144.0" onKeyReleased="#cnpjFieldReleased" prefHeight="25.0" prefWidth="213.0" />
+      <Label layoutX="591.0" layoutY="276.0" text="N°:" />
+      <TextField fx:id="numeroField" layoutX="617.0" layoutY="272.0" prefHeight="25.0" prefWidth="53.0" />
+      <Label layoutX="52.0" layoutY="276.0" text="Rua" />
+      <TextField fx:id="ruaField" layoutX="106.0" layoutY="272.0" prefHeight="25.0" prefWidth="475.0" />
+   </children>
+</Pane>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CarrosHomeControlador">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/logo.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="locacaoPanel" layoutX="167.0" layoutY="164.0" onMouseClicked="#locacaoPanelClicked" onMouseEntered="#locacaoPanelEntered" onMouseExited="#locacaoPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-aluguel-de-carro-52.png" />
+               </image></ImageView>
+            <Label layoutX="56.0" layoutY="109.0" text="Locação" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane fx:id="reservaPanel" layoutX="376.0" layoutY="164.0" onMouseClicked="#reservaPanelClicked" onMouseEntered="#reservaPanelEntred" onMouseExited="#reservaPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-reserva-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="61.0" layoutY="108.0" text="Reserva" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane fx:id="cadastrarCarrosPanel" layoutX="167.0" layoutY="340.0" onMouseClicked="#cadastrarCarrosPanelClick" onMouseEntered="#cadastrarCarrosPanelEntered" onMouseExited="#cadastrarCarrosPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-mais-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="33.0" layoutY="109.0" text="Cadastrar carros" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane fx:id="carrosCadastradosPanel" layoutX="376.0" layoutY="340.0" onMouseClicked="#carrosCadastradosPanelClicked" onMouseEntered="#carrosCadastradosPanelEntered" onMouseExited="#carrosCadastradosPanelExited" prefHeight="138.0" prefWidth="161.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="55.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/icons8-arquivo-52.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="25.0" layoutY="109.0" text="Carros cadastrados" textFill="#c91313">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Carros">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Aluguel" />
+                  <MenuItem mnemonicParsing="false" text="Reserva" />
+                  <MenuItem mnemonicParsing="false" text="Manutenção" />
+                  <MenuItem mnemonicParsing="false" text="Limpeza" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Clientes">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Cadastrar Cliente" />
+                  <MenuItem mnemonicParsing="false" text="Listar Clientes" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Configurações">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView fx:id="voltarButton" fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="54.0" onMouseClicked="#voltarButtonClicked" onMouseEntered="#voltarButtonEntered" onMouseExited="#voltarButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-esquerda-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="irButton" fitHeight="25.0" fitWidth="25.0" layoutX="62.0" layoutY="54.0" onMouseClicked="#irButtonClicled" onMouseEntered="#irButtonEntered" onMouseExited="#irButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="352.0" layoutY="38.0" text="CARROS" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

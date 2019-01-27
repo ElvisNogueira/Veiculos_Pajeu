@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarContaControlador">
+   <children>
+      <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Carros">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Aluguel" />
+                  <MenuItem mnemonicParsing="false" text="Reserva" />
+                  <MenuItem mnemonicParsing="false" text="Manutenção" />
+                  <MenuItem mnemonicParsing="false" text="Limpeza" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Clientes">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Cadastrar Cliente" />
+                  <MenuItem mnemonicParsing="false" text="Listar Clientes" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Configurações">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="voltarButton" fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="54.0" onMouseClicked="#voltarButtonClicked" onMouseEntered="#voltarButtonEntered" onMouseExited="#voltarButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-esquerda-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="irButton" fitHeight="25.0" fitWidth="25.0" layoutX="62.0" layoutY="54.0" onMouseClicked="#irButtonClicled" onMouseEntered="#irButtonEntered" onMouseExited="#irButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="cadastrarButton" layoutX="583.0" layoutY="486.0" mnemonicParsing="false" onAction="#cadastrarButtonAction" text="Cadastrar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="256.0" layoutY="38.0" text="CADASTRO DE CONTA" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="52.0" layoutY="142.0" text="Nome:" />
+      <TextField fx:id="nomeField" layoutX="102.0" layoutY="138.0" prefHeight="25.0" prefWidth="537.0" />
+      <Label layoutX="52.0" layoutY="192.0" text="Tipo:" />
+      <ComboBox fx:id="tipoComboBox" layoutX="101.0" layoutY="188.0" prefHeight="25.0" prefWidth="150.0" />
+   </children>
+</Pane>

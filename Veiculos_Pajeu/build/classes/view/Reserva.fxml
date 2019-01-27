@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReservaControlador">
+   <children>
+      <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Carros">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Aluguel" />
+                  <MenuItem mnemonicParsing="false" text="Reserva" />
+                  <MenuItem mnemonicParsing="false" text="Manutenção" />
+                  <MenuItem mnemonicParsing="false" text="Limpeza" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Clientes">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Cadastrar Cliente" />
+                  <MenuItem mnemonicParsing="false" text="Listar Clientes" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Configurações">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="voltarButton" fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="54.0" onMouseClicked="#voltarButtonClicked" onMouseEntered="#voltarButtonEntered" onMouseExited="#voltarButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-esquerda-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="irButton" fitHeight="25.0" fitWidth="25.0" layoutX="62.0" layoutY="54.0" onMouseClicked="#irButtonClicled" onMouseEntered="#irButtonEntered" onMouseExited="#irButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="novoButton" layoutX="600.0" layoutY="499.0" mnemonicParsing="false" onAction="#novoButtonAction" onMouseEntered="#novoButtonEntered" onMouseExited="#novoButtonExited" text="Novo" />
+      <Label layoutX="308.0" layoutY="38.0" text="RESERVAS" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Label>
+      <TableView fx:id="reservaTable" layoutX="64.0" layoutY="193.0" onMouseClicked="#reservaTableClicked" prefHeight="299.0" prefWidth="575.0">
+        <columns>
+          <TableColumn fx:id="idColuna" prefWidth="60.0" text="ID" />
+          <TableColumn fx:id="nomeClienteColuna" prefWidth="410.0" text="Nome cliente" />
+            <TableColumn fx:id="dataRetiradaColuna" prefWidth="104.0" text="Data Retirada" />
+        </columns>
+      </TableView>
+      <Button fx:id="editarButton" layoutX="537.0" layoutY="499.0" mnemonicParsing="false" onAction="#editarButtonAction" onKeyPressed="#editarButtonPressed" onKeyReleased="#editarButtonReleased" text="Editar" />
+      <Button fx:id="excluirButton" layoutX="472.0" layoutY="499.0" mnemonicParsing="false" onAction="#excluirButtonAction" onMouseClicked="#excluirButtonClicked" onMouseEntered="#excluirButtonEntered" text="Excluir" />
+      <TextField fx:id="buscaField" layoutX="62.0" layoutY="127.0" onKeyReleased="#buscaFielKeyReleased" prefHeight="25.0" prefWidth="575.0" promptText="Pesquise por nome do cliente ou categoria do carro..." />
+      <ImageView fx:id="pesquisarButton" fitHeight="20.0" fitWidth="20.0" layoutX="472.0" layoutY="163.0" onMouseClicked="#pesquisarButtonClicked" onMouseEntered="#pesquisarButtonEntered" onMouseExited="#pesquisarButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-pesquisar-20%20(1).png" />
+         </image></ImageView>
+      <ImageView fx:id="atualizarBuutton" fitHeight="20.0" fitWidth="20.0" layoutX="617.0" layoutY="163.0" onMouseClicked="#atualizarBuuttonClicked" onMouseEntered="#atualizarBuuttonEntered" onMouseExited="#atualizarBuuttonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-sincronizar-20.png" />
+         </image>
+      </ImageView>
+      <DatePicker fx:id="dataInicio" layoutX="63.0" layoutY="159.0" promptText="Data de ínicio" />
+      <DatePicker fx:id="dataFim" layoutX="279.0" layoutY="159.0" promptText="Data final" />
+      <Label layoutX="257.0" layoutY="164.0" text="à" />
+      <Button fx:id="realizarReserva" layoutX="358.0" layoutY="499.0" mnemonicParsing="false" onAction="#realizarReservaAction" onMouseEntered="#realizarReservaEntered" onMouseExited="#realizarReservaExited" text="Realizar reserva" />
+   </children>
+</Pane>

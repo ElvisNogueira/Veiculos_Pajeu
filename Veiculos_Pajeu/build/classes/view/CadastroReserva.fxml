@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroReservaControlador">
+   <children>
+      <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Carros">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Aluguel" />
+                  <MenuItem mnemonicParsing="false" text="Reserva" />
+                  <MenuItem mnemonicParsing="false" text="Manutenção" />
+                  <MenuItem mnemonicParsing="false" text="Limpeza" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Clientes">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Cadastrar Cliente" />
+                  <MenuItem mnemonicParsing="false" text="Listar Clientes" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Configurações">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
+      <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="voltarButton" fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="54.0" onMouseClicked="#voltarButtonClicked" onMouseEntered="#voltarButtonEntered" onMouseExited="#voltarButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-esquerda-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="irButton" fitHeight="25.0" fitWidth="25.0" layoutX="62.0" layoutY="54.0" onMouseClicked="#irButtonClicled" onMouseEntered="#irButtonEntered" onMouseExited="#irButtonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="cadastrarButton" layoutX="583.0" layoutY="486.0" mnemonicParsing="false" onAction="#cadastrarButtonAction" text="Cadastrar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="236.0" layoutY="38.0" text="CADASTRO DE RESERVA" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="143.0" text="Data de retirada:" />
+      <DatePicker fx:id="data_retiradaField" layoutX="144.0" layoutY="139.0" prefHeight="25.0" prefWidth="123.0" />
+      <Label layoutX="282.0" layoutY="143.0" text="Hora de retirada:" />
+      <Label layoutX="497.0" layoutY="143.0" text="Duração estimada:" />
+      <TextField fx:id="duracaoEstimada" layoutX="606.0" layoutY="139.0" onKeyReleased="#duracaoEstimadaReleased" prefHeight="25.0" prefWidth="40.0" promptText="Dias" />
+      <Label layoutX="48.0" layoutY="198.0" text="Tipo locação:" />
+      <ComboBox fx:id="tipoLocacaoComboBox" layoutX="144.0" layoutY="194.0" prefHeight="25.0" prefWidth="123.0" />
+      <Label layoutX="282.0" layoutY="198.0" text="Categoria:" />
+      <ComboBox fx:id="categoriaComboBox" layoutX="345.0" layoutY="194.0" prefHeight="25.0" prefWidth="123.0" />
+      <Label layoutX="479.0" layoutY="198.0" text="Valor entrada:  R$" />
+      <TextField fx:id="valorEntradaField" layoutX="579.0" layoutY="194.0" onKeyReleased="#valorEntradaFieldReleased" prefHeight="25.0" prefWidth="76.0" />
+      <Spinner fx:id="horaRetirada_hora" editable="true" layoutX="381.0" layoutY="139.0" prefHeight="25.0" prefWidth="54.0" />
+      <Spinner fx:id="horaRetirada_min" editable="true" layoutX="433.0" layoutY="139.0" prefHeight="25.0" prefWidth="54.0" />
+   </children>
+</Pane>
