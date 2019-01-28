@@ -38,6 +38,10 @@ public class VeiculoBusiness {
         return dao.getAll();
     }
     
+    public ArrayList<Veiculo> getBusca(String busca) {
+        return dao.getBusca(busca);
+    }
+    
     public void persist(Veiculo veiculo){
         dao.persist(veiculo);
     }

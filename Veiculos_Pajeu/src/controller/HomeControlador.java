@@ -80,7 +80,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void configuracoesPanelClicked(MouseEvent event) {
-        
+        AppTelas.trocarTela(Util.TELA_CONFIGURACOES, Util.ABRIR);
     }
 
     @FXML

@@ -26,6 +26,9 @@ import util.Util;
 import view.AppTelas;
 
 public class CadastrarCategoriaControlador implements Initializable {
+    
+    private static CadastrarCategoriaControlador controlador;
+    private boolean flag;
 
     private DecimalFormat df = new DecimalFormat("#####.00");
     private List<String> listaPortes = new ArrayList<String>();
@@ -81,6 +84,8 @@ public class CadastrarCategoriaControlador implements Initializable {
 
     @FXML
     private TextField valorLivreField;
+    
+    
 
     @FXML
     void cadastrarButttonAction(ActionEvent event) {
@@ -94,10 +99,64 @@ public class CadastrarCategoriaControlador implements Initializable {
         categoria.setNum_horas_revisao(Integer.parseInt(horasRevField.getText()));
         categoria.setTamanho(porteComboBox.getSelectionModel().getSelectedItem());
         categoria.setTipo_comboio(cambioComboBox.getSelectionModel().getSelectedItem());
-        categoria.setValor_aluguel_controle(Float.parseFloat(valorcontroleField.getText()));
-        categoria.setValor_aluguel_livre(Float.parseFloat(valorLivreField.getText()));
         
-        Fachada.getInstance().persistCategoria(categoria);
+        
+        categoria.setValor_aluguel_controle(Float.parseFloat(valorcontroleField.getText().replace(",", ".")));
+        categoria.setValor_aluguel_livre(Float.parseFloat(valorLivreField.getText().replace(",", ".")));
+        
+        if(flag)
+            Fachada.getInstance().mergeCategoria(categoria);
+        else
+            Fachada.getInstance().persistCategoria(categoria);
+        flag = false;
+        limparCampos();
+        AppTelas.trocarTela(Util.TELA_CATEGORIA, Util.ABRIR);
+    }
+    
+    public void setCategoria(Categoria categoria){
+        arCondCheckBox.setSelected(categoria.isAr_condicionado());
+        cameraReCheckBox.setSelected(categoria.isCamara_re());
+        dvdCheckBox.setSelected(categoria.isDvd());
+        mp3CheckBox.setSelected(categoria.isMp3());
+        nomeCategoriaField.setText(categoria.getNome());
+        horasLimpField.setText(categoria.getNum_horas_limpeza()+"");
+        horasRevField.setText(categoria.getNum_horas_revisao()+"");
+        porteComboBox.getSelectionModel().select(categoria.getTamanho());
+        cambioComboBox.getSelectionModel().select(categoria.getTipo_comboio());
+        valorcontroleField.setText(categoria.getValor_aluguel_controle()+"");
+        valorLivreField.setText(categoria.getValor_aluguel_livre()+"");
+        
+        flag = true;
+    }
+    
+    public void limparCampos(){
+        arCondCheckBox.setSelected(false);
+        cameraReCheckBox.setSelected(false);
+        dvdCheckBox.setSelected(false);
+        mp3CheckBox.setSelected(false);
+        nomeCategoriaField.setText("");
+        horasLimpField.setText("");
+        horasRevField.setText("");
+        porteComboBox.getSelectionModel().select(0);
+        cambioComboBox.getSelectionModel().select(0);
+        valorcontroleField.setText(categoria.getValor_aluguel_controle()+"");
+        valorLivreField.setText(categoria.getValor_aluguel_livre()+"");       
+    }
+    
+    public void bloquearCampos(Categoria categoria){
+        setCategoria(categoria);
+        
+        arCondCheckBox.setDisable(true);
+        cameraReCheckBox.setDisable(true);
+        dvdCheckBox.setDisable(true);
+        mp3CheckBox.setDisable(true);
+        nomeCategoriaField.setDisable(true);
+        horasLimpField.setDisable(true);
+        horasRevField.setDisable(true);
+        porteComboBox.setDisable(true);
+        cambioComboBox.setDisable(true);
+        valorcontroleField.setDisable(true);
+        valorLivreField.setDisable(true);      
     }
 
     @FXML
@@ -181,7 +240,8 @@ public class CadastrarCategoriaControlador implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {        
+    public void initialize(URL location, ResourceBundle resources) {   
+        controlador = this;
         carregarComboBoxes();
     }
 
@@ -201,6 +261,10 @@ public class CadastrarCategoriaControlador implements Initializable {
         porteComboBox.setItems(portesObservableList);
         cambioComboBox.setItems(cambiosObservableList);
 
+    }
+    
+    public static CadastrarCategoriaControlador get(){
+        return controlador;
     }
 
 }

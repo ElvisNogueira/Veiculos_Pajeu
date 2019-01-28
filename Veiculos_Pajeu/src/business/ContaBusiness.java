@@ -42,6 +42,10 @@ public class ContaBusiness {
         return dao.getAll();
     }
     
+    public ArrayList<Conta> getBusca(String busca){
+        return dao.getBusca(busca);
+    }
+    
     public void persist(Conta conta){
         dao.persist(conta);
     }

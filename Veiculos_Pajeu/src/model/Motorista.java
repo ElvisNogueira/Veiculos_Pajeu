@@ -111,8 +111,7 @@ public class Motorista {
 
     @Override
     public String toString() {
-        return "Motorista{" + "id=" + id + ", data_venc_habilitacao=" + data_venc_habilitacao + ", \n"
-                + "num_habilitacao=" + num_habilitacao +  pessoa_Fisica.toString()+"  }";
+        return getPessoa_Fisica().getNome();
     }
     
     

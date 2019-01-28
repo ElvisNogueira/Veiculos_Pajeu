@@ -31,6 +31,9 @@ public class CarrosCadastradosControlador implements Initializable{
     private ImageView voltarButton;
 
     @FXML
+    private ImageView atualizarButton;
+    
+    @FXML
     private ImageView irButton;
 
     @FXML
@@ -72,6 +75,12 @@ public class CarrosCadastradosControlador implements Initializable{
     private Button excluirButton;
     
     @FXML
+    void atualizarButtonClicked(MouseEvent event) {
+        buscarField.setText("");
+        iniciarTabela();
+    }
+    
+    @FXML
     void excluirButtonAction(ActionEvent event) {
         Fachada.getInstance().removeVeiculo(carrosTable.getSelectionModel().getSelectedItem());
         carregarTabela();
@@ -79,42 +88,46 @@ public class CarrosCadastradosControlador implements Initializable{
     
     @FXML
     void buscaFieldKeyPressed(KeyEvent event) {
-
+        iniciarTabela();
     }
 
     @FXML
     void buscarButtonClicked(MouseEvent event) {
-
+        iniciarTabela();
     }
 
     @FXML
     void buscarButtonEntered(MouseEvent event) {
-
+        buscarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void buscarButtonExited(MouseEvent event) {
-
+        buscarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
     void cancelarButtonAction(ActionEvent event) {
-
+        AppTelas.voltar();
     }
 
     @FXML
     void cancelarButtonEntered(MouseEvent event) {
-
+        cancelarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void cancelarButtonExited(MouseEvent event) {
-
+        cancelarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
     void carrosTableClicked(MouseEvent event) {
-
+        if(event.getClickCount()==2){
+            CadastroVeiculoControlador.get().bloquear(carrosTable.getSelectionModel().getSelectedItem());
+            AppTelas.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
+        }
+            
     }
     
     @FXML
@@ -124,17 +137,18 @@ public class CarrosCadastradosControlador implements Initializable{
 
     @FXML
     void editarButtonAction(ActionEvent event) {
-
+        CadastroVeiculoControlador.get().setVeiculo(carrosTable.getSelectionModel().getSelectedItem());
+        AppTelas.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
     }
 
     @FXML
     void editarButtonEntered(MouseEvent event) {
-
+        editarButton.setCursor(Cursor.HAND);
     }
 
     @FXML
     void editarButtonExited(MouseEvent event) {
-       
+       editarButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -213,7 +227,7 @@ public class CarrosCadastradosControlador implements Initializable{
     }
     
     public ObservableList carregarTabela(){
-        return FXCollections.observableArrayList(Fachada.getInstance().getAllVeiculo());
+        return FXCollections.observableArrayList(Fachada.getInstance().getBuscaVeiculo(buscarField.getText()));
     }
 
 }

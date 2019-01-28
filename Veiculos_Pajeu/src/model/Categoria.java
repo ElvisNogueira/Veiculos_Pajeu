@@ -29,7 +29,7 @@ public class Categoria {
     @Column(nullable = false)
     private boolean ar_condicionado, dvd, camara_re,mp3,
             direcao_hidraulica;
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     private String tipo_comboio, tamanho;
 
     public Categoria() {
@@ -233,12 +233,7 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria{" + "id=" + id + ", nome=" + nome + ", valor_aluguel_controle=" 
-                + valor_aluguel_controle + ", valor_aluguel_livre=" + valor_aluguel_livre + ", "
-                + "num_horas_limpeza=" + num_horas_limpeza + ", num_horas_revisao=" + num_horas_revisao + ", "
-                + "\nar_condicionado=" + ar_condicionado + ", dvd=" + dvd + ", camara_re=" + camara_re + ", mp3=" 
-                + mp3 + ", direcao_hidraulica=" + direcao_hidraulica + ", tipo_comboio=" + tipo_comboio + ", "
-                + "tamanho=" + tamanho + '}';
+        return getNome();
     }
     
     

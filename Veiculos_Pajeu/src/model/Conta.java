@@ -97,7 +97,7 @@ public class Conta {
 
     @Override
     public String toString() {
-        return "Conta{" + "id=" + id + ", tipo=" + tipo + ", nome=" + nome + '}';
+        return getNome();
     }
     
     

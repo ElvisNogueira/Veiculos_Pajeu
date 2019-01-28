@@ -125,10 +125,13 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="618.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="atualizarComboBox" fitHeight="20.0" fitWidth="20.0" layoutX="618.0" layoutY="360.0" onMouseClicked="#atualizarComboBox" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/icons8-sincronizar-20.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
    </children>
 </Pane>

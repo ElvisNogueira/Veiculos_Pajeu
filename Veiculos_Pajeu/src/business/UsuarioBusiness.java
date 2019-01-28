@@ -47,9 +47,9 @@ public class UsuarioBusiness {
             try {
 //            usuario.setSenha(Util.criptografar(usuario.getSenha()));
             dao.persist(usuario);
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO);
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Cadastro realizado com suucesso!");
         } catch (Exception e) {
-                AppTelas.mostrarAlert(Util.ERRO_CADASTRO);
+                AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao effetuar cadastro!");
         }
 //        } else {
 //            System.err.println("Senha inválida!");

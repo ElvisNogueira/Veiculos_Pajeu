@@ -7,6 +7,7 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.ReservaDAO;
+import java.sql.Date;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Reserva;
@@ -36,6 +37,10 @@ public class ReservaBusiness {
     
     public ArrayList<Reserva> getAll(){
         return dao.getAll();
+    }
+    
+    public ArrayList<Reserva> getData(Date d1, Date d2) {
+        return dao.getData(d1, d2);
     }
     
     public void persist(Reserva reserva){

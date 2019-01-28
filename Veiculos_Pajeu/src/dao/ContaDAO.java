@@ -63,15 +63,20 @@ public class ContaDAO {
         }
         return conta;
     }
+    
+    public ArrayList<Conta> getBusca(String busca) {
+        return (ArrayList<Conta>) entityManager.createQuery("from "+
+                Conta.class.getSimpleName()+" where nome like '%"+busca+"%'").getResultList();
+    }
 
     public void persist(Conta conta) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(conta);
             entityManager.getTransaction().commit();
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO);
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Cadastrado com sucesso!");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO);
+            AppTelas.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao cadastrar!");
             entityManager.getTransaction().rollback();
             e.printStackTrace();
         }
@@ -82,7 +87,10 @@ public class ContaDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(conta);
             entityManager.getTransaction().commit();
+            
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Edição feita com sucesso!");
         } catch (Exception e) {
+            AppTelas.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao editar!");
             entityManager.getTransaction().rollback();
             e.printStackTrace();
         }

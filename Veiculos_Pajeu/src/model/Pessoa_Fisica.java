@@ -25,7 +25,7 @@ public class Pessoa_Fisica extends Cliente {
     private String cpf;
     @Column(nullable = false)
     private Date data_nasc;
-    @Column(nullable = false, length = 14)
+    @Column(length = 14)
     private String sexo;
 
     public Pessoa_Fisica() {

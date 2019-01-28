@@ -20,6 +20,7 @@ import javax.persistence.InheritanceType;
 public class Camioneta_carga extends Veiculo{
     @Column(nullable = false, length = 30)
     private String acionamento_embreagem;
+    
     @Column(nullable = false)
     private int potencia_motor;
     @Column(nullable = false)

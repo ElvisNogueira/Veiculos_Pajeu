@@ -25,6 +25,7 @@ import business.VeiculoBusiness;
 import dao.Camioneta_cargaDAO;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -160,6 +161,10 @@ public class Fachada {
     public ArrayList<Categoria> getAllCategoria() {
         return categoriaBusiness.getAll();
     }
+    
+    public ArrayList<Categoria> getBuscaCategoria(String busca){
+        return categoriaBusiness.getBusca(busca);
+    }
 
     public void persistCategoria(Categoria categoria) {
         categoriaBusiness.persist(categoria);
@@ -189,6 +194,10 @@ public class Fachada {
     public ArrayList<Cliente> getAllCliente() {
         return clienteBusiness.getAll();
     }
+    
+    public ArrayList<Cliente> getBuscaCliente(String busca){
+        return clienteBusiness.getBusca(busca);
+    }
 
     public void persistCliente(Cliente cliente) {
         clienteBusiness.persist(cliente);
@@ -213,6 +222,10 @@ public class Fachada {
 
     public ArrayList<Conta> getAllConta() {
         return contaBusiness.getAll();
+    }
+    
+    public ArrayList<Conta> getBuscaConta(String busca){
+        return contaBusiness.getBusca(busca);
     }
 
     public void persistConta(Conta conta) {
@@ -453,6 +466,11 @@ public class Fachada {
     
 
     //RESERVA
+    
+    public ArrayList<Reserva> getDataReservas(Date d1, Date d2) {
+        return reservaBusiness.getData(d1, d2);
+    }
+    
     public Reserva getByIdReserva(int id) {
         return reservaBusiness.getById(id);
     }
@@ -541,6 +559,10 @@ public class Fachada {
 
     public ArrayList<Veiculo> getAllVeiculo() {
         return veiculoBusiness.getAll();
+    }
+    
+    public ArrayList<Veiculo> getBuscaVeiculo(String busca) {
+        return veiculoBusiness.getBusca(busca);
     }
 
     public void persistVeiculo(Veiculo veiculo) {

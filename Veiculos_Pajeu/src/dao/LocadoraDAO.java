@@ -55,11 +55,12 @@ public class LocadoraDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(locadora);
             entityManager.getTransaction().commit();
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO);
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Sucesso ao eftuar cadastro!");
         } catch (Exception e) {
+            AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao efetuar cadastro");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO);
+            
         }
     }
     
@@ -80,7 +81,9 @@ public class LocadoraDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(locadora);
             entityManager.getTransaction().commit();
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Edição realizada com suucesso!!");
         } catch (Exception e) {
+            AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao editar!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }

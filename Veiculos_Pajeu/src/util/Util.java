@@ -5,17 +5,13 @@
  */
 package util;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 
 /**
  *
@@ -34,7 +30,7 @@ public class Util {
             TELA_CAD_LOCACAO = "cadLocacao", TELA_CAD_CLIENTE = "cadCliente", TELA_CAD_RESERVA = "cadReserva",
             TELA_CAD_FINANCEIRO = "cadFinanceiro", TELA_RELATORIO_FINANCEIRO = "relatoriooFinanceiro", 
             TELA_CONFIGURACOES = "configuracoes",TELA_CAD_LOCADORA="cadLocadora", TELA_CATEGORIA = "categoria",
-            TELA_CAD_CONTA = "cadConta";
+            TELA_CAD_CONTA = "cadConta", TELA_ALERTA_BACKUP="alertaBackup";
     public final static int ERRO_CADASTRO = 0, ERRO_LOGIN = 1, SUCESSO_CADASTRO = 2;
     public final static int IR = 0, VOLTAR = 1, ABRIR = 2;
 

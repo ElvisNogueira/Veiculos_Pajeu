@@ -139,7 +139,15 @@ public class FuncionariosHomeControlador implements Initializable {
 
     @FXML
     void excluirButtonAction(ActionEvent event) {
-        Fachada.getInstance().removeFuncionario(funcionariosTable.getSelectionModel().getSelectedItem());
+        Funcionario funcionario = Fachada.getInstance().getByIdFuncionario(funcionariosTable.
+                getSelectionModel().getSelectedItem().getId());
+        for (Usuario usuario : Fachada.getInstance().getAllUsuario()) {
+            if (usuario.getFuncionario().getId() == funcionario.getId()) {
+                CadastroFuncionarioControlador.get().setFuncionario(usuario);
+                AppTelas.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
+            }
+
+        }
         inicializarTabela();
     }
 

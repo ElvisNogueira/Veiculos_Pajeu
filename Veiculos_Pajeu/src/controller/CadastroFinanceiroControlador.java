@@ -1,7 +1,13 @@
 package controller;
 
+import fachada.Fachada;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -11,11 +17,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import model.Conta;
+import model.Financeiro;
 import util.Util;
 import view.AppTelas;
 
-public class CadastroFinanceiroControlador {
-
+public class CadastroFinanceiroControlador implements Initializable{
+    Financeiro f;
+    boolean flag;
+    static CadastroFinanceiroControlador controlador;
     @FXML
     private ImageView homeButton;
 
@@ -32,19 +42,61 @@ public class CadastroFinanceiroControlador {
     private TextField valorField;
 
     @FXML
-    private ComboBox<?> contaComboBox;
+    private ComboBox<Conta> contaComboBox;
 
     @FXML
     private TextArea observacaoArea;
 
     @FXML
     private Button cadastrarButton;
+    
+    public static CadastroFinanceiroControlador get(){
+        return controlador;
+    }
 
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
-
+        f.setConta(contaComboBox.getSelectionModel().getSelectedItem());
+        f.setData(Util.getDate(dataPagamento.toString()));
+        f.setObservacao(observacaoArea.getText());
+        f.setUsuario(Fachada.getUserLogado());
+        f.setValor(Float.parseFloat(valorField.getText()));
+        
+        if(flag)
+            Fachada.getInstance().mergeFinanceiro(f);
+        else
+            Fachada.getInstance().persistFinanceiro(f);
+        flag = false;
     }
 
+    
+    public void set(Financeiro f){
+        flag = true;
+        
+        contaComboBox.getSelectionModel().select(f.getConta());
+        LocalDate ld = LocalDate.of(f.getData().getYear(), f.getData().getMonth(), f.getData().getDay());
+        dataPagamento.setValue(ld);
+        observacaoArea.setText(f.getObservacao());
+        
+        valorField.setText(f.getValor()+"");
+    } 
+    public void bloquear(Financeiro f){
+        contaComboBox.setEditable(false);
+        dataPagamento.setEditable(false);
+        observacaoArea.setEditable(false);
+        
+        valorField.setEditable(false);
+    }
+    public void limpar(){
+        contaComboBox.getSelectionModel().select(0);
+        dataPagamento.setValue(LocalDate.now());
+        observacaoArea.setText("");
+        
+        valorField.setText("");
+    }
+    
+    
+    
     @FXML
     void homeButtonClicked(MouseEvent event) {
         AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
@@ -93,6 +145,12 @@ public class CadastroFinanceiroControlador {
     @FXML
     void voltarButtonExited(MouseEvent event) {
         voltarButton.setCursor(Cursor.DEFAULT);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        controlador = this;
+        dataPagamento.setValue(LocalDate.now());
     }
 
 }

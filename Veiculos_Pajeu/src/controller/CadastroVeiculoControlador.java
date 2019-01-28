@@ -33,8 +33,10 @@ import view.AppTelas;
 
 public class CadastroVeiculoControlador implements Initializable {
 
+    boolean flag = false;
     private DecimalFormat df = new DecimalFormat("#####.00");
     Mascara mascara = new Mascara();
+    private static CadastroVeiculoControlador controlador;
 
     Veiculo veiculo = new Veiculo();
     Camioneta_carga camioneta_carga = new Camioneta_carga();
@@ -54,6 +56,9 @@ public class CadastroVeiculoControlador implements Initializable {
 
     @FXML
     private ImageView irButton;
+    
+    @FXML
+    private ImageView atualizarButton;
 
     @FXML
     private Button cadastraButton;
@@ -144,13 +149,13 @@ public class CadastroVeiculoControlador implements Initializable {
 
     @FXML
     private TextField desempenhoField;
-    
+
     @FXML
     private TextField potenciaMotor;
 
     @FXML
     private ComboBox<String> acionamentoEmbreagemComboBox;
-    
+
     
     
 
@@ -166,6 +171,13 @@ public class CadastroVeiculoControlador implements Initializable {
         }
     }
 
+    
+    @FXML
+    void atualizarButtonClicked(MouseEvent event) {
+        carregarCategoriaComboBox();
+        carregarLocadora();
+    }
+    
     @FXML
     void anoModeloFieldReleased(KeyEvent event) {
         try {
@@ -193,14 +205,18 @@ public class CadastroVeiculoControlador implements Initializable {
             veiculo.setPlaca(numPlacaField.getText());
             veiculo.setTipo_combuustivel(tipoCombustivelComboBox.getSelectionModel().getSelectedItem());
             veiculo.setTorqe_motor(Float.parseFloat(torqueMotor.getText()));
+            if (flag) {
+                Fachada.getInstance().mergeVeiculo(veiculo);
+            } else {
+                Fachada.getInstance().persistVeiculo(veiculo);
+            }
 
-            Fachada.getInstance().persistVeiculo(veiculo);
         } else if (camionetaCargaRadioButton.isSelected()) {
             camioneta_carga.setAcionamento_embreagem(acionamentoEmbreagemComboBox.
                     getSelectionModel().getSelectedItem());
             camioneta_carga.setAno_fabricacao(Integer.parseInt(anoFabricacao.getText()));
             camioneta_carga.setAno_modelo(Integer.parseInt(anoModeloField.getText()));
-            camioneta_carga.setCapaccidade_tanque(Float.parseFloat(capacidadeCargaField.
+            camioneta_carga.setCapaccidade_tanque(Float.parseFloat(capTanqueField.
                     getText().replace(",", ".")));
             camioneta_carga.setCapacidade_carga(Float.parseFloat(capacidadeCargaField.
                     getText().replace(",", ".")));
@@ -220,10 +236,14 @@ public class CadastroVeiculoControlador implements Initializable {
             camioneta_carga.setDesempenho(Float.parseFloat(desempenhoField.getText().replace(",", ".")));
             camioneta_carga.setDistancia_eixos(Float.parseFloat(distEixoField.getText().replace(",", ".")));
             camioneta_carga.setPotencia_motor(Integer.parseInt(potenciaMotor.getText()));
-            
-            Fachada.getInstance().persistCamioneta_carga(camioneta_carga);
-            
-        }else if(camionetaPassagRadioButton.isSelected()){
+
+            if (flag) {
+                Fachada.getInstance().mergeCamioneta_carga(camioneta_carga);
+            } else {
+                Fachada.getInstance().persistCamioneta_carga(camioneta_carga);
+            }
+
+        } else if (camionetaPassagRadioButton.isSelected()) {
             camioneta_passageiro.setAno_fabricacao(Integer.parseInt(anoFabricacao.getText()));
             camioneta_passageiro.setAno_modelo(Integer.parseInt(anoModeloField.getText()));
             camioneta_passageiro.setCategoria(categoriaComboBox.getSelectionModel().getSelectedItem());
@@ -244,9 +264,188 @@ public class CadastroVeiculoControlador implements Initializable {
             camioneta_passageiro.setControle_poluicao_ar(controlePolicaoArCheckBox.isSelected());
             camioneta_passageiro.setDirecao_assistida(direcaoAssistidaCheckBox.isSelected());
             camioneta_passageiro.setRodas_liga_leve(rodaLigaLeveCheckBox.isSelected());
+
+            if (flag) {
+                Fachada.getInstance().mergeCamioneta_passageiro(camioneta_passageiro);
+            } else {
+                Fachada.getInstance().persistCamioneta_passageiro(camioneta_passageiro);
+            }
             
-            Fachada.getInstance().persistCamioneta_passageiro(camioneta_passageiro);
         }
+        
+        flag = false;
+            limparCampos(veiculo);
+            AppTelas.voltar();
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        flag = true;
+        camioneta_carga = Fachada.getInstance().getByIdCamioneta_carga(veiculo.getId());
+        camioneta_passageiro = Fachada.getInstance().getByIdCamioneta_passageiro(veiculo.getId());
+
+        if (camioneta_carga != null) {
+            camionetaCargaRadioButton.setSelected(true);
+            acionamentoEmbreagemComboBox.getSelectionModel().select(camioneta_carga.getAcionamento_embreagem());
+            anoFabricacao.setText(camioneta_carga.getAno_fabricacao() + "");
+            anoModeloField.setText(camioneta_carga.getAno_modelo() + "");
+            capTanqueField.setText(camioneta_carga.getCapaccidade_tanque() + "");
+            capacidadeCargaField.setText(camioneta_carga.getCapacidade_carga() + "");
+            categoriaComboBox.getSelectionModel().select(camioneta_carga.getCategoria());
+            corField.setText(camioneta_carga.getCor());
+            fabricanteField.setText(camioneta_carga.getFabricante());
+            kmAtualField.setText(camioneta_carga.getKm_atual() + "");
+            locadoraComboBox.getSelectionModel().select(camioneta_carga.getLocadora());
+            modeloField.setText(camioneta_carga.getModelo());
+            numChassiField.setText(camioneta_carga.getNumChassi());
+            numMotor.setText(camioneta_carga.getNum_motor());
+            numPassageirosField.setText(camioneta_carga.getNum_passageiros() + "");
+            numPortasField.setText(camioneta_carga.getNum_portas() + "");
+            numPlacaField.setText(camioneta_carga.getPlaca());
+            tipoCombustivelComboBox.getSelectionModel().select(camioneta_carga.getTipo_combuustivel());
+            torqueMotor.setText(camioneta_carga.getTorqe_motor() + "");
+            desempenhoField.setText(camioneta_carga.getDesempenho() + "");
+            distEixoField.setText(camioneta_carga.getDistancia_eixos() + "");
+            potenciaMotor.setText(camioneta_carga.getPotencia_motor() + "");
+            camCargaTitledPane.setExpanded(true);
+            camCargaTitledPane.setDisable(false);
+
+            camPassageiroTitledPane.setExpanded(false);
+            camPassageiroTitledPane.setDisable(true);
+        } else if (camioneta_passageiro != null) {
+            camionetaPassagRadioButton.setSelected(true);
+
+            camCargaTitledPane.setExpanded(false);
+            camCargaTitledPane.setDisable(true);
+
+            camPassageiroTitledPane.setExpanded(true);
+            camPassageiroTitledPane.setDisable(false);
+
+            anoFabricacao.setText(camioneta_passageiro.getAno_fabricacao() + "");
+            anoModeloField.setText(camioneta_passageiro.getAno_modelo() + "");
+            categoriaComboBox.getSelectionModel().select(camioneta_passageiro.getCategoria());
+            corField.setText(camioneta_passageiro.getCor());
+            fabricanteField.setText(camioneta_passageiro.getFabricante());
+            kmAtualField.setText(camioneta_passageiro.getKm_atual() + "");
+            locadoraComboBox.getSelectionModel().select(camioneta_passageiro.getLocadora());
+            modeloField.setText(camioneta_passageiro.getModelo());
+            numChassiField.setText(camioneta_passageiro.getNumChassi());
+            numMotor.setText(camioneta_passageiro.getNum_motor());
+            numPassageirosField.setText(camioneta_passageiro.getNum_passageiros() + "");
+            numPortasField.setText(camioneta_passageiro.getNum_portas() + "");
+            numPlacaField.setText(camioneta_passageiro.getPlaca());
+            tipoCombustivelComboBox.getSelectionModel().select(camioneta_passageiro.getTipo_combuustivel());
+            torqueMotor.setText(camioneta_passageiro.getTorqe_motor() + "");
+            airbagComboBox.getSelectionModel().select(camioneta_passageiro.getAirbag());
+            cintoSegTraseiroRetCheckBox.setSelected(camioneta_passageiro.isCinto_seg_traseiros_ret());
+            controlePolicaoArCheckBox.setSelected(camioneta_passageiro.isControle_poluicao_ar());
+            direcaoAssistidaCheckBox.setSelected(camioneta_passageiro.isDirecao_assistida());
+            rodaLigaLeveCheckBox.setSelected(camioneta_passageiro.isRodas_liga_leve());
+        } else {
+            veiculos_pequenoRadioButton.setSelected(true);
+            camCargaTitledPane.setExpanded(false);
+            camCargaTitledPane.setDisable(true);
+
+            camPassageiroTitledPane.setExpanded(false);
+            camPassageiroTitledPane.setDisable(true);
+
+            anoFabricacao.setText(veiculo.getAno_fabricacao() + "");
+            anoModeloField.setText(veiculo.getAno_modelo() + "");
+            categoriaComboBox.getSelectionModel().select(veiculo.getCategoria());
+            corField.setText(veiculo.getCor());
+            fabricanteField.setText(veiculo.getFabricante());
+            kmAtualField.setText(veiculo.getKm_atual() + "");
+            locadoraComboBox.getSelectionModel().select(veiculo.getLocadora());
+            modeloField.setText(veiculo.getModelo());
+            numChassiField.setText(veiculo.getNumChassi());
+            numMotor.setText(veiculo.getNum_motor());
+            numPassageirosField.setText(veiculo.getNum_passageiros() + "");
+            numPortasField.setText(veiculo.getNum_portas() + "");
+            numPlacaField.setText(veiculo.getPlaca());
+            tipoCombustivelComboBox.getSelectionModel().select(veiculo.getTipo_combuustivel());
+            torqueMotor.setText(veiculo.getTorqe_motor() + "");
+
+        }
+    }
+
+    public void limparCampos(Veiculo veiculo) {
+        camionetaCargaRadioButton.setSelected(true);
+        acionamentoEmbreagemComboBox.getSelectionModel().select(0);
+        anoFabricacao.setText("");
+        anoModeloField.setText("");
+        capTanqueField.setText("");
+        capacidadeCargaField.setText("");
+        categoriaComboBox.getSelectionModel().select(0);
+        corField.setText("");
+        fabricanteField.setText("");
+        kmAtualField.setText("");
+        locadoraComboBox.getSelectionModel().select(0);
+        modeloField.setText("");
+        numChassiField.setText("");
+        numMotor.setText("");
+        numPassageirosField.setText("");
+        numPortasField.setText("");
+        numPlacaField.setText("");
+        tipoCombustivelComboBox.getSelectionModel().select(0);
+        torqueMotor.setText("");
+        desempenhoField.setText("");
+        distEixoField.setText("");
+        potenciaMotor.setText("");
+        camCargaTitledPane.setExpanded(true);
+        camCargaTitledPane.setDisable(false);
+
+        camPassageiroTitledPane.setExpanded(false);
+        camPassageiroTitledPane.setDisable(true);
+
+        camionetaPassagRadioButton.setSelected(true);
+
+        camCargaTitledPane.setExpanded(false);
+        camCargaTitledPane.setDisable(true);
+        airbagComboBox.getSelectionModel().select(0);
+        cintoSegTraseiroRetCheckBox.setSelected(false);
+        controlePolicaoArCheckBox.setSelected(false);
+        direcaoAssistidaCheckBox.setSelected(false);
+        rodaLigaLeveCheckBox.setSelected(false);
+    }
+
+    public void bloquear(Veiculo veiculo) {
+        setVeiculo(veiculo);
+        camionetaCargaRadioButton.setSelected(true);
+        acionamentoEmbreagemComboBox.setEditable(false);
+        anoFabricacao.setEditable(false);
+        anoModeloField.setEditable(false);
+        capTanqueField.setEditable(false);
+        capacidadeCargaField.setEditable(false);
+        categoriaComboBox.setEditable(false);
+        corField.setEditable(false);
+        fabricanteField.setEditable(false);
+        kmAtualField.setEditable(false);
+        locadoraComboBox.setEditable(false);
+        modeloField.setEditable(false);
+        numChassiField.setEditable(false);
+        numMotor.setEditable(false);
+        numPassageirosField.setEditable(false);
+        numPortasField.setEditable(false);
+        numPlacaField.setEditable(false);
+        tipoCombustivelComboBox.setEditable(false);
+        torqueMotor.setEditable(false);
+        desempenhoField.setEditable(false);
+        distEixoField.setEditable(false);
+        potenciaMotor.setEditable(false);
+        camCargaTitledPane.setExpanded(false);
+        camCargaTitledPane.setDisable(true);
+
+        camPassageiroTitledPane.setExpanded(false);
+        camPassageiroTitledPane.setDisable(true);
+
+        camionetaPassagRadioButton.setDisable(true);
+
+        camCargaTitledPane.setExpanded(false);
+        camCargaTitledPane.setDisable(true);
+        airbagComboBox.setDisable(true);
+        cintoSegTraseiroRetCheckBox.setDisable(true);
+        controlePolicaoArCheckBox.setDisable(true);
+        direcaoAssistidaCheckBox.setDisable(true);
+        rodaLigaLeveCheckBox.setDisable(true);
     }
 
     @FXML
@@ -259,6 +458,10 @@ public class CadastroVeiculoControlador implements Initializable {
         } catch (Exception e) {
             kmAtualField.setText("");
         }
+    }
+
+    public static CadastroVeiculoControlador get() {
+        return controlador;
     }
 
     @FXML
@@ -371,7 +574,7 @@ public class CadastroVeiculoControlador implements Initializable {
         camPassageiroTitledPane.setDisable(true);
         camCargaTitledPane.setDisable(true);
     }
-    
+
     @FXML
     void potenciaMotorReleased(KeyEvent event) {
         try {
@@ -382,9 +585,9 @@ public class CadastroVeiculoControlador implements Initializable {
         } catch (Exception e) {
             potenciaMotor.setText("");
         }
-    
+
     }
-    
+
     @FXML
     void distEixoFieldReleased(KeyEvent event) {
         try {
@@ -399,6 +602,7 @@ public class CadastroVeiculoControlador implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        controlador = this;
         camPassageiroTitledPane.setDisable(true);
         camCargaTitledPane.setDisable(true);
         carregarComboBoxesString();
@@ -422,6 +626,8 @@ public class CadastroVeiculoControlador implements Initializable {
     public void carregarLocadora() {
         locadoras = Fachada.getInstance().getAllLocadora();
         obsLocadora = FXCollections.observableArrayList(locadoras);
+        
+        
 
         locadoraComboBox.setItems(obsLocadora);
     }

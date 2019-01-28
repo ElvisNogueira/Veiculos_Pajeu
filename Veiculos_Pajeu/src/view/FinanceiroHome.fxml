@@ -2,14 +2,12 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -49,11 +47,13 @@
             <TableColumn fx:id="tipoColumn" maxWidth="161.0" prefWidth="96.0" text="Tipo" />
         </columns>
       </TableView>
-      <TextField fx:id="buscaField" layoutX="32.0" layoutY="129.0" onKeyReleased="#buscaFieldReleased" prefHeight="25.0" prefWidth="602.0" promptText="Buscar por nome" />
-      <ImageView fx:id="atualizarButton" fitHeight="20.0" fitWidth="20.0" layoutX="650.0" layoutY="166.0" onMouseClicked="#atualizarButtonClicked" onMouseEntered="#atualizarButtonEntered" onMouseExited="#atualizarButtonExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="atualizarButton" fitHeight="20.0" fitWidth="20.0" layoutX="650.0" layoutY="166.0" onMouseClicked="#atualizarButtonClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/icons8-sincronizar-20.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Button fx:id="novoButton" layoutX="499.0" layoutY="511.0" mnemonicParsing="false" onAction="#novoButtonAction" prefHeight="25.0" prefWidth="46.0" text="Novo">
          <cursor>
@@ -67,16 +67,10 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ImageView fx:id="buscarButton" fitHeight="20.0" fitWidth="20.0" layoutX="650.0" layoutY="132.0" onMouseClicked="#buscarButtonClicked" onMouseEntered="#buscarButtonEntered" onMouseExited="#buscarButtonExited" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../imagens/icons8-pesquisar-20%20(1).png" />
-         </image>
-      </ImageView>
       <Button fx:id="sairButton" layoutX="624.0" layoutY="511.0" mnemonicParsing="false" onAction="#sairButtonAction" prefHeight="25.0" prefWidth="46.0" text="Sair">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ChoiceBox fx:id="tipoComboBox" layoutX="32.0" layoutY="163.0" prefWidth="150.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
       <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
          <image>

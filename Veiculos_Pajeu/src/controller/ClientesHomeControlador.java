@@ -22,6 +22,7 @@ import util.Util;
 import view.AppTelas;
 
 public class ClientesHomeControlador implements Initializable{
+    Cliente cliente = new Cliente();;
 
     @FXML
     private ImageView voltarButton;
@@ -64,7 +65,8 @@ public class ClientesHomeControlador implements Initializable{
 
     @FXML
     void atualizarButtonClicked(MouseEvent event) {
-
+        buscaField.setText("");
+        inicializarTabela();
     }
 
     @FXML
@@ -79,12 +81,12 @@ public class ClientesHomeControlador implements Initializable{
 
     @FXML
     void buscaFieldPressed(KeyEvent event) {
-
+        inicializarTabela();
     }
 
     @FXML
     void buscarButtonClicked(MouseEvent event) {
-
+        inicializarTabela();
     }
 
     @FXML
@@ -104,7 +106,9 @@ public class ClientesHomeControlador implements Initializable{
 
     @FXML
     void editarButtonAction(ActionEvent event) {
-
+        cliente = tabela.getSelectionModel().getSelectedItem();
+        CadastroClienteControlador.get().setCliente(cliente);
+        AppTelas.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
     }
     
     @FXML
@@ -120,7 +124,11 @@ public class ClientesHomeControlador implements Initializable{
 
     @FXML
     void tabelaClicked(MouseEvent event) {
-
+        if(event.getClickCount()==2){
+            
+            CadastroClienteControlador.get().bloquearCampos(tabela.getSelectionModel().getSelectedItem());
+            AppTelas.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
+        }
     }
 
     @FXML
@@ -170,7 +178,9 @@ public class ClientesHomeControlador implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
         inicializarTabela();
+        
     }
     
     public void inicializarTabela(){
@@ -181,7 +191,7 @@ public class ClientesHomeControlador implements Initializable{
     }
     
     public ObservableList carregarTabela(){
-        return FXCollections.observableList(Fachada.getInstance().getAllCliente());
+        return FXCollections.observableList(Fachada.getInstance().getBuscaCliente(buscaField.getText()));
     }
     
     

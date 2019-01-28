@@ -146,6 +146,14 @@
                     </panes>
                   </Accordion>
                   <Label layoutX="27.0" layoutY="183.0" text="Torque do motor:" />
+                  <ImageView fx:id="atualizarButton" fitHeight="20.0" fitWidth="20.0" layoutX="644.0" layoutY="24.0" onMouseClicked="#atualizarButtonClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/icons8-sincronizar-20.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children></AnchorPane>
         </content>
       </ScrollPane>

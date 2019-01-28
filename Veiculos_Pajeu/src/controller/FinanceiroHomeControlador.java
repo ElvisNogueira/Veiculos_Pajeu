@@ -2,7 +2,10 @@ package controller;
 
 import fachada.Fachada;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +15,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -22,22 +26,19 @@ import view.AppTelas;
 public class FinanceiroHomeControlador implements Initializable{
 
     @FXML
-    private TableView<Financeiro> financeiroTable;
+    private TableView<FinanceiroAux> financeiroTable;
 
     @FXML
-    private TableColumn<Financeiro, Integer> idColumn;
+    private TableColumn<FinanceiroAux, Integer> idColumn;
 
     @FXML
-    private TableColumn<Financeiro, String> nomeColumn;
+    private TableColumn<FinanceiroAux, String> nomeColumn;
 
     @FXML
-    private TableColumn<Financeiro, String> observacaoColumn;
+    private TableColumn<FinanceiroAux, String> observacaoColumn;
 
     @FXML
-    private TableColumn<Financeiro, String> tipoColumn;
-
-    @FXML
-    private TextField buscaField;
+    private TableColumn<FinanceiroAux, String> tipoColumn;
 
     @FXML
     private ImageView atualizarButton;
@@ -52,13 +53,7 @@ public class FinanceiroHomeControlador implements Initializable{
     private Button excluirButton;
 
     @FXML
-    private ImageView buscarButton;
-
-    @FXML
     private Button sairButton;
-
-    @FXML
-    private ChoiceBox<String> tipoComboBox;
 
     @FXML
     private ImageView homeButton;
@@ -71,7 +66,7 @@ public class FinanceiroHomeControlador implements Initializable{
 
     @FXML
     void atualizarButtonClicked(MouseEvent event) {
-
+        inicializarTabela();
     }
 
     @FXML
@@ -84,34 +79,20 @@ public class FinanceiroHomeControlador implements Initializable{
         atualizarButton.setCursor(Cursor.DEFAULT);
     }
 
-    @FXML
-    void buscaFieldReleased(KeyEvent event) {
-
-    }
-
-    @FXML
-    void buscarButtonClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void buscarButtonEntered(MouseEvent event) {
-        buscarButton.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void buscarButtonExited(MouseEvent event) {
-        buscarButton.setCursor(Cursor.DEFAULT);
-    }
+    
 
     @FXML
     void editarButtonAction(ActionEvent event) {
+        CadastroFinanceiroControlador.get().set(Fachada.getInstance().getByIdFinanceiro
+        (financeiroTable.getSelectionModel().getSelectedItem().id));
+        AppTelas.trocarTela(Util.TELA_CAD_FINANCEIRO, Util.ABRIR);
         
     }
 
     @FXML
     void excluirButtonAction(ActionEvent event) {
-        Fachada.getInstance().removeFinanceiro(financeiroTable.getSelectionModel().getSelectedItem());
+        Fachada.getInstance().removeFinanceiro(Fachada.getInstance().getByIdFinanceiro
+        (financeiroTable.getSelectionModel().getSelectedItem().id));
     }
 
     @FXML
@@ -171,8 +152,37 @@ public class FinanceiroHomeControlador implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        inicializarTabela();
     }
     
+    public void inicializarTabela(){
+        idColumn.setCellValueFactory(new PropertyValueFactory("id"));
+        observacaoColumn.setCellValueFactory(new PropertyValueFactory("obs"));
+        nomeColumn.setCellValueFactory(new PropertyValueFactory("nome"));
+        tipoColumn.setCellValueFactory(new PropertyValueFactory("tipo"));
+        
+        financeiroTable.setItems(carregar());
+    }
+    
+    public ObservableList carregar(){
+        ArrayList<FinanceiroAux> financeiroAuxs = new ArrayList<>();
+        
+        for(Financeiro f : Fachada.getInstance().getAllFinanceiro())
+            financeiroAuxs.add(new FinanceiroAux(f.getId(), f.getConta().getNome(), f.getObservacao(), 
+                    f.getConta().getTipo()));
+        return FXCollections.observableList(financeiroAuxs);
+    }
+    
+    private class FinanceiroAux{
+        public int id;
+        public String nome, obs,tipo;
+        
+        public FinanceiroAux(int id,String nome, String obs,String tipo){
+            this.id = id;
+            this.obs = obs;
+            this.nome = nome;
+            this.tipo = tipo;
+        }
+    }
 
 }

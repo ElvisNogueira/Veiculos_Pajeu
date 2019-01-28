@@ -49,9 +49,9 @@ public class ConfiguracoesDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(configuracoes);
             entityManager.getTransaction().commit();
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO);
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Salvo com suucesso!");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO);
+            AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao Salvar!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -62,7 +62,10 @@ public class ConfiguracoesDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(configuracoes);
             entityManager.getTransaction().commit();
+            
+            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Editado com sucesso!");
         } catch (Exception e) {
+            AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao editar!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }

@@ -46,6 +46,11 @@ public class CategoriaDAO {
     public ArrayList<Categoria> getAll() {
         return (ArrayList<Categoria>) entityManager.createQuery("FROM "+Categoria.class.getName()).getResultList();
     }
+    
+    public ArrayList<Categoria> getBusca(String busca) {
+        return (ArrayList<Categoria>) entityManager.createQuery("from "+
+                Categoria.class.getSimpleName()+" where nome like '%"+busca+"%'").getResultList();
+    }
 
     public void persist(Categoria categoria) {
         try {

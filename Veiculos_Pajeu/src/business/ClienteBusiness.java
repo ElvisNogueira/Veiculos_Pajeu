@@ -43,6 +43,10 @@ public class ClienteBusiness {
     public Cliente getLast() {
         return dao.getLast();
     }
+    
+    public ArrayList<Cliente> getBusca(String busca){
+        return dao.getBusca(busca);
+    }
 
     public void persist(Cliente cliente) {
         EnderecoBusiness.getInstance().persist(cliente.getEndereco());

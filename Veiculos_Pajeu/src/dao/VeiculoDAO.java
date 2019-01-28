@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import model.Conta;
 import model.Veiculo;
 
 /**
@@ -45,6 +44,14 @@ public class VeiculoDAO {
 
     public ArrayList<Veiculo> getAll() {
         return (ArrayList<Veiculo>) entityManager.createQuery("FROM "+Veiculo.class.getName()).getResultList();
+    }
+    
+    public ArrayList<Veiculo> getBusca(String busca) {
+        return (ArrayList<Veiculo>) entityManager.createQuery("from "+
+                Veiculo.class.getSimpleName()+" where placa like '%"+busca+"%'"
+                        + " or fabricante like '%"+busca+"%'").getResultList();
+//  return (ArrayList<Veiculo>) entityManager.createQuery("FROM "+Veiculo.class.getName()).getResultList();
+    
     }
 
     public void persist(Veiculo veiculo) {

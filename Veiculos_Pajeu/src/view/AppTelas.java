@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.CadastroFuncionarioControlador;
+
 import fachada.Fachada;
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -15,10 +15,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.Categoria;
-import model.Endereco;
-import model.Funcionario;
-import model.Usuario;
 import util.Util;
 
 /**
@@ -30,11 +26,12 @@ public class AppTelas extends Application {
     private static Stage palco;
     Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad,
             cadFuncionario, cadCarro, reserva, locacao, cadLocacao, cadReserva,cadCliente,cadFinanceiro,
-            relatorioFinanceiro,cadLocadora,configuracoes, categoria,cadConta;
+            relatorioFinanceiro,cadLocadora,configuracoes, categoria,cadConta,alertaBackup;
     static Scene loginScene, homeScene, carrosHomeScene, clientesHomeScene, financeiroHomeScene,
             funcionariosHomeScene, cadCategoriaScene, carrosCadScene,cadFuncionarioScene, cadCarroScene,
             reservaScene, locacaoScene, cadLocacaoScene,cadReservaScene,cadClienteScene,cadFinanceiroScene,
-            relatorioFinanceiroScene, cadLocadoraScene, configuracoesScene, categoriaScene,cadContaScene;
+            relatorioFinanceiroScene, cadLocadoraScene, configuracoesScene, categoriaScene,cadContaScene,
+            alertaBackupScene;
     
     
     private static ArrayList<String> telasAcessadas;
@@ -48,6 +45,7 @@ public class AppTelas extends Application {
 //        Usuario usuario = new Usuario("Administrador", "elvis", "elvis150", funcionario);
 //        Fachada.getInstance().persistUsuario(usuario);
         launch(args);
+        
     }
     
     @Override
@@ -75,6 +73,7 @@ public class AppTelas extends Application {
         configuracoes = FXMLLoader.load(getClass().getResource("Configuracoes.fxml"));
         categoria = FXMLLoader.load(getClass().getResource("Categoia.fxml"));
         cadConta = FXMLLoader.load(getClass().getResource("CadastrarConta.fxml"));
+        alertaBackup = FXMLLoader.load(getClass().getResource("AlertaBackup.fxml"));
         
         
         loginScene = new Scene(login);
@@ -98,8 +97,9 @@ public class AppTelas extends Application {
         configuracoesScene = new Scene(configuracoes);
         categoriaScene = new Scene(categoria);
         cadContaScene = new Scene(cadConta);
+        alertaBackupScene = new Scene(alertaBackup);
         
-        stage.setScene(funcionariosHomeScene);
+        stage.setScene(homeScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);
@@ -157,6 +157,12 @@ public class AppTelas extends Application {
                 palco.setScene(categoriaScene);
             else if(tela.equals(Util.TELA_CAD_CONTA))
                 palco.setScene(cadContaScene);
+            else if(tela.equals(Util.TELA_CATEGORIA))
+                palco.setScene(categoriaScene);
+            else if(tela.equals(Util.TELA_CAD_LOCADORA))
+                palco.setScene(cadLocadoraScene);
+            else if(tela.equals(Util.TELA_ALERTA_BACKUP))
+                palco.setScene(alertaBackupScene);
             
             if(tipo == Util.ABRIR){
                if(!telasAcessadas.get(telasAcessadas.size()-1).equals(tela)){
@@ -186,24 +192,24 @@ public class AppTelas extends Application {
         
     }
     
-    public static void mostrarAlert(int tipo){
+    public static void mostrarAlert(int tipo,String texto){
         switch(tipo){
             case 0:
                 alert.setAlertType(Alert.AlertType.ERROR);
                 alert.setTitle("ERRO");
-                alert.setContentText("Erro ao efetuar cadastro!");
+                alert.setContentText(texto);
                 alert.show();
                 break;
             case 1:
                 alert.setAlertType(Alert.AlertType.ERROR);
                 alert.setTitle("ERRO");
-                alert.setContentText("Erro ao efetuar login!");
+                alert.setContentText(texto);
                 alert.show();
                 break;
             case 2:
                 alert.setAlertType(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Sucesso");
-                alert.setContentText("Cadastro efetuado com sucesso!");
+                alert.setContentText(texto);
                 alert.show();
                 break;
                 

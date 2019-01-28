@@ -38,6 +38,10 @@ public class CategoriaBusiness {
         return dao.getAll();
     }
     
+    public ArrayList<Categoria> getBusca(String busca){
+        return dao.getBusca(busca);
+    }
+    
     public void persist(Categoria categoria){
         dao.persist(categoria);
     }

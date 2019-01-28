@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroReservaControlador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroReservaControlador">
    <children>
       <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
          <menus>
@@ -66,18 +66,26 @@
             <Font name="Impact" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="47.0" layoutY="143.0" text="Data de retirada:" />
-      <DatePicker fx:id="data_retiradaField" layoutX="144.0" layoutY="139.0" prefHeight="25.0" prefWidth="123.0" />
-      <Label layoutX="282.0" layoutY="143.0" text="Hora de retirada:" />
-      <Label layoutX="497.0" layoutY="143.0" text="Duração estimada:" />
-      <TextField fx:id="duracaoEstimada" layoutX="606.0" layoutY="139.0" onKeyReleased="#duracaoEstimadaReleased" prefHeight="25.0" prefWidth="40.0" promptText="Dias" />
-      <Label layoutX="48.0" layoutY="198.0" text="Tipo locação:" />
-      <ComboBox fx:id="tipoLocacaoComboBox" layoutX="144.0" layoutY="194.0" prefHeight="25.0" prefWidth="123.0" />
-      <Label layoutX="282.0" layoutY="198.0" text="Categoria:" />
-      <ComboBox fx:id="categoriaComboBox" layoutX="345.0" layoutY="194.0" prefHeight="25.0" prefWidth="123.0" />
-      <Label layoutX="479.0" layoutY="198.0" text="Valor entrada:  R$" />
-      <TextField fx:id="valorEntradaField" layoutX="579.0" layoutY="194.0" onKeyReleased="#valorEntradaFieldReleased" prefHeight="25.0" prefWidth="76.0" />
-      <Spinner fx:id="horaRetirada_hora" editable="true" layoutX="381.0" layoutY="139.0" prefHeight="25.0" prefWidth="54.0" />
-      <Spinner fx:id="horaRetirada_min" editable="true" layoutX="433.0" layoutY="139.0" prefHeight="25.0" prefWidth="54.0" />
+      <Label layoutX="47.0" layoutY="162.0" text="Data de retirada:" />
+      <DatePicker fx:id="data_retiradaField" layoutX="144.0" layoutY="158.0" prefHeight="25.0" prefWidth="123.0" />
+      <Label layoutX="282.0" layoutY="162.0" text="Hora de retirada:" />
+      <Label layoutX="497.0" layoutY="162.0" text="Duração estimada:" />
+      <TextField fx:id="duracaoEstimada" layoutX="606.0" layoutY="158.0" onKeyReleased="#duracaoEstimadaReleased" prefHeight="25.0" prefWidth="40.0" promptText="Dias" />
+      <Label layoutX="48.0" layoutY="217.0" text="Tipo locação:" />
+      <ComboBox fx:id="tipoLocacaoComboBox" layoutX="144.0" layoutY="213.0" prefHeight="25.0" prefWidth="123.0" />
+      <Label layoutX="282.0" layoutY="217.0" text="Categoria:" />
+      <ComboBox fx:id="categoriaComboBox" layoutX="345.0" layoutY="213.0" prefHeight="25.0" prefWidth="123.0" />
+      <Label layoutX="479.0" layoutY="217.0" text="Valor entrada:  R$" />
+      <TextField fx:id="valorEntradaField" editable="false" layoutX="579.0" layoutY="213.0" onAction="#valorEntradaFieldAction" onKeyReleased="#valorEntradaFieldReleased" onMouseClicked="#entradaClicked" prefHeight="25.0" prefWidth="76.0" />
+      <Spinner fx:id="horaRetirada_hora" editable="true" layoutX="381.0" layoutY="158.0" prefHeight="25.0" prefWidth="54.0" />
+      <Spinner fx:id="horaRetirada_min" editable="true" layoutX="433.0" layoutY="158.0" prefHeight="25.0" prefWidth="54.0" />
+      <ImageView fx:id="atualizarBuutton" fitHeight="20.0" fitWidth="20.0" layoutX="626.0" layoutY="123.0" onMouseClicked="#atualizarBuuttonClicked" onMouseEntered="#atualizarBuuttonEntered" onMouseExited="#atualizarBuuttonExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-sincronizar-20.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

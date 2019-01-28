@@ -32,6 +32,8 @@ import util.Util;
 import view.AppTelas;
 
 public class CadastroReservaControlador implements Initializable{
+    boolean flag;
+    static CadastroReservaControlador controlador;
     private DecimalFormat df = new DecimalFormat("#####.00");
     Reserva reserva = new Reserva();
     ArrayList<Categoria> categorias = new ArrayList<>();
@@ -51,6 +53,9 @@ public class CadastroReservaControlador implements Initializable{
 
     @FXML
     private DatePicker data_retiradaField;
+    
+    @FXML
+    private ImageView atualizarBuutton;
 
     @FXML
     private TextField duracaoEstimada;
@@ -69,6 +74,10 @@ public class CadastroReservaControlador implements Initializable{
 
     @FXML
     private Spinner<Integer> horaRetirada_min;
+    
+    public CadastroReservaControlador get(){
+        return controlador;
+    }
 
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
@@ -79,10 +88,64 @@ public class CadastroReservaControlador implements Initializable{
         reserva.setHora_retirada(new Time(horaRetirada_hora.getValue(), horaRetirada_min.getValue(), 0));
         reserva.setTipo_locacao(tipoLocacaoComboBox.getSelectionModel().getSelectedItem());
         reserva.setValor_entrada(Float.parseFloat(valorEntradaField.getText()));
-        
-        Fachada.getInstance().persistReserva(reserva);
+        if(flag)
+            Fachada.getInstance().mergeReserva(reserva);
+        else{
+            Fachada.getInstance().persistReserva(reserva);
+            AppTelas.trocarTela(Util.TELA_CAD_FINANCEIRO,Util.ABRIR);
+        }        
+            flag = false;
     }
+    
+    public void set(Reserva reserva){
+        flag = true;
+        categoriaComboBox.getSelectionModel().select(reserva.getCategoria());
+        data_retiradaField.setValue(LocalDate.of(reserva.getData_retirada().getYear(), 
+                reserva.getData_retirada().getMonth(), reserva.getData_retirada().getDay()));
+        duracaoEstimada.setText(reserva.getDuracao_estimada()+"");
+         horaRetirada_min.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 
+                 reserva.getHora_retirada().getMinutes()));
+        horaRetirada_hora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 
+                reserva.getHora_retirada().getHours()));
+        tipoLocacaoComboBox.getSelectionModel().select(reserva.getTipo_locacao());
+        
+        
+       valorEntradaField.setText(reserva.getValor_entrada()+"");
+    }
+    
+    public void limpar(){
+        categoriaComboBox.getSelectionModel().select(0);
+        data_retiradaField.setValue(null);
+        duracaoEstimada.setText("");
+        horaRetirada_min.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, Util.horaAtual().getMinutes()));
+        horaRetirada_hora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, Util.horaAtual().getHours()));
+      
+       valorEntradaField.setText("");
+    }
+    
+    public void bloquear(Reserva reserva){
+        set(reserva);
+        categoriaComboBox.setEditable(false);
+        data_retiradaField.setEditable(false);
+        duracaoEstimada.setEditable(false);
+        horaRetirada_min.setEditable(false);
+        horaRetirada_hora.setEditable(false);
+       valorEntradaField.setEditable(false);
+    }
+    
+    
+    @FXML
+    void atualizarBuuttonClicked(MouseEvent event) {
+        carregarComboBoxes();
+    }
+    
+    @FXML
+    void entradaClicked(MouseEvent event) {
+                valorEntradaField.setText(categoriaComboBox.getSelectionModel().getSelectedItem().getValor_aluguel_controle()+"");
 
+    }
+    
+    
     @FXML
     void duracaoEstimadaReleased(KeyEvent event) {
         try {
@@ -97,6 +160,10 @@ public class CadastroReservaControlador implements Initializable{
         AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
+    @FXML
+    void valorEntradaFieldAction(ActionEvent event) {
+    }
+    
     @FXML
     void homeButtonEntered(MouseEvent event) {
         homeButton.setCursor(Cursor.HAND);
@@ -151,6 +218,7 @@ public class CadastroReservaControlador implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        controlador = this;
         horaRetirada_min.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, Util.horaAtual().getMinutes()));
         horaRetirada_hora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, Util.horaAtual().getHours()));
         carregarComboBoxes();
@@ -159,6 +227,16 @@ public class CadastroReservaControlador implements Initializable{
     private void carregarComboBoxes(){
         preencheCategoriaComboBox();
         preencherTipoLocacao();
+    }
+    
+    @FXML
+    void atualizarBuuttonEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void atualizarBuuttonExited(MouseEvent event) {
+
     }
     
     private void preencherTipoLocacao(){

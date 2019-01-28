@@ -6,6 +6,7 @@
 package model;
 
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public class Cliente {
     private String nome;
     @Column(nullable = false, length = 14)
     private String telefone;
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
@@ -142,8 +143,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", codigo=" + codigo + ", nome=" + nome + ", \n"
-                + "telefone=" + telefone + ", endereco=" + endereco + '}';
+        return getNome();
     }
     
     

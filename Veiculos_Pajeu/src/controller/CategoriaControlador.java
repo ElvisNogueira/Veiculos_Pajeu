@@ -67,12 +67,15 @@ public class CategoriaControlador implements Initializable{
 
     @FXML
     void editarButtonAction(ActionEvent event) {
+        CadastrarCategoriaControlador.get().setCategoria(tabelaCategoria.getSelectionModel().getSelectedItem());
+        AppTelas.trocarTela(Util.TELA_CADASTRAR_CATEGORIA, Util.ABRIR);
 
     }
 
     @FXML
     void excluirButton(ActionEvent event) {
-
+        Fachada.getInstance().removeCategoria(tabelaCategoria.getSelectionModel().getSelectedItem());
+        inicializarTabela();
     }
 
     @FXML
@@ -113,7 +116,8 @@ public class CategoriaControlador implements Initializable{
     @FXML
     void tabelaCategoriaClicked(MouseEvent event) {
         if(event.getClickCount()==2){
-            
+            CadastrarCategoriaControlador.get().bloquearCampos(tabelaCategoria.getSelectionModel().getSelectedItem());
+            AppTelas.trocarTela(Util.TELA_CADASTRAR_CATEGORIA, Util.ABRIR);
         }
     }
 
@@ -134,20 +138,18 @@ public class CategoriaControlador implements Initializable{
     
     @FXML
     void buscarButtonClicked(MouseEvent event) {
-        if(buscaField.getText().isEmpty())
-            carregarTabela();
+        inicializarTabela();
     }
     
     @FXML
     void buscaFieldReleased(KeyEvent event) {
-        if(buscaField.getText().isEmpty())
-            carregarTabela();
+        inicializarTabela();
     }
     
     @FXML
     void atualizarButtonClicked(MouseEvent event) {        
-        if(buscaField.getText().isEmpty())
-            carregarTabela();
+        buscaField.setText("");
+        inicializarTabela();
     }
 
     @Override
@@ -165,7 +167,7 @@ public class CategoriaControlador implements Initializable{
     }
     
     public ObservableList carregarTabela(){
-        return FXCollections.observableList(Fachada.getInstance().getAllCategoria());
+        return FXCollections.observableList(Fachada.getInstance().getBuscaCategoria(buscaField.getText()));
     }
 
 }

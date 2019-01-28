@@ -119,11 +119,12 @@ public class CadastroFuncionarioControlador implements Initializable{
         usuario.setFuncionario(funcionario);
         
         if(flag)
-//            Fachada.getInstance().mergeFuncionario(funcionario);
-            limparCampos();
+            Fachada.getInstance().mergeUsuario(usuario);            
         else            
             Fachada.getInstance().persistUsuario(usuario);
         flag = false;
+        limparCampos();
+        AppTelas.voltar();
         
     }
     
@@ -147,7 +148,9 @@ public class CadastroFuncionarioControlador implements Initializable{
     public void setFuncionario(Usuario usuario){
         loginField.setText(usuario.getLogin());
         senhaField.setText(usuario.getSenha());
+        senhaField.setEditable(false);
         confSenhaField.setText(usuario.getSenha());
+        confSenhaField.setEditable(false);
 //        tipoUsuariosComboBox.getSelectionModel().select(usuario.getTipo());
         
         Date d = usuario.getFuncionario().getData_nasc();
@@ -171,7 +174,7 @@ public class CadastroFuncionarioControlador implements Initializable{
         loginField.setEditable(false);
         senhaField.setEditable(false);
         confSenhaField.setEditable(false);
-//        tipoUsuariosComboBox.getSelectionModel().select(usuario.getTipo());
+        tipoUsuariosComboBox.getSelectionModel().select(0);
         
         
         dataNascField.setEditable(false);

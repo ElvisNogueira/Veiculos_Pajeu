@@ -1,6 +1,9 @@
 package controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -8,7 +11,7 @@ import javafx.scene.layout.Pane;
 import util.Util;
 import view.AppTelas;
 
-public class CarrosHomeControlador {
+public class CarrosHomeControlador implements Initializable{
 
     @FXML
     private ImageView homeButton;
@@ -142,6 +145,11 @@ public class CarrosHomeControlador {
     @FXML
     void voltarButtonExited(MouseEvent event) {
         voltarButton.setCursor(Cursor.DEFAULT);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("controller.CarrosHomeControlador.initialize()");
     }
 
 }

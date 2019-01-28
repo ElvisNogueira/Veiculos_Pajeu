@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CarrosCadastradosControlador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CarrosCadastradosControlador">
    <children>
       <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
          <menus>
@@ -71,10 +71,13 @@
             <Image url="@../imagens/icons8-pesquisar-20%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="647.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="atualizarButton" fitHeight="20.0" fitWidth="20.0" layoutX="647.0" layoutY="145.0" onMouseClicked="#atualizarButtonClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/icons8-sincronizar-20.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Button fx:id="novoButton" layoutX="519.0" layoutY="503.0" mnemonicParsing="false" onAction="#novoButtonAction" onMouseEntered="#novoButtonEntered" onMouseExited="#novoButtonExited" text="Novo" />
       <Button fx:id="editarButton" layoutX="468.0" layoutY="503.0" mnemonicParsing="false" onAction="#editarButtonAction" onMouseEntered="#editarButtonEntered" onMouseExited="#editarButtonExited" text="Editar" />

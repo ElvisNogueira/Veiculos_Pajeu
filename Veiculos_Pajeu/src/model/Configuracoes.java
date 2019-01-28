@@ -21,7 +21,7 @@ import javax.persistence.OneToOne;
  *
  * @author Elvis Nogueira
  */
-//@Entity
+@Entity
 public class Configuracoes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

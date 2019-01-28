@@ -99,7 +99,7 @@ public class Locadora {
 
     @Override
     public String toString() {
-        return "Locadora{" + "id=" + id + ", cnpj=" + cnpj + ", endereco=" + endereco + '}';
+        return endereco.getCidade()+"-"+endereco.getUf()+"\nRua: "+endereco.getRua();
     }
     
     

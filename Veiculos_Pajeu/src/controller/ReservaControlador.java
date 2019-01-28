@@ -157,7 +157,7 @@ public class ReservaControlador implements Initializable{
 
     @FXML
     void novoButtonAction(ActionEvent event) {
-        
+        AppTelas.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR);
     }
 
     @FXML

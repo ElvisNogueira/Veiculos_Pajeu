@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import model.Categoria;
 import model.Cliente;
 import model.Endereco;
 
@@ -52,6 +53,11 @@ public class ClienteDAO {
 
     public ArrayList<Cliente> getAll() {
          return (ArrayList<Cliente>) entityManager.createQuery("FROM " + Cliente.class.getName()).getResultList();
+    }
+    
+    public ArrayList<Cliente> getBusca(String busca) {
+        return (ArrayList<Cliente>) entityManager.createQuery("from "+
+                Cliente.class.getSimpleName()+" where nome like '%"+busca+"%'").getResultList();
     }
 
     public void persist(Cliente cliente) {
