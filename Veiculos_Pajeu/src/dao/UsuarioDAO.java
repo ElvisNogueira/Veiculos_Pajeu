@@ -105,7 +105,9 @@ public class UsuarioDAO {
     public void remove(Usuario usuario) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(usuario);
+//            entityManager.remove(usuario);
+            usuario.setStatus(false);
+            entityManager.merge(usuario);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

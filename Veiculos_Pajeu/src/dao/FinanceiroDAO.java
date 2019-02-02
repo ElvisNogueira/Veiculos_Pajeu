@@ -72,7 +72,9 @@ public class FinanceiroDAO {
     public void remove(Financeiro financeiro) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(financeiro);
+//            entityManager.remove(financeiro);
+            financeiro.setStatus(false);
+            entityManager.merge(financeiro);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

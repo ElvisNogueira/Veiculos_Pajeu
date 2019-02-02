@@ -1,7 +1,13 @@
 package controller;
 
+import fachada.Fachada;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -11,11 +17,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import model.Cliente;
+import model.Motorista;
+import model.Pessoa_Fisica;
 import util.Util;
 import view.AppTelas;
 
 public class CadastroMotoristaControlador implements Initializable{
+    private static CadastroMotoristaControlador controlador;
+    private Motorista motorista = new Motorista();
 
     @FXML
     private ImageView homeButton;
@@ -36,17 +45,47 @@ public class CadastroMotoristaControlador implements Initializable{
     private TextField numCNHField;
 
     @FXML
-    private ComboBox<Cliente> clienteComboBox;
+    private ComboBox<Pessoa_Fisica> clienteComboBox;
 
     @FXML
     private ImageView addCliente;
 
     @FXML
     private ImageView atualizarButton;
+    
+    @FXML
+    void cadClienteAction(ActionEvent event) {
+        
+        motorista.setData_venc_habilitacao(Util.getDate(dataVenc.getEditor().getText()));
+        motorista.setNum_habilitacao(numCNHField.getText());
+        motorista.setPessoa_Fisica(clienteComboBox.getSelectionModel().getSelectedItem());
+        
+        if(motorista.getId()!=0)
+            Fachada.getInstance().mergeMotorista(motorista);
+        else 
+            Fachada.getInstance().persistMotorista(motorista);
+        AppTelas.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
+    }
+    
+    public void set(Motorista motorista){
+        Date d = motorista.getData_venc_habilitacao();
+        
+        dataVenc.setValue(LocalDate.of(d.getYear(), d.getMonth(), d.getDate()));
+        numCNHField.setText(motorista.getNum_habilitacao());
+        clienteComboBox.getSelectionModel().select(motorista.getPessoa_Fisica());
+    }
+    
+    public void bloquearCampos(Motorista motorista){
+        set(motorista);
+        
+        dataVenc.setDisable(true);
+        numCNHField.setEditable(false);
+        clienteComboBox.setEditable(false);
+    }
 
     @FXML
     void atualizarButtonClicked(MouseEvent event) {
-
+        inicializarComboBox();
     }
 
     @FXML
@@ -96,9 +135,16 @@ public class CadastroMotoristaControlador implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        inicializarComboBox();
     }
     
+    public void inicializarComboBox(){
+        controlador = this;
+        clienteComboBox.setItems(FXCollections.observableList(Fachada.getInstance().getAllPessoa_Fisica()));
+    }
     
+    private static CadastroMotoristaControlador get(){
+        return controlador;
+    }
 
 }

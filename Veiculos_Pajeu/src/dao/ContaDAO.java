@@ -99,8 +99,9 @@ public class ContaDAO {
     public void remove(Conta conta) {
         try {
             entityManager.getTransaction().begin();
-            conta = entityManager.find(Conta.class, conta.getId());
-            entityManager.remove(conta);
+//            entityManager.remove(conta);
+            conta.setStatus(false);
+            entityManager.merge(conta);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             entityManager.getTransaction().rollback();

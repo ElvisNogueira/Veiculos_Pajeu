@@ -79,7 +79,9 @@ public class FuncionarioDAO {
     public void remove(Funcionario funcionario) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(funcionario);
+//            entityManager.remove(funcionario);
+            funcionario.setStatus(false);
+            entityManager.merge(funcionario);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

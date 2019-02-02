@@ -106,7 +106,9 @@ public class ReservaDAO {
     public void remove(Reserva reserva) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(reserva);
+//            entityManager.remove(reserva);
+            reserva.setStatus(false);
+            entityManager.merge(reserva);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

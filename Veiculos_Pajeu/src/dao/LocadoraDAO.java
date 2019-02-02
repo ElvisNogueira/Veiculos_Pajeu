@@ -93,7 +93,9 @@ public class LocadoraDAO {
     public void remove(Locadora locadora) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(locadora);
+//            entityManager.remove(locadora);
+            locadora.setStatus(false);
+            entityManager.merge(locadora);
             entityManager.getTransaction().commit();
         } catch (Exception e) {            
             e.printStackTrace();

@@ -80,7 +80,6 @@ public class EnderecoDAO {
     public void remove(Endereco endereco) {
         try {
             entityManager.getTransaction().begin();
-            endereco = entityManager.find(Endereco.class, endereco.getId());
             entityManager.remove(endereco);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {

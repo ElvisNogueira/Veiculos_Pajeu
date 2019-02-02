@@ -81,8 +81,9 @@ public class Pessoa_JuridicaDAO {
     public void remove(Pessoa_Juridica pessoa_Juridica) {
         try {
             entityManager.getTransaction().begin();
-            pessoa_Juridica = entityManager.find(Pessoa_Juridica.class, pessoa_Juridica.getId());
-            entityManager.remove(pessoa_Juridica);
+//            entityManager.remove(pessoa_Juridica);
+            pessoa_Juridica.setStatus(false);
+            entityManager.merge(pessoa_Juridica);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

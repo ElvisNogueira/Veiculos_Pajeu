@@ -80,7 +80,9 @@ public class VeiculoDAO {
     public void remove(Veiculo veiculo) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(veiculo);
+//            entityManager.remove(veiculo);
+            veiculo.setStatus(false);
+            entityManager.merge(veiculo);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

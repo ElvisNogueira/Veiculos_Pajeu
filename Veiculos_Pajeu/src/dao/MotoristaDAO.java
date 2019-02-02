@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import model.Conta;
 import model.Endereco;
 import model.Motorista;
+import util.Util;
 
 /**
  *
@@ -51,9 +52,11 @@ public class MotoristaDAO {
 
     public void persist(Motorista motorista) {
         try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(motorista);
-            entityManager.getTransaction().commit();
+            if(Util.calcularIdade(motorista.getData_venc_habilitacao())>20){
+                entityManager.getTransaction().begin();
+                entityManager.persist(motorista);
+                entityManager.getTransaction().commit();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
