@@ -40,8 +40,10 @@ public class Reserva {
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
+    private boolean status;
 
     public Reserva() {
+        status = true;
     }
 
     public Reserva(String tipo_locacao, int duracao_estimada, Date data_retirada, Time hora_retirada, float valor_entrada, 
@@ -160,6 +162,24 @@ public class Reserva {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

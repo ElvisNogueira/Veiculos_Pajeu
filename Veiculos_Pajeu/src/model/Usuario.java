@@ -45,6 +45,7 @@ public class Usuario {
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
+    private boolean status;
 
     public Usuario(String tipo, String login, String senha, Funcionario funcionario) {
         this.tipo = tipo;
@@ -54,6 +55,7 @@ public class Usuario {
     }
 
     public Usuario() {
+        status = true;
     }
 
     @Override
@@ -139,6 +141,16 @@ public class Usuario {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

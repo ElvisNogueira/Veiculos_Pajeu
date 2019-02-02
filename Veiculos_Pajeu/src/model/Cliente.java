@@ -47,8 +47,12 @@ public class Cliente {
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
+    
+    @Column(nullable = false)
+    private boolean status;
 
     public Cliente() {
+        status = true;
     }
 
     public Cliente(String codigo, String nome, String telefone, Endereco endereco) {

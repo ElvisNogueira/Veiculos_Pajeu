@@ -43,13 +43,14 @@ public class VeiculoDAO {
     }
 
     public ArrayList<Veiculo> getAll() {
-        return (ArrayList<Veiculo>) entityManager.createQuery("FROM "+Veiculo.class.getName()).getResultList();
+        return (ArrayList<Veiculo>) entityManager.createQuery("FROM "+Veiculo.class.getName()+" "
+                + "WHERE status = 'true'").getResultList();
     }
     
     public ArrayList<Veiculo> getBusca(String busca) {
         return (ArrayList<Veiculo>) entityManager.createQuery("from "+
                 Veiculo.class.getSimpleName()+" where placa like '%"+busca+"%'"
-                        + " or fabricante like '%"+busca+"%'").getResultList();
+                        + " or fabricante like '%"+busca+"%'"+" and status = 'true'").getResultList();
 //  return (ArrayList<Veiculo>) entityManager.createQuery("FROM "+Veiculo.class.getName()).getResultList();
     
     }

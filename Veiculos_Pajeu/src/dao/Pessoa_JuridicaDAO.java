@@ -46,7 +46,8 @@ public class Pessoa_JuridicaDAO {
     }
 
     public ArrayList<Pessoa_Juridica> getAll() {
-        return (ArrayList<Pessoa_Juridica>) entityManager.createQuery("FROM " + Pessoa_Juridica.class.getName()).getResultList();
+        return (ArrayList<Pessoa_Juridica>) entityManager.createQuery("FROM " + Pessoa_Juridica.class.getName()
+                +" WHERE status = 'true'").getResultList();
     }
 
     public void persist(Pessoa_Juridica pessoa_Juridica) {

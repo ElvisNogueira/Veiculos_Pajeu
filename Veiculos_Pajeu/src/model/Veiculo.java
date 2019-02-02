@@ -45,8 +45,10 @@ public class Veiculo {
     @ManyToOne
     @JoinColumn(name = "id_locadora")
     Locadora locadora;
+    private boolean status;
 
     public Veiculo() {
+        status = true;
     }
 
     public Veiculo(String placa, String fabricante, String numChassi, String num_motor, String modelo, String tipo_combuustivel, String cor, float km_atual, float torqe_motor, int num_portas, int ano_modelo, int ano_fabricacao, int num_passageiros, Categoria categoria, Locadora locadora) {
@@ -282,10 +284,14 @@ public class Veiculo {
         this.locadora = locadora;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     
-    
-
     @Override
     public String toString() {
         return "Veiculo{" + "id=" + id + ", placa=" + placa + ", fabricante=" + fabricante + ", \n"

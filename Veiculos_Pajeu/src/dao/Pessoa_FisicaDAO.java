@@ -52,7 +52,8 @@ public class Pessoa_FisicaDAO {
     }
 
     public ArrayList<Pessoa_Fisica> getAll() {
-        return (ArrayList<Pessoa_Fisica>) entityManager.createQuery("FROM " + Pessoa_Fisica.class.getName()).getResultList();
+        return (ArrayList<Pessoa_Fisica>) entityManager.createQuery("FROM " + Pessoa_Fisica.class.getName()
+                +" WHERE status = 'true'").getResultList();
     }
 
     public void persist(Pessoa_Fisica Pessoa_Fisica) {

@@ -27,8 +27,11 @@ public class Pessoa_Fisica extends Cliente {
     private Date data_nasc;
     @Column(length = 14)
     private String sexo;
+    @Column(nullable = false)
+    private boolean status;
 
     public Pessoa_Fisica() {
+        status = true;
     }
 
     public Pessoa_Fisica(String cpf, Date data_nasc, String sexo, String codigo, String nome, String telefone, Endereco endereco) {
@@ -96,6 +99,16 @@ public class Pessoa_Fisica extends Cliente {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

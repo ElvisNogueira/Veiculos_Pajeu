@@ -31,6 +31,7 @@ public class Endereco {
     private String cep;
     @Column(nullable = false, length = 5)
     private String numero;
+    private boolean status;
 
     public Endereco(String rua, String bairro, String cidade, String uf, String cep, String numero) {
         this.rua = rua;
@@ -42,6 +43,7 @@ public class Endereco {
     }
 
     public Endereco() {
+        status = true;
     }
     
     @Override
@@ -151,6 +153,16 @@ public class Endereco {
     public void setUf(String uf) {
         this.uf = uf;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

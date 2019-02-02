@@ -52,12 +52,14 @@ public class ClienteDAO {
     }
 
     public ArrayList<Cliente> getAll() {
-         return (ArrayList<Cliente>) entityManager.createQuery("FROM " + Cliente.class.getName()).getResultList();
+         return (ArrayList<Cliente>) entityManager.createQuery("FROM " + Cliente.class.getName()
+                +" WHERE status = 'true'").getResultList();
     }
     
     public ArrayList<Cliente> getBusca(String busca) {
         return (ArrayList<Cliente>) entityManager.createQuery("from "+
-                Cliente.class.getSimpleName()+" where nome like '%"+busca+"%'").getResultList();
+                Cliente.class.getSimpleName()+" where nome like '%"+busca+"%'"+" and status = 'true'"
+                ).getResultList();
     }
 
     public void persist(Cliente cliente) {

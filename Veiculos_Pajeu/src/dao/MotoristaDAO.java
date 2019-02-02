@@ -45,7 +45,8 @@ public class MotoristaDAO {
     }
 
     public ArrayList<Motorista> getAll() {
-        return (ArrayList<Motorista>) entityManager.createQuery("FROM "+Motorista.class.getName()).getResultList();
+        return (ArrayList<Motorista>) entityManager.createQuery("FROM "+Motorista.class.getName()+
+                " WHERE status = 'true'").getResultList();
     }
 
     public void persist(Motorista motorista) {

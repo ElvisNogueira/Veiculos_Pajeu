@@ -116,8 +116,8 @@ public class CadastroClienteControlador implements Initializable {
         endereco.setUf(ufComboBox.getSelectionModel().getSelectedItem());
 
         if (pessoaFisicaRadioButton.isSelected()) {
-            LocalDate ld = dataNasc.getValue();
-            Date data = Util.getDate(ld.toString());
+            
+            Date data = Util.getDate( dataNasc.getEditor().getText());
 
             pessoa_Fisica.setCpf(cpfField.getText());
             pessoa_Fisica.setData_nasc(data);
@@ -166,8 +166,8 @@ public class CadastroClienteControlador implements Initializable {
             Date d = pessoa_Fisica.getData_nasc();
             cpfField.setText(pessoa_Fisica.getCpf());
             pessoaFisicaRadioButton.setSelected(true);
-
-            dataNasc.setValue(LocalDate.of(d.getYear(), d.getMonth(), d.getDay()));
+            System.out.println(d.getYear()+"/"+ d.getMonth()+"/"+d.getDate());
+            dataNasc.setValue(LocalDate.of(d.getYear(), d.getMonth(), d.getDate()));
 
             isPessoaFisica();
 

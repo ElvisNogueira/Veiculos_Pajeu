@@ -45,7 +45,7 @@ public class Camioneta_cargaDAO {
     
     public ArrayList<Camioneta_carga> getAll(){
         return (ArrayList<Camioneta_carga>) entityManager.createQuery("FROM "+
-                Camioneta_carga.class.getName()).getResultList();
+                Camioneta_carga.class.getName()+" WHERE status = 'true'").getResultList();
     }
     
     public void persist(Camioneta_carga camioneta_carga){
@@ -72,7 +72,9 @@ public class Camioneta_cargaDAO {
     public void remove(Camioneta_carga camioneta_carga) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(camioneta_carga);
+//            entityManager.remove(camioneta_carga);
+            camioneta_carga.setStatus(false);
+            entityManager.merge(camioneta_carga);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

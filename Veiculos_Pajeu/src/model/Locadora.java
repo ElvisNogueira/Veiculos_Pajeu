@@ -29,8 +29,10 @@ public class Locadora {
     @OneToOne
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
+    private boolean status;
 
     public Locadora() {
+        status = true;
     }
 
     public Locadora(String cnpj, Endereco endereco) {
@@ -96,6 +98,16 @@ public class Locadora {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

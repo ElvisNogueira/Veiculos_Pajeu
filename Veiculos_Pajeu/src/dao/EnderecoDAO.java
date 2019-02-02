@@ -51,7 +51,8 @@ public class EnderecoDAO {
     }
 
     public ArrayList<Endereco> getAll() {
-        return (ArrayList<Endereco>) entityManager.createQuery("FROM " + Endereco.class.getName()).getResultList();
+        return (ArrayList<Endereco>) entityManager.createQuery("FROM " + Endereco.class.getName()
+            +" WHERE status = 'true'").getResultList();
     }
 
     public void persist(Endereco endereco) {

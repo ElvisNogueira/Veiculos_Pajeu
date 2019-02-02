@@ -23,8 +23,11 @@ public class Camioneta_passageiro extends Veiculo{
     @Column(nullable = false)
     private boolean cinto_seg_traseiros_ret, controle_poluicao_ar,
             rodas_liga_leve, direcao_assistida;
-
+    @Column(nullable = false)
+    private boolean status;
+    
     public Camioneta_passageiro() {
+        status = true;
     }
 
     public Camioneta_passageiro(String airbag, boolean cinto_seg_traseiros_ret, boolean controle_poluicao_ar, boolean rodas_liga_leve, boolean direcao_assistida, String placa, String fabricante, String numChassi, String num_motor, String modelo, String tipo_combuustivel, String cor, float km_atual, float torqe_motor, int num_portas, int ano_modelo, int ano_fabricacao, int num_passageiros, Categoria categoria, Locadora locadora) {
@@ -120,6 +123,16 @@ public class Camioneta_passageiro extends Veiculo{
         this.direcao_assistida = direcao_assistida;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    
+    
     @Override
     public String toString() {
         return super.toString()+"\nCamioneta_passageiro{" + "airbag=" + airbag + ", cinto_seg_traseiros_ret=" + cinto_seg_traseiros_ret + ",\n"

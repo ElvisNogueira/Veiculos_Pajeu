@@ -55,12 +55,14 @@ public class UsuarioDAO {
     }
 
     public ArrayList<Usuario> getAll() {
-        return (ArrayList<Usuario>) entityManager.createQuery("FROM " + Usuario.class.getName()).getResultList();
+        return (ArrayList<Usuario>) entityManager.createQuery("FROM " + Usuario.class.getName()+" "
+                + "WHERE status = 'true'").getResultList();
     }
 
     public Usuario getByLogin(String login) {
         try {
-            String jpaQuery = "from " + Usuario.class.getSimpleName() + " u where u.login='" + login + "'";
+            String jpaQuery = "from " + Usuario.class.getSimpleName() + " u where u.login='" + login + "'"
+                    +" WHERE status = 'true'";
             return (Usuario) entityManager.createQuery(jpaQuery).getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();

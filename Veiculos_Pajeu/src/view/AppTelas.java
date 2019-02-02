@@ -73,7 +73,7 @@ public class AppTelas extends Application {
         configuracoes = FXMLLoader.load(getClass().getResource("Configuracoes.fxml"));
         categoria = FXMLLoader.load(getClass().getResource("Categoia.fxml"));
         cadConta = FXMLLoader.load(getClass().getResource("CadastrarConta.fxml"));
-        alertaBackup = FXMLLoader.load(getClass().getResource("AlertaBackup.fxml"));
+//        alertaBackup = FXMLLoader.load(getClass().getResource("AlertaBackup.fxml"));
         cadMotorista = FXMLLoader.load(getClass().getResource("CadastroMotorista.fxml"));
         
         
@@ -98,9 +98,10 @@ public class AppTelas extends Application {
         configuracoesScene = new Scene(configuracoes);
         categoriaScene = new Scene(categoria);
         cadContaScene = new Scene(cadConta);
-        alertaBackupScene = new Scene(alertaBackup);
+        cadMotoristaScene = new Scene(cadMotorista);
+//        alertaBackupScene = new Scene(alertaBackup);
         
-        stage.setScene(loginScene);
+        stage.setScene(cadFuncionarioScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);
@@ -162,8 +163,8 @@ public class AppTelas extends Application {
                 palco.setScene(categoriaScene);
             else if(tela.equals(Util.TELA_CAD_LOCADORA))
                 palco.setScene(cadLocadoraScene);
-            else if(tela.equals(Util.TELA_ALERTA_BACKUP))
-                palco.setScene(alertaBackupScene);
+//            else if(tela.equals(Util.TELA_ALERTA_BACKUP))
+//                palco.setScene(alertaBackupScene);
             else if(tela.equals(Util.TELA_CAD_MOTORISTA))
                 palco.setScene(cadMotoristaScene);
             

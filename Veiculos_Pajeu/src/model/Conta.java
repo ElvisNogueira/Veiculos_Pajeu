@@ -25,8 +25,10 @@ public class Conta {
     String tipo;
     @Column(nullable = false)
     private String nome;
+    private boolean status;
 
     public Conta() {
+        status = true;
     }
 
     public Conta(String tipo, String nome) {
@@ -94,6 +96,16 @@ public class Conta {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

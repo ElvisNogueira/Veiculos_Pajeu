@@ -31,8 +31,11 @@ public class Categoria {
             direcao_hidraulica;
     @Column(nullable = false)
     private String tipo_comboio, tamanho;
+    @Column(nullable = false)
+    private boolean status;
 
     public Categoria() {
+        status = true;
     }
 
     public Categoria(String nome, float valor_aluguel_controle, float valor_aluguel_livre, int num_horas_limpeza, int num_horas_revisao, boolean ar_condicionado, boolean dvd, boolean camara_re, boolean mp3, boolean direcao_hidraulica, String tipo_comboio, String tamanho) {
@@ -230,6 +233,16 @@ public class Categoria {
     public void setNum_horas_revisao(int num_horas_revisao) {
         this.num_horas_revisao = num_horas_revisao;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -48,6 +48,7 @@ public class Funcionario {
      @OneToOne (cascade = CascadeType.ALL)
      @JoinColumn(name = "id_endereco")
      private Endereco end;
+     private boolean status;
 
     public Funcionario(String nome, String telefone, String cpf, Date data_nasc, Endereco end) {
         this.nome = nome;
@@ -58,6 +59,7 @@ public class Funcionario {
     }
 
     public Funcionario() {
+        status = true;
     }
 
     @Override
@@ -154,6 +156,16 @@ public class Funcionario {
     public void setEnd(Endereco end) {
         this.end = end;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

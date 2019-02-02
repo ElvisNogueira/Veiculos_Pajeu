@@ -49,13 +49,13 @@ public class ContaDAO {
 
     public ArrayList<Conta> getAll() {
         return (ArrayList<Conta>) entityManager.createQuery("from "+
-                Conta.class.getSimpleName()).getResultList();
+                Conta.class.getSimpleName()+" WHERE status = 'true'").getResultList();
     }
     
     public Conta getByNome(String nome){
         Conta conta = null;
         try {
-            String jpaQuery = "from "+Conta.class.getSimpleName()+" c where c.nome='"+nome+"'";
+            String jpaQuery = "from "+Conta.class.getSimpleName()+" c where c.nome='"+nome+"'"+" WHERE status = 'true'";
             conta = (Conta) entityManager.createQuery(jpaQuery).getSingleResult();
             
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class ContaDAO {
     
     public ArrayList<Conta> getBusca(String busca) {
         return (ArrayList<Conta>) entityManager.createQuery("from "+
-                Conta.class.getSimpleName()+" where nome like '%"+busca+"%'").getResultList();
+                Conta.class.getSimpleName()+" where nome like '%"+busca+"%'"+" WHERE status = 'true'").getResultList();
     }
 
     public void persist(Conta conta) {

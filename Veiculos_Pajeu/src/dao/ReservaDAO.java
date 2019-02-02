@@ -51,12 +51,14 @@ public class ReservaDAO {
     }
 
     public ArrayList<Reserva> getAll() {
-        return (ArrayList<Reserva>) entityManager.createQuery("FROM "+Reserva.class.getName()).getResultList();
+        return (ArrayList<Reserva>) entityManager.createQuery("FROM "+Reserva.class.getName()
+            +" WHERE status = 'true'").getResultList();
     }
     
     public ArrayList<Reserva> getData(Date d1, Date d2) {
         return (ArrayList<Reserva>) entityManager.createQuery("from "+
-                Reserva.class.getSimpleName()+" where data_retirada between "+d1+" and "+d2).getResultList();
+                Reserva.class.getSimpleName()+" where data_retirada between "+d1+" and "+d2+" WHERE status = 'true'")
+                .getResultList();
     }
 
     public void persist(Reserva reserva) {

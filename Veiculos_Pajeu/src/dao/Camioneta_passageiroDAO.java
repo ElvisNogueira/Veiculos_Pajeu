@@ -45,7 +45,7 @@ public class Camioneta_passageiroDAO {
 
     public ArrayList<Camioneta_passageiro> getAll() {
         return (ArrayList<Camioneta_passageiro>) entityManager.createQuery("FROM "
-                +Camioneta_passageiro.class.getName()).getResultList();
+                +Camioneta_passageiro.class.getName()+" WHERE status = 'true'").getResultList();
     }
 
     public void persist(Camioneta_passageiro camioneta_passageiro) {
@@ -73,7 +73,9 @@ public class Camioneta_passageiroDAO {
     public void remove(Camioneta_passageiro camioneta_passageiro) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(camioneta_passageiro);
+//            entityManager.remove(camioneta_passageiro);
+            camioneta_passageiro.setStatus(true);
+            entityManager.merge(camioneta_passageiro);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

@@ -44,7 +44,7 @@ public class FinanceiroDAO {
 
     public ArrayList<Financeiro> getAll() {
         return (ArrayList<Financeiro>) entityManager.createQuery("from "+
-                Financeiro.class.getSimpleName()).getResultList();
+                Financeiro.class.getSimpleName()+" WHERE status = 'true'").getResultList();
     }
 
     public void persist(Financeiro financeiro) {

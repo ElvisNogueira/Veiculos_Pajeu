@@ -26,8 +26,11 @@ public class Camioneta_carga extends Veiculo{
     @Column(nullable = false)
     private float desempenho, capacidade_carga, 
             distancia_eixos, capaccidade_tanque;
+    @Column(nullable = false)
+    private boolean status;
 
     public Camioneta_carga() {
+        status = true;
     }
 
     public Camioneta_carga(String acionamento_embreagem, int potencia_motor, float desempenho, float capacidade_carga, 
@@ -139,6 +142,16 @@ public class Camioneta_carga extends Veiculo{
     public void setCapaccidade_tanque(float capaccidade_tanque) {
         this.capaccidade_tanque = capaccidade_tanque;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -44,7 +44,7 @@ public class LocacaoDAO {
     }
 
     public ArrayList<Locacao> getAll() {
-        return (ArrayList<Locacao>) entityManager.createQuery("FROM "+Locacao.class.getName()).getResultList();
+        return (ArrayList<Locacao>) entityManager.createQuery("FROM "+Locacao.class.getName()+" WHERE status = 'true'").getResultList();
     }
 
     public void persist(Locacao locacao) {

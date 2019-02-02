@@ -28,8 +28,10 @@ public class Motorista {
     @OneToOne
     @JoinColumn(name = "id_pessoa_Fisica")
     private Pessoa_Fisica pessoa_Fisica;
+    private boolean status;
 
     public Motorista() {
+        status = true;
     }
 
     public Motorista(Date data_venc_habilitacao, String num_habilitacao, Pessoa_Fisica pessoa_Fisica) {
@@ -108,6 +110,16 @@ public class Motorista {
     public void setPessoa_Fisica(Pessoa_Fisica pessoa_Fisica) {
         this.pessoa_Fisica = pessoa_Fisica;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

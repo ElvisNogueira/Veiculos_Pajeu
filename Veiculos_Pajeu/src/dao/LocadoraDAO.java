@@ -47,7 +47,8 @@ public class LocadoraDAO {
     }
 
     public ArrayList<Locadora> getAll() {
-        return (ArrayList<Locadora>) entityManager.createQuery("FROM "+Locadora.class.getName()).getResultList();
+        return (ArrayList<Locadora>) entityManager.createQuery("FROM "+Locadora.class.getName()+
+                " WHERE status = 'true'").getResultList();
     }
 
     public void persist(Locadora locadora) {

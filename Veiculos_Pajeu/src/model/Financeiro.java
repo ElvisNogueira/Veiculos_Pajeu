@@ -36,8 +36,10 @@ public class Financeiro {
     @OneToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
-
+    private boolean status;
+    
     public Financeiro() {
+        status = true;
     }
 
     public Financeiro(Date data, float valor, String observacao, Conta conta, Usuario usuario) {
@@ -143,6 +145,16 @@ public class Financeiro {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {

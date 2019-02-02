@@ -52,8 +52,10 @@ public class Locacao {
     @OneToOne
     @JoinColumn (name = "id_reserva")
     private Reserva reserva;
+    private boolean ativo;
 
     public Locacao() {
+        ativo = true;
     }
 
     public Locacao(String tipo_locacao, String status, int duracao_estiimada, Date data_retirada, Time hora_retirada, 
@@ -312,6 +314,22 @@ public class Locacao {
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+    
+    
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
 
     @Override
     public String toString() {

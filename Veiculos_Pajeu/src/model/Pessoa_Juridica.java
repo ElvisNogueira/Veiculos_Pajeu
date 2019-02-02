@@ -22,8 +22,11 @@ public class Pessoa_Juridica extends Cliente{
     private String cnpj;
     @Column(nullable = false, length = 10, unique = true)
     private String inscricao_estadual;
+    @Column(nullable = false)
+    private boolean status;
 
     public Pessoa_Juridica() {
+        status = true;
     }
 
     public Pessoa_Juridica(String cnpj, String inscricao_estadual, String codigo, String nome, String telefone, Endereco endereco) {
@@ -79,6 +82,16 @@ public class Pessoa_Juridica extends Cliente{
         this.inscricao_estadual = inscricao_estadual;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    
+    
     @Override
     public String toString() {
         return super.toString()+", "+getCnpj();

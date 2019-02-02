@@ -44,12 +44,13 @@ public class CategoriaDAO {
     }
 
     public ArrayList<Categoria> getAll() {
-        return (ArrayList<Categoria>) entityManager.createQuery("FROM "+Categoria.class.getName()).getResultList();
+        return (ArrayList<Categoria>) entityManager.createQuery("FROM "+Categoria.class.getName()+" "
+                + "where status = 'true'").getResultList();
     }
     
     public ArrayList<Categoria> getBusca(String busca) {
         return (ArrayList<Categoria>) entityManager.createQuery("from "+
-                Categoria.class.getSimpleName()+" where nome like '%"+busca+"%'").getResultList();
+                Categoria.class.getSimpleName()+" where nome like '%"+busca+"%'"+" and status = 'true'").getResultList();
     }
 
     public void persist(Categoria categoria) {
@@ -77,7 +78,9 @@ public class CategoriaDAO {
     public void remove(Categoria categoria) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(categoria);
+//            entityManager.remove(categoria);
+            categoria.setStatus(true);
+            entityManager.merge(categoria);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
