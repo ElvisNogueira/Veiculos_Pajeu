@@ -30,7 +30,7 @@ public class Util {
             TELA_CAD_LOCACAO = "cadLocacao", TELA_CAD_CLIENTE = "cadCliente", TELA_CAD_RESERVA = "cadReserva",
             TELA_CAD_FINANCEIRO = "cadFinanceiro", TELA_RELATORIO_FINANCEIRO = "relatoriooFinanceiro", 
             TELA_CONFIGURACOES = "configuracoes",TELA_CAD_LOCADORA="cadLocadora", TELA_CATEGORIA = "categoria",
-            TELA_CAD_CONTA = "cadConta", TELA_ALERTA_BACKUP="alertaBackup";
+            TELA_CAD_CONTA = "cadConta", TELA_ALERTA_BACKUP="alertaBackup", TELA_CAD_MOTORISTA="cadMotorista";
     public final static int ERRO_CADASTRO = 0, ERRO_LOGIN = 1, SUCESSO_CADASTRO = 2;
     public final static int IR = 0, VOLTAR = 1, ABRIR = 2;
 
@@ -48,10 +48,11 @@ public class Util {
 //    }
 
     public static Date getDate(String d) {
-        d = d.replaceAll("-", "");
-        int ano = (Integer.parseInt(d.substring(0, 4)));
-        int mes = (Integer.parseInt(d.substring(4, 6)));
-        int dia = (Integer.parseInt(d.substring(6, 8)));
+        
+        d = d.replaceAll("/", "");System.out.println(d);
+        int dia = (Integer.parseInt(d.substring(0, 2)));
+        int mes = (Integer.parseInt(d.substring(2, 4)));
+        int ano = (Integer.parseInt(d.substring(4, 8)));
         Date data = new Date(ano, mes, dia);
         return data;
     }

@@ -2,9 +2,12 @@ package controller;
 
 import fachada.Fachada;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,12 +25,16 @@ import model.Financeiro;
 import util.Util;
 import view.AppTelas;
 
+
 public class CadastroFinanceiroControlador implements Initializable{
-    Financeiro f;
+    Financeiro f = new Financeiro();
     boolean flag;
     static CadastroFinanceiroControlador controlador;
     @FXML
     private ImageView homeButton;
+    
+    @FXML
+    private ImageView atualizarButton;
 
     @FXML
     private ImageView voltarButton;
@@ -53,11 +60,29 @@ public class CadastroFinanceiroControlador implements Initializable{
     public static CadastroFinanceiroControlador get(){
         return controlador;
     }
+    
+    @FXML
+    void atualizarButtonClicked(MouseEvent event) {
+        inicializarCCombobox();
+    }
+
+    @FXML
+    void atualizarButtonEntered(MouseEvent event) {
+        atualizarButton.setCursor(Cursor.HAND);
+    }
+
+    @FXML
+    void atualizarButtonExited(MouseEvent event) {
+        atualizarButton.setCursor(Cursor.DEFAULT);
+    }
+
 
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
+        Date d  = new Date(dataPagamento.getValue().getYear(), dataPagamento.getValue().getMonthValue(),
+                dataPagamento.getValue().getDayOfMonth());
         f.setConta(contaComboBox.getSelectionModel().getSelectedItem());
-        f.setData(Util.getDate(dataPagamento.toString()));
+        f.setData(d);
         f.setObservacao(observacaoArea.getText());
         f.setUsuario(Fachada.getUserLogado());
         f.setValor(Float.parseFloat(valorField.getText()));
@@ -151,6 +176,15 @@ public class CadastroFinanceiroControlador implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         controlador = this;
         dataPagamento.setValue(LocalDate.now());
+        inicializarCCombobox();
+    }
+    
+    public void inicializarCCombobox(){
+        contaComboBox.setItems(carregar());
+    }
+    
+    public ObservableList carregar(){
+        return FXCollections.observableList(Fachada.getInstance().getAllConta());
     }
 
 }

@@ -26,12 +26,12 @@ public class AppTelas extends Application {
     private static Stage palco;
     Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad,
             cadFuncionario, cadCarro, reserva, locacao, cadLocacao, cadReserva,cadCliente,cadFinanceiro,
-            relatorioFinanceiro,cadLocadora,configuracoes, categoria,cadConta,alertaBackup;
+            relatorioFinanceiro,cadLocadora,configuracoes, categoria,cadConta,alertaBackup,cadMotorista;
     static Scene loginScene, homeScene, carrosHomeScene, clientesHomeScene, financeiroHomeScene,
             funcionariosHomeScene, cadCategoriaScene, carrosCadScene,cadFuncionarioScene, cadCarroScene,
             reservaScene, locacaoScene, cadLocacaoScene,cadReservaScene,cadClienteScene,cadFinanceiroScene,
             relatorioFinanceiroScene, cadLocadoraScene, configuracoesScene, categoriaScene,cadContaScene,
-            alertaBackupScene;
+            alertaBackupScene,cadMotoristaScene;
     
     
     private static ArrayList<String> telasAcessadas;
@@ -74,6 +74,7 @@ public class AppTelas extends Application {
         categoria = FXMLLoader.load(getClass().getResource("Categoia.fxml"));
         cadConta = FXMLLoader.load(getClass().getResource("CadastrarConta.fxml"));
         alertaBackup = FXMLLoader.load(getClass().getResource("AlertaBackup.fxml"));
+        cadMotorista = FXMLLoader.load(getClass().getResource("CadastroMotorista.fxml"));
         
         
         loginScene = new Scene(login);
@@ -99,7 +100,7 @@ public class AppTelas extends Application {
         cadContaScene = new Scene(cadConta);
         alertaBackupScene = new Scene(alertaBackup);
         
-        stage.setScene(homeScene);
+        stage.setScene(loginScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);
@@ -163,6 +164,8 @@ public class AppTelas extends Application {
                 palco.setScene(cadLocadoraScene);
             else if(tela.equals(Util.TELA_ALERTA_BACKUP))
                 palco.setScene(alertaBackupScene);
+            else if(tela.equals(Util.TELA_CAD_MOTORISTA))
+                palco.setScene(cadMotoristaScene);
             
             if(tipo == Util.ABRIR){
                if(!telasAcessadas.get(telasAcessadas.size()-1).equals(tela)){

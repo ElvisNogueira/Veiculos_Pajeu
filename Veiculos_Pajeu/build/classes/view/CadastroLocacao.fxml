@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroLocacaoControlador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroLocacaoControlador">
    <children>
       <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
          <menus>
@@ -55,7 +55,7 @@
             <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
          </image>
       </ImageView>
-      <Button fx:id="cadastrarButton" layoutX="561.0" layoutY="492.0" mnemonicParsing="false" onAction="#cadastrarButtonAction" text="Cadastrar">
+      <Button fx:id="cadastrarButton" layoutX="561.0" layoutY="492.0" mnemonicParsing="false" onAction="#cadastrarButtonAction" text="Salvar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -67,9 +67,9 @@
       <Label layoutX="87.0" layoutY="179.0" text="Km inicial:" />
       <TextField fx:id="km_inicialField" layoutX="151.0" layoutY="175.0" onKeyReleased="#km_inicialFieldReleased" prefHeight="25.0" prefWidth="88.0" />
       <Label layoutX="263.0" layoutY="179.0" text="Km final:" />
-      <TextField fx:id="km_finalField" layoutX="319.0" layoutY="175.0" onKeyReleased="#km_finalFieldReleased" prefHeight="25.0" prefWidth="88.0" />
+      <TextField fx:id="km_finalField" editable="false" layoutX="319.0" layoutY="175.0" onKeyReleased="#km_finalFieldReleased" prefHeight="25.0" prefWidth="88.0" />
       <Label layoutX="431.0" layoutY="179.0" text="Status:" />
-      <ComboBox fx:id="statusComboBox" layoutX="477.0" layoutY="175.0" prefWidth="150.0" promptText="----------------------" />
+      <ComboBox fx:id="statusComboBox" disable="true" layoutX="477.0" layoutY="175.0" prefWidth="150.0" promptText="----------------------" />
       <Label layoutX="87.0" layoutY="220.0" text="Taxa de combustível:" />
       <TextField fx:id="taxaCombField" layoutX="212.0" layoutY="216.0" onKeyReleased="#taxaCombFieldReleased" prefHeight="25.0" prefWidth="110.0" />
       <Label layoutX="392.0" layoutY="220.0" text="Taxa de higienização:" />
@@ -97,6 +97,14 @@
          <image>
             <Image url="@../imagens/icons8-plus-math-20.png" />
          </image>
+      </ImageView>
+      <ImageView fx:id="atualizarButton" fitHeight="20.0" fitWidth="20.0" layoutX="606.0" layoutY="144.0" onMouseClicked="#atualizarButtonClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-sincronizar-20.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
    </children>
 </Pane>

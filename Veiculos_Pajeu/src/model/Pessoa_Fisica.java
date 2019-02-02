@@ -99,7 +99,7 @@ public class Pessoa_Fisica extends Cliente {
 
     @Override
     public String toString() {
-        return super.toString()+"\nPessoa_Fisica{" + "cpf=" + cpf + ", data_nasc=" + data_nasc + ", sexo=" + sexo + '}';
+        return super.toString()+", "+getCpf();
     }
     
     

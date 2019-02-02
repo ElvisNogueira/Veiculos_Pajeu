@@ -175,7 +175,9 @@ public class ConfiguracoesControlador implements Initializable{
     @FXML
     void salvarButtonAction(ActionEvent event) {
         configuracoes.setLocadora(filialComboBox.getSelectionModel().getSelectedItem());
-        configuracoes.setHoraBackup(new Time(horaBackup_hora.getValue(), horaBackup_min.getValue(), 0));
+        System.out.println(horaBackup_hora.getEditor().getText());
+        configuracoes.setHoraBackup(new Time(Integer.parseInt(horaBackup_hora.getEditor().getText()), 
+                Integer.parseInt(horaBackup_min.getEditor().getText()), 0));
         
        if(Fachada.getInstance().getAllConfiguracoes().isEmpty())
             Fachada.getInstance().persistConfiguracoes(configuracoes);

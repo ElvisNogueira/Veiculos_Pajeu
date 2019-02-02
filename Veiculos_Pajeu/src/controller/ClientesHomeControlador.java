@@ -178,9 +178,7 @@ public class ClientesHomeControlador implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        inicializarTabela();
-        
+        inicializarTabela();        
     }
     
     public void inicializarTabela(){

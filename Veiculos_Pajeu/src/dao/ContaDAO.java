@@ -49,7 +49,7 @@ public class ContaDAO {
 
     public ArrayList<Conta> getAll() {
         return (ArrayList<Conta>) entityManager.createQuery("from "+
-                Cliente.class.getSimpleName()).getResultList();
+                Conta.class.getSimpleName()).getResultList();
     }
     
     public Conta getByNome(String nome){

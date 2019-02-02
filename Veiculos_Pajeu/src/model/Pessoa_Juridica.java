@@ -81,7 +81,7 @@ public class Pessoa_Juridica extends Cliente{
 
     @Override
     public String toString() {
-        return super.toString()+"\nPessoa_Juridica{" + "cnpj=" + cnpj + ", inscricao_estadual=" + inscricao_estadual + '}';
+        return super.toString()+", "+getCnpj();
     }
     
     

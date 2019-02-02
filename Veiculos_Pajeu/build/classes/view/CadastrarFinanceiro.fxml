@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroFinanceiroControlador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroFinanceiroControlador">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c91b1b" height="91.0" stroke="#c91b1b" strokeType="INSIDE" width="703.0" />
       <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#homeButtonClicked" onMouseEntered="#homeButtonEntered" onMouseExited="#homeButtonExited" pickOnBounds="true" preserveRatio="true">
@@ -75,5 +75,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <ImageView fx:id="atualizarButton" fitHeight="20.0" fitWidth="20.0" layoutX="578.0" layoutY="140.0" onMouseClicked="#atualizarButtonClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-sincronizar-20.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

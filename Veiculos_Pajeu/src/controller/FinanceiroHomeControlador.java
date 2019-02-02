@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Financeiro;
+import model.FinanceiroAux;
 import util.Util;
 import view.AppTelas;
 
@@ -173,16 +174,6 @@ public class FinanceiroHomeControlador implements Initializable{
         return FXCollections.observableList(financeiroAuxs);
     }
     
-    private class FinanceiroAux{
-        public int id;
-        public String nome, obs,tipo;
-        
-        public FinanceiroAux(int id,String nome, String obs,String tipo){
-            this.id = id;
-            this.obs = obs;
-            this.nome = nome;
-            this.tipo = tipo;
-        }
-    }
+    
 
 }
