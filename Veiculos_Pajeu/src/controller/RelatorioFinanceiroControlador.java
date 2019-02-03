@@ -19,23 +19,22 @@ import javafx.scene.input.MouseEvent;
 import model.Financeiro;
 import util.Util;
 import app.App;
+import java.sql.Date;
+import model.Relatorio_financeiro;
 
 public class RelatorioFinanceiroControlador implements Initializable{
 
     @FXML
-    private TableView<FinanceiroAux> financeiroTable;
+    private TableView<Relatorio_financeiro> financeiroTable;
 
     @FXML
-    private TableColumn<FinanceiroAux, Integer> idColumn;
+    private TableColumn<Relatorio_financeiro, ?> idColumn;
 
     @FXML
-    private TableColumn<FinanceiroAux, String> nomeColumn;
+    private TableColumn<Relatorio_financeiro, Date> dataColumn;
 
     @FXML
-    private TableColumn<FinanceiroAux, String> observacaoColumn;
-
-    @FXML
-    private TableColumn<FinanceiroAux, String> tipoColumn;
+    private TableColumn<Relatorio_financeiro, String> tipoColumn;
 
     @FXML
     private ImageView atualizarButton;
@@ -119,14 +118,13 @@ public class RelatorioFinanceiroControlador implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         inicializarTabela();
-        tipoComboBox.getItems().addAll("Locacao","Reserva");
+        tipoComboBox.getItems().addAll("Locação","Reserva");
     }
     
     public void inicializarTabela(){
         idColumn.setCellValueFactory(new PropertyValueFactory("id"));
-        observacaoColumn.setCellValueFactory(new PropertyValueFactory("obs"));
-        nomeColumn.setCellValueFactory(new PropertyValueFactory("nome"));
-        tipoColumn.setCellValueFactory(new PropertyValueFactory("tipo"));
+        dataColumn.setCellValueFactory(new PropertyValueFactory("data"));
+        tipoColumn.setCellValueFactory(new PropertyValueFactory("tipo_conta"));
         
         financeiroTable.setItems(carregar());
     }
