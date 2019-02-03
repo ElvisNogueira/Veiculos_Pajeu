@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import model.Usuario;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 /**
  *
@@ -47,10 +47,13 @@ public class UsuarioBusiness {
             try {
 //            usuario.setSenha(Util.criptografar(usuario.getSenha()));
             dao.persist(usuario);
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Cadastro realizado com suucesso!");
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Cadastro realizado com suucesso!");
         } catch (Exception e) {
-                AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao effetuar cadastro!");
+                App.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao effetuar cadastro!");
         }
+//        } else {
+//            System.err.println("Senha inválida!");
+//        }
 //        } else {
 //            System.err.println("Senha inválida!");
 //        }

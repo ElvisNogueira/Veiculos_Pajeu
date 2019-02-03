@@ -30,7 +30,7 @@ import model.Financeiro;
 import model.Locacao;
 import model.Reserva;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CadastroReservaControlador implements Initializable{
     boolean flag;
@@ -96,7 +96,7 @@ public class CadastroReservaControlador implements Initializable{
             
             CadastroFinanceiroControlador.controlador.set(new Financeiro(Util.dataAtual(), reserva.getValor_entrada(), 
                     "", Fachada.getInstance().getByNomeConta("Reserva"), Fachada.getUserLogado()));
-            AppTelas.trocarTela(Util.TELA_CAD_FINANCEIRO,Util.ABRIR);
+            App.trocarTela(Util.TELA_CAD_FINANCEIRO,Util.ABRIR);
         }        
             flag = false;
     }
@@ -161,7 +161,7 @@ public class CadastroReservaControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -180,7 +180,7 @@ public class CadastroReservaControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -207,7 +207,7 @@ public class CadastroReservaControlador implements Initializable{
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

@@ -20,7 +20,7 @@ import javafx.scene.input.MouseEvent;
 import model.Veiculo;
 import org.hibernate.PropertyValueException;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CarrosCadastradosControlador implements Initializable{
 
@@ -108,7 +108,7 @@ public class CarrosCadastradosControlador implements Initializable{
 
     @FXML
     void cancelarButtonAction(ActionEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML
@@ -125,7 +125,7 @@ public class CarrosCadastradosControlador implements Initializable{
     void carrosTableClicked(MouseEvent event) {
         if(event.getClickCount()==2){
             CadastroVeiculoControlador.get().bloquear(carrosTable.getSelectionModel().getSelectedItem());
-            AppTelas.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
+            App.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
         }
             
     }
@@ -138,7 +138,7 @@ public class CarrosCadastradosControlador implements Initializable{
     @FXML
     void editarButtonAction(ActionEvent event) {
         CadastroVeiculoControlador.get().setVeiculo(carrosTable.getSelectionModel().getSelectedItem());
-        AppTelas.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
     }
 
     @FXML
@@ -153,7 +153,7 @@ public class CarrosCadastradosControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -168,7 +168,7 @@ public class CarrosCadastradosControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -183,7 +183,7 @@ public class CarrosCadastradosControlador implements Initializable{
 
     @FXML
     void novoButtonAction(ActionEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
     }
 
     @FXML
@@ -198,7 +198,7 @@ public class CarrosCadastradosControlador implements Initializable{
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

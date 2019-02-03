@@ -20,7 +20,7 @@ import javax.persistence.StoredProcedureQuery;
 import model.Conta;
 import model.Usuario;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 /**
  *
@@ -81,9 +81,9 @@ public class UsuarioDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(usuario);
             entityManager.getTransaction().commit();
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Cadastro feito com suucesso");
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Cadastro feito com suucesso");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao effetuar Cadastro!");
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao effetuar Cadastro!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -94,9 +94,9 @@ public class UsuarioDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(usuario);
             entityManager.getTransaction().commit();
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Editção realizada com suucesso!");
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Editção realizada com suucesso!");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao editar!");
+            App.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao editar!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -141,7 +141,7 @@ public class UsuarioDAO {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            AppTelas.mostrarAlert(Util.ERRO_LOGIN, "Erro ao efetuar login!");
+            App.mostrarAlert(Util.ERRO_LOGIN, "Erro ao efetuar login!");
         }
 
         return false;

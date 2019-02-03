@@ -26,7 +26,7 @@ import model.Pessoa_Fisica;
 import model.Pessoa_Juridica;
 import util.Mascara;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CadastroClienteControlador implements Initializable {
 
@@ -144,7 +144,7 @@ public class CadastroClienteControlador implements Initializable {
             }
         }
 
-        AppTelas.voltar();
+        App.voltar();
     }
 
     public void setCliente(Cliente cliente) {
@@ -250,7 +250,7 @@ public class CadastroClienteControlador implements Initializable {
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -265,7 +265,7 @@ public class CadastroClienteControlador implements Initializable {
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -326,7 +326,7 @@ public class CadastroClienteControlador implements Initializable {
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

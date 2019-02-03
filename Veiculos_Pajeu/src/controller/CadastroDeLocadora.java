@@ -18,7 +18,7 @@ import model.Endereco;
 import model.Locadora;
 import util.Mascara;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CadastroDeLocadora implements Initializable{
     Mascara mascara = new Mascara();
@@ -77,7 +77,7 @@ public class CadastroDeLocadora implements Initializable{
         
         Fachada.getInstance().persistLocadora(locadora);
         
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML
@@ -108,7 +108,7 @@ public class CadastroDeLocadora implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -123,7 +123,7 @@ public class CadastroDeLocadora implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -146,7 +146,7 @@ public class CadastroDeLocadora implements Initializable{
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

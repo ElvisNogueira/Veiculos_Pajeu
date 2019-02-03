@@ -19,7 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Cliente;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class ClientesHomeControlador implements Initializable{
     Cliente cliente = new Cliente();;
@@ -101,14 +101,14 @@ public class ClientesHomeControlador implements Initializable{
 
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
     }
 
     @FXML
     void editarButtonAction(ActionEvent event) {
         cliente = tabela.getSelectionModel().getSelectedItem();
         CadastroClienteControlador.get().setCliente(cliente);
-        AppTelas.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
     }
     
     @FXML
@@ -119,7 +119,7 @@ public class ClientesHomeControlador implements Initializable{
 
     @FXML
     void sairButtonAction(ActionEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML
@@ -127,13 +127,13 @@ public class ClientesHomeControlador implements Initializable{
         if(event.getClickCount()==2){
             
             CadastroClienteControlador.get().bloquearCampos(tabela.getSelectionModel().getSelectedItem());
-            AppTelas.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
+            App.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
         }
     }
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML
@@ -148,7 +148,7 @@ public class ClientesHomeControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -163,7 +163,7 @@ public class ClientesHomeControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML

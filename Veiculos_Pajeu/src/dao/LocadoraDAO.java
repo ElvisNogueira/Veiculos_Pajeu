@@ -13,7 +13,7 @@ import model.Conta;
 import model.Locacao;
 import model.Locadora;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 /**
  *
@@ -56,9 +56,9 @@ public class LocadoraDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(locadora);
             entityManager.getTransaction().commit();
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Sucesso ao eftuar cadastro!");
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Sucesso ao eftuar cadastro!");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao efetuar cadastro");
+            App.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao efetuar cadastro");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
             
@@ -82,9 +82,9 @@ public class LocadoraDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(locadora);
             entityManager.getTransaction().commit();
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Edição realizada com suucesso!!");
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Edição realizada com suucesso!!");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao editar!");
+            App.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao editar!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }

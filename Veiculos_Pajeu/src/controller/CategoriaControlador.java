@@ -19,7 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Categoria;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CategoriaControlador implements Initializable{
 
@@ -68,7 +68,7 @@ public class CategoriaControlador implements Initializable{
     @FXML
     void editarButtonAction(ActionEvent event) {
         CadastrarCategoriaControlador.get().setCategoria(tabelaCategoria.getSelectionModel().getSelectedItem());
-        AppTelas.trocarTela(Util.TELA_CADASTRAR_CATEGORIA, Util.ABRIR);
+        App.trocarTela(Util.TELA_CADASTRAR_CATEGORIA, Util.ABRIR);
 
     }
 
@@ -80,7 +80,7 @@ public class CategoriaControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -95,7 +95,7 @@ public class CategoriaControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -110,20 +110,20 @@ public class CategoriaControlador implements Initializable{
 
     @FXML
     void salvarButtonAction(ActionEvent event) {
-        AppTelas.trocarTela(Util.TELA_CADASTRAR_CATEGORIA, Util.ABRIR);
+        App.trocarTela(Util.TELA_CADASTRAR_CATEGORIA, Util.ABRIR);
     }
 
     @FXML
     void tabelaCategoriaClicked(MouseEvent event) {
         if(event.getClickCount()==2){
             CadastrarCategoriaControlador.get().bloquearCampos(tabelaCategoria.getSelectionModel().getSelectedItem());
-            AppTelas.trocarTela(Util.TELA_CADASTRAR_CATEGORIA, Util.ABRIR);
+            App.trocarTela(Util.TELA_CADASTRAR_CATEGORIA, Util.ABRIR);
         }
     }
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

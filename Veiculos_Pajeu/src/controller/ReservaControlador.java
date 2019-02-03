@@ -23,7 +23,7 @@ import javafx.scene.input.MouseEvent;
 import model.Locacao;
 import model.Reserva;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class ReservaControlador implements Initializable{
 
@@ -114,7 +114,7 @@ public class ReservaControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -129,7 +129,7 @@ public class ReservaControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -144,7 +144,7 @@ public class ReservaControlador implements Initializable{
 
     @FXML
     void novoButtonAction(ActionEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR);
     }
 
     @FXML
@@ -160,12 +160,12 @@ public class ReservaControlador implements Initializable{
     @FXML
     void reservaTableClicked(MouseEvent event) {
         CadastroReservaControlador.get().bloquear(reservaTable.getSelectionModel().getSelectedItem());
-        AppTelas.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR);
     }
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

@@ -24,7 +24,7 @@ import javafx.scene.layout.Pane;
 import model.Configuracoes;
 import model.Locadora;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class ConfiguracoesControlador implements Initializable{
     Configuracoes configuracoes = new Configuracoes();
@@ -67,20 +67,12 @@ public class ConfiguracoesControlador implements Initializable{
 
     @FXML
     void addFilialButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_LOCADORA, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_LOCADORA, Util.ABRIR);
     }
 
     @FXML
     void backupPanelClicked(MouseEvent event) {
-        try {
-            AppTelas.trocarTela(Util.TELA_ALERTA_BACKUP, Util.ABRIR);
-            if(Backup.realizaBackup())
-                AlertaBackupControlador.get().fimBackup();
-        } catch (IOException ex) {
-            Logger.getLogger(AppTelas.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(AppTelas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        App.trocarTela(Util.TELA_ALERTA_BACKUP, Util.ABRIR);
     }
 
     @FXML
@@ -97,7 +89,7 @@ public class ConfiguracoesControlador implements Initializable{
 
     @FXML
     void cadastrarCategoriaPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CATEGORIA, Util.ABRIR);
+        App.trocarTela(Util.TELA_CATEGORIA, Util.ABRIR);
     }
 
     @FXML
@@ -114,7 +106,7 @@ public class ConfiguracoesControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -129,7 +121,7 @@ public class ConfiguracoesControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -159,7 +151,7 @@ public class ConfiguracoesControlador implements Initializable{
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

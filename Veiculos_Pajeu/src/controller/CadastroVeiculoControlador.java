@@ -29,7 +29,7 @@ import model.Locadora;
 import model.Veiculo;
 import util.Mascara;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CadastroVeiculoControlador implements Initializable {
 
@@ -275,7 +275,7 @@ public class CadastroVeiculoControlador implements Initializable {
         
         flag = false;
             limparCampos(veiculo);
-            AppTelas.voltar();
+            App.voltar();
     }
 
     public void setVeiculo(Veiculo veiculo) {
@@ -466,7 +466,7 @@ public class CadastroVeiculoControlador implements Initializable {
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -481,7 +481,7 @@ public class CadastroVeiculoControlador implements Initializable {
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -544,7 +544,7 @@ public class CadastroVeiculoControlador implements Initializable {
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

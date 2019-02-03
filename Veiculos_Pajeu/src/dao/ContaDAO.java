@@ -12,7 +12,7 @@ import javax.persistence.Persistence;
 import model.Cliente;
 import model.Conta;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 /**
  *
@@ -74,9 +74,9 @@ public class ContaDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(conta);
             entityManager.getTransaction().commit();
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Cadastrado com sucesso!");
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Cadastrado com sucesso!");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao cadastrar!");
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao cadastrar!");
             entityManager.getTransaction().rollback();
             e.printStackTrace();
         }
@@ -88,9 +88,9 @@ public class ContaDAO {
             entityManager.merge(conta);
             entityManager.getTransaction().commit();
             
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Edição feita com sucesso!");
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Edição feita com sucesso!");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao editar!");
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao editar!");
             entityManager.getTransaction().rollback();
             e.printStackTrace();
         }

@@ -1,6 +1,5 @@
 package controller;
 
-import app.App;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -11,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class HomeControlador implements Initializable{
 
@@ -46,7 +45,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void carrosPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CARROS_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_CARROS_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -63,7 +62,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void clientesPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CLIENTES_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_CLIENTES_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -80,7 +79,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void configuracoesPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CONFIGURACOES, Util.ABRIR);
+        App.trocarTela(Util.TELA_CONFIGURACOES, Util.ABRIR);
     }
 
     @FXML
@@ -97,7 +96,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void financeiroPanelClick(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_FINANCEIRO_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_FINANCEIRO_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -114,7 +113,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void funcionariosPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_FUNCIONARIOS_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_FUNCIONARIOS_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -152,7 +151,7 @@ public class HomeControlador implements Initializable{
     
         @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML
@@ -183,7 +182,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML

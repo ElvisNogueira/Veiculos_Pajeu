@@ -22,7 +22,7 @@ import javafx.scene.input.MouseEvent;
 import model.Financeiro;
 import model.FinanceiroAux;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class FinanceiroHomeControlador implements Initializable{
 
@@ -88,7 +88,7 @@ public class FinanceiroHomeControlador implements Initializable{
     void editarButtonAction(ActionEvent event) {
         CadastroFinanceiroControlador.get().set(Fachada.getInstance().getByIdFinanceiro
         (financeiroTable.getSelectionModel().getSelectedItem().id));
-        AppTelas.trocarTela(Util.TELA_CAD_FINANCEIRO, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_FINANCEIRO, Util.ABRIR);
         
     }
 
@@ -100,7 +100,7 @@ public class FinanceiroHomeControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -115,7 +115,7 @@ public class FinanceiroHomeControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -130,17 +130,17 @@ public class FinanceiroHomeControlador implements Initializable{
 
     @FXML
     void novoButtonAction(ActionEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_FINANCEIRO, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_FINANCEIRO, Util.ABRIR);
     }
 
     @FXML
     void sairButtonAction(ActionEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

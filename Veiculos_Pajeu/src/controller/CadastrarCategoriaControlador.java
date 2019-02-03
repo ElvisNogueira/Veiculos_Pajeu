@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 import model.Categoria;
 import util.Mascara;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CadastrarCategoriaControlador implements Initializable {
     
@@ -110,7 +110,7 @@ public class CadastrarCategoriaControlador implements Initializable {
             Fachada.getInstance().persistCategoria(categoria);
         flag = false;
         limparCampos();
-        AppTelas.trocarTela(Util.TELA_CATEGORIA, Util.ABRIR);
+        App.trocarTela(Util.TELA_CATEGORIA, Util.ABRIR);
     }
     
     public void setCategoria(Categoria categoria){
@@ -171,7 +171,7 @@ public class CadastrarCategoriaControlador implements Initializable {
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -186,7 +186,7 @@ public class CadastrarCategoriaControlador implements Initializable {
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -226,7 +226,7 @@ public class CadastrarCategoriaControlador implements Initializable {
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

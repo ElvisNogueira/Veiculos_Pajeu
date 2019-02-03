@@ -20,7 +20,7 @@ import javafx.scene.input.MouseEvent;
 import model.Funcionario;
 import model.Usuario;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class FuncionariosHomeControlador implements Initializable {
 
@@ -105,7 +105,7 @@ public class FuncionariosHomeControlador implements Initializable {
 
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
     }
 
     @FXML
@@ -115,7 +115,7 @@ public class FuncionariosHomeControlador implements Initializable {
         for (Usuario usuario : Fachada.getInstance().getAllUsuario()) {
             if (usuario.getFuncionario().getId() == funcionario.getId()) {
                 CadastroFuncionarioControlador.get().setFuncionario(usuario);
-                AppTelas.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
+                App.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
             }
 
         }
@@ -130,7 +130,7 @@ public class FuncionariosHomeControlador implements Initializable {
             for (Usuario usuario : Fachada.getInstance().getAllUsuario()) {
                 if (usuario.getFuncionario().getId() == funcionario.getId()) {
                     CadastroFuncionarioControlador.get().bloquearCampos(usuario);
-                    AppTelas.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
+                    App.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
                 }
 
             }
@@ -144,7 +144,7 @@ public class FuncionariosHomeControlador implements Initializable {
         for (Usuario usuario : Fachada.getInstance().getAllUsuario()) {
             if (usuario.getFuncionario().getId() == funcionario.getId()) {
                 CadastroFuncionarioControlador.get().setFuncionario(usuario);
-                AppTelas.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
+                App.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
             }
 
         }
@@ -153,7 +153,7 @@ public class FuncionariosHomeControlador implements Initializable {
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -168,7 +168,7 @@ public class FuncionariosHomeControlador implements Initializable {
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -183,12 +183,12 @@ public class FuncionariosHomeControlador implements Initializable {
 
     @FXML
     void sairButtonAction(ActionEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

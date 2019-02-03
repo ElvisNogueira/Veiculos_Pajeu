@@ -1,6 +1,5 @@
 package controller;
 
-import app.App;
 import fachada.Fachada;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class LoginControlador implements Initializable {
 
@@ -35,7 +34,7 @@ public class LoginControlador implements Initializable {
     void entrarButtonAction(ActionEvent event) {
         boolean flag = Fachada.getInstance().loginUsuario(loginField.getText(), senhaField.getText());
         if (flag) {
-            AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+            App.trocarTela(Util.TELA_HOME, Util.ABRIR);
         }
     }
 
@@ -69,7 +68,7 @@ public class LoginControlador implements Initializable {
         if (event.getCode() == KeyCode.ENTER) {
             boolean flag = Fachada.getInstance().loginUsuario(loginField.getText(), senhaField.getText());
             if (flag) {
-                AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+                App.trocarTela(Util.TELA_HOME, Util.ABRIR);
             }
         }
     }

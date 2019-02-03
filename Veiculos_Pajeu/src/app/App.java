@@ -5,286 +5,236 @@
  */
 package app;
 
+
+import fachada.Fachada;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.Endereco;
-import model.Funcionario;
-import model.Usuario;
 import util.Util;
-import view.AppTelas;
 
 /**
  *
  * @author Elvis Nogueira
  */
-public class App{
-
+public class App extends Application {
+    
+    private static Stage palco;
+    Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad,
+            cadFuncionario, cadCarro, reserva, locacao, cadLocacao, cadReserva,cadCliente,cadFinanceiro,
+            relatorioFinanceiro,cadLocadora,configuracoes, categoria,cadConta,alertaBackup,cadMotorista;
+    static Scene loginScene, homeScene, carrosHomeScene, clientesHomeScene, financeiroHomeScene,
+            funcionariosHomeScene, cadCategoriaScene, carrosCadScene,cadFuncionarioScene, cadCarroScene,
+            reservaScene, locacaoScene, cadLocacaoScene,cadReservaScene,cadClienteScene,cadFinanceiroScene,
+            relatorioFinanceiroScene, cadLocadoraScene, configuracoesScene, categoriaScene,cadContaScene,
+            alertaBackupScene,cadMotoristaScene;
     
     
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String[] args){
-//        new AppTelas();
+    private static ArrayList<String> telasAcessadas;
+    private static int indice_tela_atual = -1;
+    private static Alert alert = new Alert(Alert.AlertType.ERROR);
+    
+    public static void main(String[] args) {
 //        Endereco endereco = new Endereco("Rua Manoel Ferraz", "DNER", "Floresta", "PE", "56400-000", "70");
 //        Funcionario funcionario = new Funcionario("Elvis", "(87)99612-2609", "113.000.434-74", Util.getDate("1997-12-02"),
 //                endereco);
 //        Usuario usuario = new Usuario("Administrador", "elvis", "elvis150", funcionario);
-//        Fachada.getInstance().loginUsuario("elvis150", "Elvis1574!");
-//        Fachada.getInstance().trocarSenha("Elvis1574!", "Elvis150!");
-
-//        Fachada.getInstance().redefinirSenhaUsuario("elvis150");
-
-        /*  Conta conta = new Conta("débito", "Conta de luz");
-        Conta conta2 = new Conta("débito", "Aluguel");
-//        
-//        System.out.println("app.App.main()");
-        Categoria categoria = new Categoria("A1", 100, 20, 4, 4, true, true, true, true, true,
-                "Cambio automático", "Grande");
-        Categoria categoria2 = new Categoria("B1", 100, 20, 4, 4, true, true, true, true, true,
-                "Cambio manual", "Grande");
-        Endereco endereco = new Endereco("Rua Manoel Ferraz", "DNER", "Floresta", "PE", "56400-000", "70");
-        Endereco endereco2 = new Endereco("Rua Manoel Ferraz", "ST", "Floresta", "PE", "56400-000", "70");
-        Endereco endereco3 = new Endereco("Rua Manoel Ferraz", "ST", "Floresta", "PE", "56400-000", "70");
-        Locadora locadora = new Locadora("111111111", endereco2);
-        Locadora locadora2 = new Locadora("222222222", endereco2);
-        Camioneta_carga camioneta_carga = new Camioneta_carga("Manual", 1, 4, 550, 1, 300, "MOB8080",
-                "Toyota", "aaaaaaaa", "AAQE##@$", "Hilux", "Gasolina", "Prata", 1, 1, 2, 2017, 2018, 3,
-                categoria, locadora);
-        Camioneta_carga camioneta_carga2 = new Camioneta_carga("Manual", 1, 4, 550, 1, 300, "MOB8080",
-                "Toyota", "aaaaaaaa", "AAQE##@$", "Hilux", "Gasolina", "Prata", 1, 1, 2, 2017, 2018, 3,
-                categoria, locadora);
-        Camioneta_passageiro camioneta_passageiro = new Camioneta_passageiro("Completo", true, true, true, true, "CNK80Q3",
-                "Chevrolet", "AAANCNKDK3", "ALCK#", "Ranger", "Gasolina", "Vermelho", 0, 0, 0, 0, 0, 0, categoria, locadora);
-        
-        Pessoa_Fisica pessoa_Fisica = new Pessoa_Fisica("113.755.434-74", Util.getDate("12/02/1997"), "Masculino",
-                "AA123", "Elvis", "(87)99612-2609", endereco);
-        Pessoa_Juridica pessoa_Juridica = new Pessoa_Juridica("121212", "12121211", "PJ001", "Microsoft",
-                "(87)3877-1111", endereco);
-        Motorista motorista = new Motorista(Util.getDate("12/02/2020"), "11111", pessoa_Fisica);
-        Reserva reserva = new Reserva("Livre", 0, Util.getDate("09/12/2018"), new Time(16, 10, 0), 0, categoria);
-
-        Locacao locacao = new Locacao("Livre", "Em andamento", 2, Util.dataAtual(), Util.getDate("09/12/2018"), 
-                Util.horaAtual(), new Time(16, 18, 0), 0, 0, 0, 0, 0, camioneta_carga, motorista);
-        Usuario usuario = new Usuario("Administrador", "elvis", "Elvis150!", funcionario);
-
-        Financeiro financeiro = new Financeiro(Util.dataAtual(), 900, "Aluguel do prédio", conta2, usuario);
-
-        //Conta
-        Fachada.getInstance().persistConta(conta);
-        conta = Fachada.getInstance().getByNomeConta("Conta de luz");
-        System.out.println("\n"+conta.toString()+"\n");
-        conta.setNome("Água");
-        Fachada.getInstance().mergeConta(conta);
-        conta = Fachada.getInstance().getByNomeConta("Água");
-        System.out.println("\n"+"Conta editada " + conta.toString()+"\n");
-        System.out.println("\n\n\n");
-
-        //Categoria
-        Fachada.getInstance().persistCategoria(categoria);
-        Fachada.getInstance().persistCategoria(categoria2);
-        categoria = Fachada.getInstance().getAllCategoria().get(0);
-        categoria2 = Fachada.getInstance().getAllCategoria().get(1);
-        System.out.println("\n"+categoria.toString()+"\n");
-        System.out.println("\n"+categoria2.toString()+"\n");
-        categoria.setNome("Edit");
-        Fachada.getInstance().mergeCategoria(categoria);
-        categoria = Fachada.getInstance().getAllCategoria().get(0);
-        categoria2 = Fachada.getInstance().getAllCategoria().get(1);
-        System.out.println("\n"+"Categoria editada " + categoria.toString() + "\n");
-        System.out.println("\n"+categoria2.toString() + "\n");
-
-        System.out.println("\n\n\n");
-
-        //Endereço
-        Fachada.getInstance().persistEndereco(endereco);
-        endereco = Fachada.getInstance().getLastEndereco();
-        System.out.println("\n"+endereco.toString()+"\n");
-        endereco.setBairro("Centro");
-        Fachada.getInstance().mergeEndereco(endereco);
-        System.out.println("\n"+endereco.toString()+"\n");
-        System.out.println("\n\n\n");
-
-        //Locadora
-        Fachada.getInstance().persistLocadora(locadora);
-        locadora = Fachada.getInstance().getLastIdLocadora();
-        Fachada.getInstance().persistLocadora(locadora2);
-        locadora2 = Fachada.getInstance().getLastIdLocadora();
-        System.out.println("\n"+locadora.toString()+"\n");
-        locadora.setCnpj("aaaa");
-        Fachada.getInstance().mergeLocadora(locadora);
-        locadora = Fachada.getInstance().getByIdLocadora(locadora.getId());
-        System.out.println("\n"+locadora.toString()+"\n");
-        System.out.println("\n\n\n");
-
-        //CAmioneta de carga
-        camioneta_carga.setCategoria(categoria2);
-        camioneta_carga2.setCategoria(categoria2);
-        camioneta_carga.setLocadora(locadora2);
-        camioneta_carga2.setLocadora(locadora2);
-        Fachada.getInstance().persistCamioneta_carga(camioneta_carga);
-        camioneta_carga = Fachada.getInstance().getAllCamioneta_carga().get(0);
-        System.out.println("\n"+camioneta_carga.toString()+"\n");
-        Fachada.getInstance().persistCamioneta_carga(camioneta_carga2);
-        camioneta_carga2 = Fachada.getInstance().getAllCamioneta_carga().get(1);
-        camioneta_carga.setTipo_combuustivel("Diesel");
-        camioneta_carga.setNum_portas(4);
-        Fachada.getInstance().mergeCamioneta_carga(camioneta_carga);
-        camioneta_carga = Fachada.getInstance().getAllCamioneta_carga().get(0);
-        System.out.println("\n"+camioneta_carga2.toString()+"\n");
-        System.out.println("\n\n\n");
-
-        //Camioneta de passageiro
-        Fachada.getInstance().persistCamioneta_passageiro(camioneta_passageiro);
-        camioneta_passageiro = Fachada.getInstance().getAllCamioneta_passageiro().get(0);
-        System.out.println("\n"+camioneta_passageiro.toString()+"\n");
-        camioneta_passageiro.setDirecao_assistida(false);
-        Fachada.getInstance().mergeCamioneta_passageiro(camioneta_passageiro);
-        camioneta_passageiro = Fachada.getInstance().getAllCamioneta_passageiro().get(0);
-        System.out.println("\n"+camioneta_passageiro.toString()+"\n");
-        System.out.println("\n\n\n");
-
-        //Pessoa_Fisica
-        Fachada.getInstance().persistPessoa_Fisica(pessoa_Fisica);
-        pessoa_Fisica = Fachada.getInstance().getAllPessoa_Fisica().get(0);
-        System.out.println("\n"+pessoa_Fisica.toString()+"\n");
-        pessoa_Fisica.setNome("Elvis Nogueira");
-        Fachada.getInstance().mergePessoa_Fisica(pessoa_Fisica);
-        pessoa_Fisica = Fachada.getInstance().getAllPessoa_Fisica().get(0);
-        System.out.println("\n"+pessoa_Fisica.toString()+"\n");
-
-        System.out.println("\n\n\n");
-
-        //Pessoa_Juridica
-        Fachada.getInstance().persistPessoa_Juridica(pessoa_Juridica);
-        pessoa_Juridica = Fachada.getInstance().getAllPessoa_Juridica().get(0);
-        System.out.println("\n"+pessoa_Juridica.toString()+"\n");
-        pessoa_Juridica.setCnpj("YYYYY");
-        Fachada.getInstance().mergePessoa_Juridica(pessoa_Juridica);
-        pessoa_Juridica = Fachada.getInstance().getAllPessoa_Juridica().get(0);
-        System.out.println("\n"+pessoa_Juridica.toString()+"\n");
-        System.out.println("\n\n\n");
-
-        //Motorista
-        Fachada.getInstance().persistPessoa_Fisica(pessoa_Fisica);
-        pessoa_Fisica = Fachada.getInstance().getAllPessoa_Fisica().get(0);
-        motorista.setPessoa_Fisica(pessoa_Fisica);
-        Fachada.getInstance().persistMotorista(motorista);
-        motorista = Fachada.getInstance().getAllMotorista().get(0);
-        System.out.println("\n"+motorista.toString()+"\n");
-        motorista.setNum_habilitacao("12345678");
-        Fachada.getInstance().mergeMotorista(motorista);
-        motorista = Fachada.getInstance().getAllMotorista().get(0);
-        System.out.println("\n"+motorista.toString()+"\n");
-        System.out.println("\n\n\n");
-
-        //Reserva
-        reserva.setCategoria(categoria2);
-        Fachada.getInstance().persistReserva(reserva);
-        reserva = Fachada.getInstance().getAllReserva().get(0);
-        System.out.println("\n"+reserva.toString()+"\n");
-        reserva.setTipo_locacao("Controle");
-        Fachada.getInstance().mergeReserva(reserva);
-        reserva = Fachada.getInstance().getAllReserva().get(0);
-        System.out.println("\n"+reserva.toString()+"\n");
-        System.out.println("\n\n\n");
-
-        //Locacao
-        locacao.setVeiculo(camioneta_carga2);
-        Fachada.getInstance().persistLocacao(locacao);
-        locacao = Fachada.getInstance().getAllLocacao().get(0);
-        System.out.println("\n"+locacao.toString()+"\n");
-        locacao.setTipo_locacao("Controle");
-        Fachada.getInstance().mergeLocacao(locacao);
-        locacao = Fachada.getInstance().getAllLocacao().get(0);
-        System.out.println("\n"+locacao.toString()+"\n");
-        System.out.println("\n\n\n");
-
-        //Usuario
-        Fachada.getInstance().persistUsuario(usuario);
-        usuario = Fachada.getInstance().getAllUsuario().get(0);
-        System.out.println("\n"+usuario.toString()+"\n");
-        usuario.setLogin("elvis150");
-        Fachada.getInstance().mergeUsuario(usuario);
-        System.out.println("\n"+usuario.toString()+"\n");
-        usuario = Fachada.getInstance().getAllUsuario().get(0);
-        System.out.println("\n"+usuario.toString()+"\n");
-        Fachada.getInstance().loginUsuario("elvis150", "Elvis150!");
-        System.out.println("\nUsuario Logado: "+Fachada.getUserLogado().getLogin()+"\nSenha:"
-                +Fachada.getUserLogado().getSenha()+"\n");
-        Fachada.getInstance().trocarSenha("Elvis1574!", "Elvis150!");
-        System.out.println("\nNova senha: "+Fachada.getUserLogado().getSenha()+"\n");
-        Fachada.getInstance().redefinirSenhaUsuario("elvis150");
-        System.out.println("\nNova senha: "+Fachada.getUserLogado().getSenha()+"\n");
-        System.out.println("\n\n\n");
-        
-        
-        //Financeiro
-        financeiro.setConta(conta);
-        financeiro.setUsuario(Fachada.getUserLogado());
-        Fachada.getInstance().persistFinanceiro(financeiro);
-        financeiro = Fachada.getInstance().getAllFinanceiro().get(0);
-        System.out.println("\n"+financeiro.toString()+"\n");
-        financeiro.setObservacao("Editado");
-        Fachada.getInstance().getAllFinanceiro().get(0);
-        System.out.println("\n"+financeiro.toString()+"\n");
-        System.out.println("\n\n\n");
-        
-        
-        
-        
-        
-//        Fachada.getInstance().removeReserva(reserva);  
-//        Fachada.getInstance().removeLocacao(locacao);
-//        Fachada.getInstance().removeCamioneta_carga(camioneta_carga);
-//        Fachada.getInstance().removeByIdCamioneta_passageiro(camioneta_passageiro.getId());
-//        Fachada.getInstance().removeFinanceiro(financeiro);
-//        Fachada.getInstance().removeUsuario(usuario);
-//        Fachada.getInstance().removeConta(conta);
-//        Fachada.getInstance().removeMotorista(motorista);
-//        Fachada.getInstance().removePessoa_Fisica(pessoa_Fisica);
-//        Fachada.getInstance().removePessoa_Juridica(pessoa_Juridica);
-//        
-//        Fachada.getInstance().removeCategoria(categoria);
-//        Fachada.getInstance().removeLocadora(locadora);
-//        Fachada.getInstance().removeEndereco(endereco);
-         */
-//        Endereco endereco = new Endereco("Rua Manoel Ferraz", "DNER", "Floresta", "PE", "56400-000", "70");
-//        Funcionario funcionario = new Funcionario("Berg", "(87)99612-2609", "113.000.434-74", Util.getDate("12/02/1997"),
-//                endereco);
-//        Usuario usuario = new Usuario("Administrador", "berg", "@Berg123", funcionario);
 //        Fachada.getInstance().persistUsuario(usuario);
-//        System.out.println("\n" + usuario.toString() + "\n");
-//        usuario = Fachada.getInstance().getAllUsuario().get(0);
-//        System.out.println("\n" + usuario.toString() + "\n");
-//        usuario.setLogin("elvis150");
-//        Fachada.getInstance().mergeUsuario(usuario);
-//        System.out.println("\n" + usuario.toString() + "\n");
-//        usuario = Fachada.getInstance().getAllUsuario().get(0);
-//        System.out.println("\n" + usuario.toString() + "\n")berg
-//        Fachada.getInstance().loginUsuario("berg", "Berg123@");
-//        Fachada.getInstance().redefinirSenhaUsuario("berg");
-//        System.out.println("\nUsuario Logado: " + Fachada.getUserLogado().getLogin() + "\nSenha:"
-//                + Fachada.getUserLogado().getSenha() + "\n");
-//        Fachada.getInstance().loginUsuario("berg", "berg");
-//        System.out.println("\n------Usuario Logado: " + Fachada.getUserLogado().getLogin() + "\nSenha:"
-//                + Fachada.getUserLogado().getSenha() + "\n");
-//        Fachada.getInstance().trocarSenha("Berg123@", "@Berg123");
-//        System.out.println("\n------Usuario Logado: " + Fachada.getUserLogado().getLogin() + "\nSenha:"
-//                + Fachada.getUserLogado().getSenha() + "\n");
+        launch(args);
         
-//        System.out.println("\nNova senha: " + Fachada.getUserLogado().getSenha() + "\n");
-//        Fachada.getInstance().redefinirSenhaUsuario("elvis150");
-//        System.out.println("\nNova senha: " + Fachada.getUserLogado().getSenha() + "\n");
-//        System.out.println("\n\n\n");
+    }
+    
+    @Override
+    public void start(Stage stage) throws Exception {
+        telasAcessadas = new ArrayList<String>();
+        palco = stage;
+        login = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+        home = FXMLLoader.load(getClass().getResource("/view/home.fxml"));
+        carrosHome = FXMLLoader.load(getClass().getResource("/view/CarrosHome.fxml"));
+        clientesHome = FXMLLoader.load(getClass().getResource("/view/ClientesHome.fxml"));
+        financeiroHome = FXMLLoader.load(getClass().getResource("/view/FinanceiroHome.fxml"));
+        funcionariosHome = FXMLLoader.load(getClass().getResource("/view/FuncionariosHome.fxml"));
+        cadCategoria = FXMLLoader.load(getClass().getResource("/view/CadastrarCategoria.fxml"));
+        carrosCad = FXMLLoader.load(getClass().getResource("/view/CarrosCadastrados.fxml"));
+        cadFuncionario = FXMLLoader.load(getClass().getResource("/view/CadastroFuncionario.fxml"));
+        cadCarro = FXMLLoader.load(getClass().getResource("/view/CadastroVeiculo.fxml"));
+        reserva = FXMLLoader.load(getClass().getResource("/view/Reserva.fxml"));
+        locacao = FXMLLoader.load(getClass().getResource("/view/Locacao.fxml"));
+        cadLocacao = FXMLLoader.load(getClass().getResource("/view/CadastroLocacao.fxml"));
+        cadReserva = FXMLLoader.load(getClass().getResource("/view/CadastroReserva.fxml"));
+        cadCliente = FXMLLoader.load(getClass().getResource("/view/CadastroCliente.fxml"));
+        cadFinanceiro = FXMLLoader.load(getClass().getResource("/view/CadastrarFinanceiro.fxml"));
+        relatorioFinanceiro = FXMLLoader.load(getClass().getResource("/view/RelatorioFinanceiro.fxml"));
+        cadLocadora = FXMLLoader.load(getClass().getResource("/view/CadastroLocadora.fxml"));
+        configuracoes = FXMLLoader.load(getClass().getResource("/view/Configuracoes.fxml"));
+        categoria = FXMLLoader.load(getClass().getResource("/view/Categoia.fxml"));
+        cadConta = FXMLLoader.load(getClass().getResource("/view/CadastrarConta.fxml"));
+//        alertaBackup = FXMLLoader.load(getClass().getResource("AlertaBackup.fxml"));
+        cadMotorista = FXMLLoader.load(getClass().getResource("/view/CadastroMotorista.fxml"));
         
+        
+        loginScene = new Scene(login);
+        homeScene = new Scene(home);
+        carrosHomeScene = new Scene(carrosHome);
+        clientesHomeScene = new Scene(clientesHome);
+        financeiroHomeScene = new Scene(financeiroHome);
+        funcionariosHomeScene = new Scene(funcionariosHome);
+        cadCategoriaScene = new Scene(cadCategoria);
+        carrosCadScene = new Scene(carrosCad);
+        cadFuncionarioScene = new Scene(cadFuncionario);
+        cadCarroScene = new Scene(cadCarro);
+        reservaScene = new Scene(reserva);
+        locacaoScene = new Scene(locacao);
+        cadLocacaoScene = new Scene(cadLocacao);
+        cadReservaScene = new Scene(cadReserva);
+        cadClienteScene = new Scene(cadCliente);
+        cadFinanceiroScene = new Scene(cadFinanceiro);
+        relatorioFinanceiroScene = new Scene(relatorioFinanceiro);
+        cadLocadoraScene = new Scene(cadLocadora);
+        configuracoesScene = new Scene(configuracoes);
+        categoriaScene = new Scene(categoria);
+        cadContaScene = new Scene(cadConta);
+        cadMotoristaScene = new Scene(cadMotorista);
+//        alertaBackupScene = new Scene(alertaBackup);
+        
+        stage.setScene(loginScene);
+        palco.setTitle("Pajeú Veículos");
+        Image e = new Image("imagens/logoIcone.png");
+        palco.getIcons().add(e);
+        palco.setResizable(false);
+        palco.show();
+        
+        telasAcessadas.add(Util.TELA_LOGIN);
+        indice_tela_atual++;
+        
+    }
     
-//   }
+    public static void trocarTela(String tela, int tipo) {
+        
+        if (!tela.equals(telasAcessadas.get(indice_tela_atual))) {
+            System.err.println(tela);
+            if (tela.equals(Util.TELA_HOME))
+                palco.setScene(homeScene);
+            else if (tela.equals(Util.TELA_CARROS_HOME))
+                palco.setScene(carrosHomeScene);
+            else if (tela.equals(Util.TELA_LOGIN))
+                palco.setScene(loginScene);
+            else if (tela.equals(Util.TELA_CLIENTES_HOME))
+                palco.setScene(clientesHomeScene);
+            else if (tela.equals(Util.TELA_FINANCEIRO_HOME))
+                palco.setScene(financeiroHomeScene);
+            else if (tela.equals(Util.TELA_FUNCIONARIOS_HOME))
+                palco.setScene(funcionariosHomeScene);
+            else if (tela.equals(Util.TELA_CADASTRAR_CATEGORIA))
+                palco.setScene(cadCategoriaScene);
+            else if (tela.equals(Util.TELA_CARROS_CADASTRADOS))
+                palco.setScene(carrosCadScene);
+            else if (tela.equals(Util.TELA_CAD_FUNCIONARIO))
+                palco.setScene(cadFuncionarioScene);
+            else if (tela.equals(Util.TELA_CAD_CARRO))
+                palco.setScene(cadCarroScene);
+            else if (tela.equals(Util.TELA_RESERVA))
+                palco.setScene(reservaScene);
+            else if (tela.equals(Util.TELA_LOCACAO))
+                palco.setScene(locacaoScene);
+            else if (tela.equals(Util.TELA_CAD_LOCACAO))
+                palco.setScene(cadLocacaoScene);
+            else if (tela.equals(Util.TELA_CAD_RESERVA))
+                palco.setScene(cadReservaScene);
+            else if (tela.equals(Util.TELA_CAD_CLIENTE))
+                palco.setScene(cadClienteScene);
+            else if (tela.equals(Util.TELA_CAD_FINANCEIRO))
+                palco.setScene(cadFinanceiroScene);
+            else if (tela.equals(Util.TELA_RELATORIO_FINANCEIRO))
+                palco.setScene(relatorioFinanceiroScene);
+            else if(Util.TELA_CONFIGURACOES.equals(tela))
+                palco.setScene(configuracoesScene);
+            else if(tela.equals(Util.TELA_CADASTRAR_CATEGORIA))
+                palco.setScene(cadLocadoraScene);
+            else if(tela.equals(Util.TELA_CADASTRAR_CATEGORIA))
+                palco.setScene(categoriaScene);
+            else if(tela.equals(Util.TELA_CAD_CONTA))
+                palco.setScene(cadContaScene);
+            else if(tela.equals(Util.TELA_CATEGORIA))
+                palco.setScene(categoriaScene);
+            else if(tela.equals(Util.TELA_CAD_LOCADORA))
+                palco.setScene(cadLocadoraScene);
+//            else if(tela.equals(Util.TELA_ALERTA_BACKUP))
+//                palco.setScene(alertaBackupScene);
+            else if(tela.equals(Util.TELA_CAD_MOTORISTA))
+                palco.setScene(cadMotoristaScene);
+            
+            if(tipo == Util.ABRIR){
+               if(!telasAcessadas.get(telasAcessadas.size()-1).equals(tela)){
+                   telasAcessadas.add(tela);
+               }               
+               indice_tela_atual = telasAcessadas.size() - 1; 
+            }else if (tipo == Util.VOLTAR)
+                indice_tela_atual--;
+            else
+                indice_tela_atual++;
+            
+        }
+    }
     
+    public static void proximo() {
+        if (telasAcessadas.size()-1 > (indice_tela_atual)) {
+            trocarTela(telasAcessadas.get(indice_tela_atual + 1),Util.IR);
+//            indice_tela_atual++;
+        }
+    }
     
+    public static void voltar() {
+        if (indice_tela_atual > 0) {
+            trocarTela(telasAcessadas.get(indice_tela_atual - 1),Util.VOLTAR);
+        }else
+            System.out.println("view.AppTelas.voltar()");
+        
+    }
     
-
+    public static void mostrarAlert(int tipo,String texto){
+        switch(tipo){
+            case 0:
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setTitle("ERRO");
+                alert.setContentText(texto);
+                alert.show();
+                break;
+            case 1:
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setTitle("ERRO");
+                alert.setContentText(texto);
+                alert.show();
+                break;
+            case 2:
+                alert.setAlertType(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Sucesso");
+                alert.setContentText(texto);
+                alert.show();
+                break;
+                
+        }
+                
+    }
+    
+    public static int getIndice_tela_atual() {
+        return indice_tela_atual;
+    }
+    
+    public static void setIndice_tela_atual(int indice_tela_atual) {
+        App.indice_tela_atual = indice_tela_atual;
+    }
+    
+    public static ArrayList<String> getTelasAcessadas() {
+        return telasAcessadas;
+    }
+    
+    public static void setTelasAcessadas(ArrayList<String> telasAcessadas) {
+        App.telasAcessadas = telasAcessadas;
+    }
+    
 }

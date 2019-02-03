@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.Financeiro;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class RelatorioFinanceiroControlador implements Initializable{
 
@@ -73,7 +73,7 @@ public class RelatorioFinanceiroControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -88,7 +88,7 @@ public class RelatorioFinanceiroControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -103,7 +103,7 @@ public class RelatorioFinanceiroControlador implements Initializable{
 
      @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

@@ -21,7 +21,7 @@ import javafx.scene.input.MouseEvent;
 import model.Locacao;
 import model.Reserva;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class LocacaoControlador implements Initializable{
 
@@ -144,7 +144,7 @@ public class LocacaoControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -159,7 +159,7 @@ public class LocacaoControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -174,7 +174,7 @@ public class LocacaoControlador implements Initializable{
 
     @FXML
     void novoButtonAction(ActionEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_LOCACAO, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_LOCACAO, Util.ABRIR);
     }
 
     @FXML
@@ -209,7 +209,7 @@ public class LocacaoControlador implements Initializable{
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

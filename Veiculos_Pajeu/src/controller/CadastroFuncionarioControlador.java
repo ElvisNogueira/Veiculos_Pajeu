@@ -28,7 +28,7 @@ import model.Funcionario;
 import model.Usuario;
 import util.Mascara;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CadastroFuncionarioControlador implements Initializable{
     private Usuario usuario = new Usuario();
@@ -124,7 +124,7 @@ public class CadastroFuncionarioControlador implements Initializable{
             Fachada.getInstance().persistUsuario(usuario);
         flag = false;
         limparCampos();
-        AppTelas.voltar();
+        App.voltar();
         
     }
     
@@ -224,7 +224,7 @@ public class CadastroFuncionarioControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -239,7 +239,7 @@ public class CadastroFuncionarioControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -262,7 +262,7 @@ public class CadastroFuncionarioControlador implements Initializable{
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

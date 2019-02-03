@@ -16,7 +16,7 @@ import model.Locacao;
 import model.Reserva;
 import model.Veiculo;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 /**
  *
@@ -67,9 +67,9 @@ public class ReservaDAO {
                 entityManager.getTransaction().begin();
                 entityManager.persist(reserva);
                 entityManager.getTransaction().commit();
-                AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO, "Reserva realizada com sucesso!");
+                App.mostrarAlert(Util.SUCESSO_CADASTRO, "Reserva realizada com sucesso!");
             }else{
-                AppTelas.mostrarAlert(Util.ERRO_CADASTRO, "Não temos veículos disoiníveis para essa categoria!");
+                App.mostrarAlert(Util.ERRO_CADASTRO, "Não temos veículos disoiníveis para essa categoria!");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CarrosHomeControlador implements Initializable{
 
@@ -36,7 +36,7 @@ public class CarrosHomeControlador implements Initializable{
 
     @FXML
     void cadastrarCarrosPanelClick(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
     }
 
     @FXML
@@ -53,7 +53,7 @@ public class CarrosHomeControlador implements Initializable{
 
     @FXML
     void carrosCadastradosPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CARROS_CADASTRADOS, Util.ABRIR);        
+        App.trocarTela(Util.TELA_CARROS_CADASTRADOS, Util.ABRIR);        
     }
 
     @FXML
@@ -70,7 +70,7 @@ public class CarrosHomeControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -85,7 +85,7 @@ public class CarrosHomeControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -100,7 +100,7 @@ public class CarrosHomeControlador implements Initializable{
 
     @FXML
     void locacaoPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_LOCACAO, Util.ABRIR);
+        App.trocarTela(Util.TELA_LOCACAO, Util.ABRIR);
     }
 
     @FXML
@@ -117,7 +117,7 @@ public class CarrosHomeControlador implements Initializable{
 
     @FXML
     void reservaPanelClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_RESERVA, Util.ABRIR);
+        App.trocarTela(Util.TELA_RESERVA, Util.ABRIR);
     }
 
     @FXML
@@ -134,7 +134,7 @@ public class CarrosHomeControlador implements Initializable{
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

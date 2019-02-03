@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.Configuracoes;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 /**
  *
@@ -49,9 +49,9 @@ public class ConfiguracoesDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(configuracoes);
             entityManager.getTransaction().commit();
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Salvo com suucesso!");
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Salvo com suucesso!");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao Salvar!");
+            App.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao Salvar!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -63,9 +63,9 @@ public class ConfiguracoesDAO {
             entityManager.merge(configuracoes);
             entityManager.getTransaction().commit();
             
-            AppTelas.mostrarAlert(Util.SUCESSO_CADASTRO,"Editado com sucesso!");
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Editado com sucesso!");
         } catch (Exception e) {
-            AppTelas.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao editar!");
+            App.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao editar!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }

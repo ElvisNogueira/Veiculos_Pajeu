@@ -20,7 +20,7 @@ import javafx.scene.input.MouseEvent;
 import model.Motorista;
 import model.Pessoa_Fisica;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CadastroMotoristaControlador implements Initializable{
     private static CadastroMotoristaControlador controlador;
@@ -64,7 +64,7 @@ public class CadastroMotoristaControlador implements Initializable{
             Fachada.getInstance().mergeMotorista(motorista);
         else 
             Fachada.getInstance().persistMotorista(motorista);
-        AppTelas.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
     }
     
     public void set(Motorista motorista){
@@ -90,7 +90,7 @@ public class CadastroMotoristaControlador implements Initializable{
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -105,7 +105,7 @@ public class CadastroMotoristaControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -120,7 +120,7 @@ public class CadastroMotoristaControlador implements Initializable{
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

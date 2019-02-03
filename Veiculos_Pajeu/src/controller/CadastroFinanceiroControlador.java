@@ -23,7 +23,7 @@ import javafx.scene.input.MouseEvent;
 import model.Conta;
 import model.Financeiro;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 
 public class CadastroFinanceiroControlador implements Initializable{
@@ -62,7 +62,7 @@ public class CadastroFinanceiroControlador implements Initializable{
 
     @FXML
     void addContaClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_CONTA, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_CONTA, Util.ABRIR);
     }
     
     public static CadastroFinanceiroControlador get(){
@@ -132,7 +132,7 @@ public class CadastroFinanceiroControlador implements Initializable{
     
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -147,7 +147,7 @@ public class CadastroFinanceiroControlador implements Initializable{
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -167,7 +167,7 @@ public class CadastroFinanceiroControlador implements Initializable{
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML

@@ -28,7 +28,7 @@ import model.Locacao;
 import model.Motorista;
 import model.Veiculo;
 import util.Util;
-import view.AppTelas;
+import app.App;
 
 public class CadastroLocacaoControlador implements Initializable {
 
@@ -114,7 +114,7 @@ public class CadastroLocacaoControlador implements Initializable {
 
     @FXML
     void addMotoristaButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_MOTORISTA, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_MOTORISTA, Util.ABRIR);
     }
 
     @FXML
@@ -129,7 +129,7 @@ public class CadastroLocacaoControlador implements Initializable {
 
     @FXML
     void addClienteButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
+        App.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
     }
 
     @FXML
@@ -199,7 +199,7 @@ public class CadastroLocacaoControlador implements Initializable {
                     Financeiro f = new Financeiro(locacao.getData_devolucao(), valorLocacao, 
                             "", Fachada.getInstance().getBuscaConta("Loc").get(0), Fachada.getUserLogado());
                     CadastroFinanceiroControlador.get().set(f);
-                    AppTelas.trocarTela(Util.TELA_CAD_FINANCEIRO, Util.ABRIR);
+                    App.trocarTela(Util.TELA_CAD_FINANCEIRO, Util.ABRIR);
                 }
             } else {
                 Fachada.getInstance().mergeLocacao(locacao);
@@ -211,7 +211,7 @@ public class CadastroLocacaoControlador implements Initializable {
             Fachada.getInstance().persistLocacao(locacao);
         }
 
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML
@@ -272,7 +272,7 @@ public class CadastroLocacaoControlador implements Initializable {
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
-        AppTelas.trocarTela(Util.TELA_HOME, Util.ABRIR);
+        App.trocarTela(Util.TELA_HOME, Util.ABRIR);
     }
 
     @FXML
@@ -287,7 +287,7 @@ public class CadastroLocacaoControlador implements Initializable {
 
     @FXML
     void irButtonClicled(MouseEvent event) {
-        AppTelas.proximo();
+        App.proximo();
     }
 
     @FXML
@@ -362,7 +362,7 @@ public class CadastroLocacaoControlador implements Initializable {
 
     @FXML
     void voltarButtonClicked(MouseEvent event) {
-        AppTelas.voltar();
+        App.voltar();
     }
 
     @FXML
