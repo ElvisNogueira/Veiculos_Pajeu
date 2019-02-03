@@ -19,15 +19,19 @@ import javax.persistence.Id;
  */
 @Entity
 public class Contalog {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @Column(nullable = false, length = 25)
-    String tipoAntigo,tipoNovo;
-    @Column(nullable = false)
-    private String nomeAntigo,nomeNovo;
-    
-    private Date data_de_modificacao ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, updatable = false)
+    private Long id;
+    @Column(nullable = true, length = 25)
+    String tipoAntigo, tipoNovo;
+    @Column(nullable = true)
+    private String nomeAntigo, nomeNovo;
+
+    private Date data_de_modificacao;
     private String operacao_realizada;
 
     public Contalog() {
@@ -81,8 +85,7 @@ public class Contalog {
         this.operacao_realizada = operacao_realizada;
     }
 
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -128,8 +131,8 @@ public class Contalog {
         return true;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
-    }    
-    
+    }
+
 }

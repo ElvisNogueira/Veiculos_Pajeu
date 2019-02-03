@@ -5,6 +5,7 @@
  */
 package dao;
 
+import connection.ConnectionFactory;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -28,15 +29,7 @@ public class FuncionarioDAO {
     }
 
     private FuncionarioDAO() {
-        entityManager = getEntityManager();
-    }
-
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
     public Funcionario getById(final int id) {

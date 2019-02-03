@@ -47,7 +47,7 @@ public class CadastrarContaControlador implements Initializable{
     }
     
     private void limparCampos(){
-        nomeField.getText();
+        nomeField.setText("");
         tipoComboBox.getSelectionModel().select(0);
     }
 

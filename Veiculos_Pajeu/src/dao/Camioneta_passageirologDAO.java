@@ -5,6 +5,7 @@
  */
 package dao;
 
+import connection.ConnectionFactory;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,16 +30,9 @@ public class Camioneta_passageirologDAO {
     }
 
     private Camioneta_passageirologDAO() {
-        entityManager = getEntityManager();
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
-    }
 
     public Camioneta_passageirolog getById(int id) {
         return entityManager.find(Camioneta_passageirolog.class, id);

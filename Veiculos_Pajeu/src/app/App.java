@@ -101,7 +101,7 @@ public class App extends Application {
         cadMotoristaScene = new Scene(cadMotorista);
 //        alertaBackupScene = new Scene(alertaBackup);
         
-        stage.setScene(cadFuncionarioScene);
+        stage.setScene(cadContaScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);

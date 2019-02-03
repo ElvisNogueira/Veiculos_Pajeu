@@ -14,6 +14,7 @@ import model.Locacao;
 import model.Locadora;
 import util.Util;
 import app.App;
+import connection.ConnectionFactory;
 
 /**
  *
@@ -31,15 +32,7 @@ public class LocadoralogDAO {
     }
 
     private LocadoralogDAO() {
-        entityManager = getEntityManager();
-    }
-
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
     public Locadora getById(final int id) {

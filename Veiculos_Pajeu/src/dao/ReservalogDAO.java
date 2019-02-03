@@ -17,6 +17,7 @@ import model.Reserva;
 import model.Veiculo;
 import util.Util;
 import app.App;
+import connection.ConnectionFactory;
 import model.Reservalog;
 
 /**
@@ -36,15 +37,7 @@ public class ReservalogDAO {
     }
 
     private ReservalogDAO() {
-        entityManager = getEntityManager();
-    }
-
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
     public Reservalog getById(final int id) {

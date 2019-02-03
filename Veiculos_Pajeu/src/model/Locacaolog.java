@@ -24,7 +24,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Locacaolog {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, updatable = false)
     private int id;
     @Column(nullable = false, length = 25)
     private String tipo_locacao;

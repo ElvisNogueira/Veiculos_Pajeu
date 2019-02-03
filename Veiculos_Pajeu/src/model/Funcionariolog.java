@@ -26,32 +26,34 @@ import javax.persistence.StoredProcedureParameter;
 @Entity
 
 public class Funcionariolog {
-     @Id
-     @GeneratedValue (strategy = GenerationType.AUTO)
-     private int id;
-     @Column(nullable = false)
-     private String nome;
-     @Column(nullable = false, length = 14)
-     private String telefone;
-     @Column(nullable = false, unique = true, length = 14)
-     private String cpf;
-     @Column(nullable = false)
-     private Date data_nasc;
-     
-      @Column(nullable = false)
-     private String nomeNovo;
-     @Column(nullable = false, length = 14)
-     private String telefoneNovo;
-     @Column(nullable = false, unique = true, length = 14)
-     private String cpfNovo;
-     @Column(nullable = false)
-     private Date data_nascNovo;
-     
-    private Date data_de_modificacao ;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, updatable = false)
+    private int id;
+    @Column(nullable = false)
+    private String nome;
+    @Column(nullable = false, length = 14)
+    private String telefone;
+    @Column(nullable = false, unique = true, length = 14)
+    private String cpf;
+    @Column(nullable = false)
+    private Date data_nasc;
+
+    @Column(nullable = false)
+    private String nomeNovo;
+    @Column(nullable = false, length = 14)
+    private String telefoneNovo;
+    @Column(nullable = false, unique = true, length = 14)
+    private String cpfNovo;
+    @Column(nullable = false)
+    private Date data_nascNovo;
+
+    private Date data_de_modificacao;
     private String operacao_realizada;
 
     public Funcionariolog() {
-        
+
     }
 
     @Override
@@ -206,10 +208,5 @@ public class Funcionariolog {
     public void setOperacao_realizada(String operacao_realizada) {
         this.operacao_realizada = operacao_realizada;
     }
-    
-    
 
-    
-     
-     
 }

@@ -22,7 +22,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Financeirolog {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, updatable = false)
     private int id;
     @Column(nullable = false)
     private Date data;

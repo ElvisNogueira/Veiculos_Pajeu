@@ -23,7 +23,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Reservalog {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, updatable = false)
     private int id;
     @Column(nullable = false, length = 25)
     private String tipo_locacao;

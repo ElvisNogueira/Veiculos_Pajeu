@@ -17,6 +17,7 @@ import model.Reserva;
 import model.Veiculo;
 import util.Util;
 import app.App;
+import connection.ConnectionFactory;
 
 /**
  *
@@ -35,15 +36,7 @@ public class ReservaDAO {
     }
 
     private ReservaDAO() {
-        entityManager = getEntityManager();
-    }
-
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
     public Reserva getById(final int id) {

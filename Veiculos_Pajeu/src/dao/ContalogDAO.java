@@ -13,6 +13,7 @@ import model.Cliente;
 import model.Conta;
 import util.Util;
 import app.App;
+import connection.ConnectionFactory;
 import model.Contalog;
 
 /**
@@ -32,17 +33,10 @@ public class ContalogDAO {
     }
 
     private ContalogDAO() {
-        entityManager = getEntityManager();
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
-    }
+    
 
     public Contalog getById(final int id) {
         return entityManager.find(Contalog.class, id);

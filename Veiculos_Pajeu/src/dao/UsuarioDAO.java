@@ -21,6 +21,7 @@ import model.Conta;
 import model.Usuario;
 import util.Util;
 import app.App;
+import connection.ConnectionFactory;
 
 /**
  *
@@ -39,15 +40,7 @@ public class UsuarioDAO {
     }
 
     private UsuarioDAO() {
-        entityManager = getEntityManager();
-    }
-
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
     public Usuario getById(final int id) {

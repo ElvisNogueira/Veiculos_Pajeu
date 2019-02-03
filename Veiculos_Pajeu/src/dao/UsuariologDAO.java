@@ -21,6 +21,7 @@ import model.Conta;
 import model.Usuario;
 import util.Util;
 import app.App;
+import connection.ConnectionFactory;
 import model.Usuariolog;
 
 /**
@@ -40,15 +41,7 @@ public class UsuariologDAO {
     }
 
     private UsuariologDAO() {
-        entityManager = getEntityManager();
-    }
-
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
     public Usuariolog getById(final int id) {

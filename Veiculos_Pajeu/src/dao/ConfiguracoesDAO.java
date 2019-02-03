@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import model.Configuracoes;
 import util.Util;
 import app.App;
+import connection.ConnectionFactory;
 
 /**
  *
@@ -29,16 +30,9 @@ public class ConfiguracoesDAO {
     }
 
     private ConfiguracoesDAO() {
-        entityManager = getEntityManager();
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
-    }
     
     public ArrayList<Configuracoes> getAll() {
          return (ArrayList<Configuracoes>) entityManager.createQuery("FROM " + Configuracoes.class.getName()).getResultList();

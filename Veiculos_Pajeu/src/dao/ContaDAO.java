@@ -13,6 +13,7 @@ import model.Cliente;
 import model.Conta;
 import util.Util;
 import app.App;
+import connection.ConnectionFactory;
 
 /**
  *
@@ -31,16 +32,7 @@ public class ContaDAO {
     }
 
     private ContaDAO() {
-        entityManager = getEntityManager();
-    }
-
-    private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Veiculos_PajeuPU");
-        if (entityManager == null) {
-
-            entityManager = factory.createEntityManager();
-        }
-        return entityManager;
+        entityManager = new ConnectionFactory().getConnetion();
     }
 
     public Conta getById(final int id) {

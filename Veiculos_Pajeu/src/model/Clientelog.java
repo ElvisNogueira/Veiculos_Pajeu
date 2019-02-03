@@ -29,8 +29,9 @@ import javax.persistence.StoredProcedureParameter;
 
 public class Clientelog {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id; 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, updatable = false)
+    private int id;
     
     @Column(nullable = false)
     private String nome;

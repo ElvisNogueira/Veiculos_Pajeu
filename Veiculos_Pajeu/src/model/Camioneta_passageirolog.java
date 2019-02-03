@@ -23,9 +23,9 @@ import javax.persistence.InheritanceType;
 public class Camioneta_passageirolog{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    
     @Column(nullable = false, length = 50)
     private String airbagAntigo;
     @Column(nullable = false)

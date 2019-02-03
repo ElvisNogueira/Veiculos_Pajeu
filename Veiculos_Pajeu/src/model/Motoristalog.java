@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -20,6 +22,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Motoristalog {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, updatable = false)
     private int id;
     @Column(nullable = false)
     private Date data_venc_habilitacao;

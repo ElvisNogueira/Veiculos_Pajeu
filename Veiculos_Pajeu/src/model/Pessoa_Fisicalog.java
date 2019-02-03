@@ -24,7 +24,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Pessoa_Fisicalog{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", insertable = false, updatable = false)
     private int id;
 
     @Column(nullable = false, unique = true, length = 14)
