@@ -64,6 +64,8 @@ public class FinanceiroHomeControlador implements Initializable{
 
     @FXML
     private ImageView irButton;
+    
+    
 
     @FXML
     void atualizarButtonClicked(MouseEvent event) {

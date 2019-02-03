@@ -20,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import model.Locacao;
 import model.Reserva;
 import util.Util;
 import view.AppTelas;
@@ -58,26 +59,17 @@ public class ReservaControlador implements Initializable{
     private Button excluirButton;
 
     @FXML
-    private TextField buscaField;
-
-    @FXML
     private ImageView pesquisarButton;
 
     @FXML
     private ImageView atualizarBuutton;
 
     @FXML
-    private DatePicker dataInicio;
-
-    @FXML
-    private DatePicker dataFim;
-    
-    @FXML
     private Button realizarReserva;
 
     @FXML
     void atualizarBuuttonClicked(MouseEvent event) {
-        
+        inicializarTabela();
     }
 
     @FXML
@@ -88,11 +80,6 @@ public class ReservaControlador implements Initializable{
     @FXML
     void atualizarBuuttonExited(MouseEvent event) {
         atualizarBuutton.setCursor(Cursor.DEFAULT);
-    }
-
-    @FXML
-    void buscaFielKeyReleased(KeyEvent event) {
-
     }
 
     @FXML
@@ -171,23 +158,9 @@ public class ReservaControlador implements Initializable{
     }
 
     @FXML
-    void pesquisarButtonClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void pesquisarButtonEntered(MouseEvent event) {
-        pesquisarButton.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void pesquisarButtonExited(MouseEvent event) {
-        pesquisarButton.setCursor(Cursor.DEFAULT);
-    }
-
-    @FXML
     void reservaTableClicked(MouseEvent event) {
-
+        CadastroReservaControlador.get().bloquear(reservaTable.getSelectionModel().getSelectedItem());
+        AppTelas.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR);
     }
 
     @FXML
@@ -207,7 +180,9 @@ public class ReservaControlador implements Initializable{
     
     @FXML
     void realizarReservaAction(ActionEvent event) {
-
+        Locacao l = new Locacao();
+        Reserva r = reservaTable.getSelectionModel().getSelectedItem();
+//        l.setData_devolucao(data_devolucao);
     }
 
     @FXML

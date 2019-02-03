@@ -2,14 +2,12 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -63,7 +61,7 @@
             <Font name="Impact" size="25.0" />
          </font>
       </Label>
-      <TableView fx:id="reservaTable" layoutX="64.0" layoutY="193.0" onMouseClicked="#reservaTableClicked" prefHeight="299.0" prefWidth="575.0">
+      <TableView fx:id="reservaTable" layoutX="64.0" layoutY="155.0" onMouseClicked="#reservaTableClicked" prefHeight="337.0" prefWidth="575.0">
         <columns>
           <TableColumn fx:id="idColuna" prefWidth="60.0" text="ID" />
           <TableColumn fx:id="nomeClienteColuna" prefWidth="410.0" text="Nome cliente" />
@@ -78,19 +76,11 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextField fx:id="buscaField" layoutX="62.0" layoutY="127.0" onKeyReleased="#buscaFielKeyReleased" prefHeight="25.0" prefWidth="575.0" promptText="Pesquise por nome do cliente ou categoria do carro..." />
-      <ImageView fx:id="pesquisarButton" fitHeight="20.0" fitWidth="20.0" layoutX="472.0" layoutY="163.0" onMouseClicked="#pesquisarButtonClicked" onMouseEntered="#pesquisarButtonEntered" onMouseExited="#pesquisarButtonExited" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../imagens/icons8-pesquisar-20%20(1).png" />
-         </image></ImageView>
-      <ImageView fx:id="atualizarBuutton" fitHeight="20.0" fitWidth="20.0" layoutX="617.0" layoutY="163.0" onMouseClicked="#atualizarBuuttonClicked" onMouseEntered="#atualizarBuuttonEntered" onMouseExited="#atualizarBuuttonExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="atualizarBuutton" fitHeight="20.0" fitWidth="20.0" layoutX="619.0" layoutY="125.0" onMouseClicked="#atualizarBuuttonClicked" onMouseEntered="#atualizarBuuttonEntered" onMouseExited="#atualizarBuuttonExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/icons8-sincronizar-20.png" />
          </image>
       </ImageView>
-      <DatePicker fx:id="dataInicio" layoutX="63.0" layoutY="159.0" promptText="Data de ínicio" />
-      <DatePicker fx:id="dataFim" layoutX="279.0" layoutY="159.0" promptText="Data final" />
-      <Label layoutX="257.0" layoutY="164.0" text="à" />
       <Button fx:id="realizarReserva" layoutX="358.0" layoutY="499.0" mnemonicParsing="false" onAction="#realizarReservaAction" onMouseEntered="#realizarReservaEntered" onMouseExited="#realizarReservaExited" text="Efetivar reserva">
          <cursor>
             <Cursor fx:constant="HAND" />

@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -85,5 +86,6 @@
       <DatePicker fx:id="dataInicio" layoutX="63.0" layoutY="159.0" promptText="Data de ínicio" />
       <DatePicker fx:id="dataFim" layoutX="279.0" layoutY="159.0" promptText="Data final" />
       <Label layoutX="257.0" layoutY="164.0" text="à" />
+      <TextField fx:id="buscaField" layoutX="64.0" layoutY="126.0" onKeyReleased="#buscaFielKeyReleased" prefHeight="25.0" prefWidth="575.0" promptText="Pesquise por nome do cliente ou categoria do carro..." />
    </children>
 </Pane>

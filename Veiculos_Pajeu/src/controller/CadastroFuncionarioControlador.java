@@ -155,7 +155,7 @@ public class CadastroFuncionarioControlador implements Initializable{
         
         Date d = usuario.getFuncionario().getData_nasc();
         
-        dataNascField.setValue(LocalDate.of(d.getYear(), d.getMonth(), d.getDay()));
+        dataNascField.setValue(LocalDate.of(d.getYear(), d.getMonth(), d.getDate()));
         cpfField.setText(usuario.getFuncionario().getCpf());
         telefoneField.setText(usuario.getFuncionario().getTelefone());
         nomeField.setText(usuario.getFuncionario().getNome());

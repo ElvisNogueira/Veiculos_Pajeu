@@ -43,6 +43,12 @@ public class CadastrarContaControlador implements Initializable{
         conta.setTipo(tipoComboBox.getSelectionModel().getSelectedItem());
         
         Fachada.getInstance().persistConta(conta);
+        limparCampos();
+    }
+    
+    private void limparCampos(){
+        nomeField.getText();
+        tipoComboBox.getSelectionModel().select(0);
     }
 
     @FXML

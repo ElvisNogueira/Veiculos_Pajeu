@@ -57,6 +57,14 @@ public class CadastroFinanceiroControlador implements Initializable{
     @FXML
     private Button cadastrarButton;
     
+    @FXML
+    private ImageView addConta;
+
+    @FXML
+    void addContaClicked(MouseEvent event) {
+        AppTelas.trocarTela(Util.TELA_CAD_CONTA, Util.ABRIR);
+    }
+    
     public static CadastroFinanceiroControlador get(){
         return controlador;
     }

@@ -68,7 +68,7 @@
       <TextField fx:id="valorField" layoutX="297.0" layoutY="167.0" onKeyReleased="#valorFieldReleased" prefHeight="25.0" prefWidth="130.0" />
       <ComboBox fx:id="contaComboBox" layoutX="444.0" layoutY="167.0" prefHeight="25.0" prefWidth="154.0" />
       <Label layoutX="444.0" layoutY="141.0" text="Conta:" />
-      <TextArea fx:id="observacaoArea" layoutX="105.0" layoutY="249.0" prefHeight="200.0" prefWidth="493.0" />
+      <TextArea fx:id="observacaoArea" layoutX="105.0" layoutY="249.0" prefHeight="200.0" prefWidth="527.0" />
       <Label layoutX="105.0" layoutY="218.0" text="Observação:" />
       <Button fx:id="cadastrarButton" layoutX="598.0" layoutY="496.0" mnemonicParsing="false" onAction="#cadastrarButtonAction" text="Cadastrar">
          <cursor>
@@ -78,6 +78,14 @@
       <ImageView fx:id="atualizarButton" fitHeight="20.0" fitWidth="20.0" layoutX="578.0" layoutY="140.0" onMouseClicked="#atualizarButtonClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/icons8-sincronizar-20.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="addConta" fitHeight="20.0" fitWidth="20.0" layoutX="609.0" layoutY="170.0" onMouseClicked="#addContaClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-plus-math-20.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />

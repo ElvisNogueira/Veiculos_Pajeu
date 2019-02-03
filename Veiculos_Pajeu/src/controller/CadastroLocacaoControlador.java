@@ -184,7 +184,8 @@ public class CadastroLocacaoControlador implements Initializable {
                     Long dif = (dRet.getTime().getTime()) - (dDev.getTime().getTime());
                     float difHoras = Math.round(dif / (60 * 60 * 1000));
                     if (difHoras < 3) {
-                        taxas = (float) (0.25 * locacao.getVeiculo().getCategoria().getValor_aluguel_controle());
+                        taxas = (float) (0.25 * locacao.getVeiculo().getCategoria().getValor_aluguel_controle())
+                                *difHoras;
                     } else {
                         taxas=0;
                     }

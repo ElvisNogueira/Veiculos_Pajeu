@@ -26,6 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Categoria;
+import model.Financeiro;
 import model.Locacao;
 import model.Reserva;
 import util.Util;
@@ -75,7 +76,7 @@ public class CadastroReservaControlador implements Initializable{
     @FXML
     private Spinner<Integer> horaRetirada_min;
     
-    public CadastroReservaControlador get(){
+    public static CadastroReservaControlador get(){
         return controlador;
     }
 
@@ -92,6 +93,9 @@ public class CadastroReservaControlador implements Initializable{
             Fachada.getInstance().mergeReserva(reserva);
         else{
             Fachada.getInstance().persistReserva(reserva);
+            
+            CadastroFinanceiroControlador.controlador.set(new Financeiro(Util.dataAtual(), reserva.getValor_entrada(), 
+                    "", Fachada.getInstance().getByNomeConta("Reserva"), Fachada.getUserLogado()));
             AppTelas.trocarTela(Util.TELA_CAD_FINANCEIRO,Util.ABRIR);
         }        
             flag = false;
@@ -141,7 +145,7 @@ public class CadastroReservaControlador implements Initializable{
     
     @FXML
     void entradaClicked(MouseEvent event) {
-                valorEntradaField.setText(categoriaComboBox.getSelectionModel().getSelectedItem().getValor_aluguel_controle()+"");
+        valorEntradaField.setText(categoriaComboBox.getSelectionModel().getSelectedItem().getValor_aluguel_controle()+"");
 
     }
     
