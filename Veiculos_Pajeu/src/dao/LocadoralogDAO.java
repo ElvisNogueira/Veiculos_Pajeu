@@ -10,24 +10,27 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.Conta;
-import model.Funcionario;
+import model.Locacao;
+import model.Locadora;
+import util.Util;
+import app.App;
 
 /**
  *
  * @author Elvis Nogueira
  */
-public class FuncionarioDAO {
-    private static FuncionarioDAO instance;
+public class LocadoralogDAO {
+    private static LocadoralogDAO instance;
     protected EntityManager entityManager;
 
-    public static FuncionarioDAO getInstance() {
+    public static LocadoralogDAO getInstance() {
         if (instance == null) {
-            instance = new FuncionarioDAO();
+            instance = new LocadoralogDAO();
         }
         return instance;
     }
 
-    private FuncionarioDAO() {
+    private LocadoralogDAO() {
         entityManager = getEntityManager();
     }
 
@@ -39,51 +42,62 @@ public class FuncionarioDAO {
         return entityManager;
     }
 
-    public Funcionario getById(final int id) {
-        return entityManager.find(Funcionario.class, id);
+    public Locadora getById(final int id) {
+        return entityManager.find(Locadora.class, id);
     }
 
-    public ArrayList<Funcionario> getAll() {
-        return (ArrayList<Funcionario>) entityManager.createQuery("from "+
-                Funcionario.class.getSimpleName()+" WHERE status = true").getResultList();
+    public ArrayList<Locadora> getAll() {
+        return (ArrayList<Locadora>) entityManager.createQuery("FROM "+Locadora.class.getName()+
+                " WHERE status = 'true'").getResultList();
+    }
+
+    public void persist(Locadora locadora) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(locadora);
+            entityManager.getTransaction().commit();
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Sucesso ao eftuar cadastro!");
+        } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao efetuar cadastro");
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+            
+        }
     }
     
-    public ArrayList<Funcionario> getBusca(String busca) {
-        return (ArrayList<Funcionario>) entityManager.createQuery("from "+
-                Funcionario.class.getSimpleName()+" where nome like '%"+busca+"%' or"
-                        + " cpf like '%"+busca+"%'"+" and status = true").getResultList();
+    public Locadora getLastId(){
+        try {
+            String jpaQuery = "select max(l.id) from Locadora l";
+            int id = (int) entityManager.createQuery(jpaQuery).getSingleResult();
+            Locadora locadora = getById(id);
+            return locadora;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public void persist(Funcionario funcionario) {
+    public void merge(Locadora locadora) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(funcionario);
+            entityManager.merge(locadora);
             entityManager.getTransaction().commit();
+            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Edição realizada com suucesso!!");
         } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao editar!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
 
-    public void merge(Funcionario funcionario) {
+    public void remove(Locadora locadora) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(funcionario);
+//            entityManager.remove(locadora);
+            locadora.setStatus(false);
+            entityManager.merge(locadora);
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        }
-    }
-
-    public void remove(Funcionario funcionario) {
-        try {
-            entityManager.getTransaction().begin();
-//            entityManager.remove(funcionario);
-            funcionario.setStatus(false);
-            entityManager.merge(funcionario);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (Exception e) {            
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -91,8 +105,8 @@ public class FuncionarioDAO {
 
     public void removeById(int id) {
         try {
-            Funcionario funcionario = getById(id);
-            remove(funcionario);
+            Locadora locadora = getById(id);
+            remove(locadora);
         } catch (Exception e) {
             e.printStackTrace();
         }

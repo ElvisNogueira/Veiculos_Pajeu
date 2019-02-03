@@ -42,7 +42,7 @@ public class App extends Application {
 //        Endereco endereco = new Endereco("Rua Manoel Ferraz", "DNER", "Floresta", "PE", "56400-000", "70");
 //        Funcionario funcionario = new Funcionario("Elvis", "(87)99612-2609", "113.000.434-74", Util.getDate("1997-12-02"),
 //                endereco);
-//        Usuario usuario = new Usuario("Administrador", "elvis", "elvis150", funcionario);
+//        Usuario usuario = new Usuario("Administrador", "admin1", "admin1", funcionario);
 //        Fachada.getInstance().persistUsuario(usuario);
         launch(args);
         
@@ -101,7 +101,7 @@ public class App extends Application {
         cadMotoristaScene = new Scene(cadMotorista);
 //        alertaBackupScene = new Scene(alertaBackup);
         
-        stage.setScene(loginScene);
+        stage.setScene(cadFuncionarioScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);

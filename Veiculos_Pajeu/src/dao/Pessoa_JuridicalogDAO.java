@@ -9,25 +9,27 @@ import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.StoredProcedureQuery;
 import model.Conta;
-import model.Funcionario;
+import model.Endereco;
+import model.Pessoa_Juridica;
 
 /**
  *
  * @author Elvis Nogueira
  */
-public class FuncionarioDAO {
-    private static FuncionarioDAO instance;
+public class Pessoa_JuridicalogDAO {
+    private static Pessoa_JuridicalogDAO instance;
     protected EntityManager entityManager;
 
-    public static FuncionarioDAO getInstance() {
+    public static Pessoa_JuridicalogDAO getInstance() {
         if (instance == null) {
-            instance = new FuncionarioDAO();
+            instance = new Pessoa_JuridicalogDAO();
         }
         return instance;
     }
 
-    private FuncionarioDAO() {
+    private Pessoa_JuridicalogDAO() {
         entityManager = getEntityManager();
     }
 
@@ -39,25 +41,25 @@ public class FuncionarioDAO {
         return entityManager;
     }
 
-    public Funcionario getById(final int id) {
-        return entityManager.find(Funcionario.class, id);
+    public Pessoa_Juridica getById(final int id) {
+        return entityManager.find(Pessoa_Juridica.class, id);
     }
 
-    public ArrayList<Funcionario> getAll() {
-        return (ArrayList<Funcionario>) entityManager.createQuery("from "+
-                Funcionario.class.getSimpleName()+" WHERE status = true").getResultList();
-    }
-    
-    public ArrayList<Funcionario> getBusca(String busca) {
-        return (ArrayList<Funcionario>) entityManager.createQuery("from "+
-                Funcionario.class.getSimpleName()+" where nome like '%"+busca+"%' or"
-                        + " cpf like '%"+busca+"%'"+" and status = true").getResultList();
+    public ArrayList<Pessoa_Juridica> getAll() {
+        return (ArrayList<Pessoa_Juridica>) entityManager.createQuery("FROM " + Pessoa_Juridica.class.getName()
+                +" WHERE status = 'true'").getResultList();
     }
 
-    public void persist(Funcionario funcionario) {
+    public void persist(Pessoa_Juridica pessoa_Juridica) {
         try {
+            StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("criarcodigo");
+            query.setParameter("tipo", "PJ");
+            query.execute();
+            
+            String cod = (String) query.getOutputParameterValue("SAIDA");
+            pessoa_Juridica.setCodigo(cod);
             entityManager.getTransaction().begin();
-            entityManager.persist(funcionario);
+            entityManager.persist(pessoa_Juridica);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,10 +67,10 @@ public class FuncionarioDAO {
         }
     }
 
-    public void merge(Funcionario funcionario) {
+    public void merge(Pessoa_Juridica pessoa_Juridica) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(funcionario);
+            entityManager.merge(pessoa_Juridica);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,25 +78,25 @@ public class FuncionarioDAO {
         }
     }
 
-    public void remove(Funcionario funcionario) {
+    public void remove(Pessoa_Juridica pessoa_Juridica) {
         try {
             entityManager.getTransaction().begin();
-//            entityManager.remove(funcionario);
-            funcionario.setStatus(false);
-            entityManager.merge(funcionario);
+//            entityManager.remove(pessoa_Juridica);
+            pessoa_Juridica.setStatus(false);
+            entityManager.merge(pessoa_Juridica);
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
 
     public void removeById(int id) {
         try {
-            Funcionario funcionario = getById(id);
-            remove(funcionario);
-        } catch (Exception e) {
-            e.printStackTrace();
+            Pessoa_Juridica pessoa_Juridica = getById(id);
+            remove(pessoa_Juridica);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }

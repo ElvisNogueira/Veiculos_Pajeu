@@ -10,24 +10,26 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.Conta;
-import model.Funcionario;
+import model.Endereco;
+import model.Motorista;
+import util.Util;
 
 /**
  *
  * @author Elvis Nogueira
  */
-public class FuncionarioDAO {
-    private static FuncionarioDAO instance;
+public class MotoristalogDAO {
+    private static MotoristalogDAO instance;
     protected EntityManager entityManager;
 
-    public static FuncionarioDAO getInstance() {
+    public static MotoristalogDAO getInstance() {
         if (instance == null) {
-            instance = new FuncionarioDAO();
+            instance = new MotoristalogDAO();
         }
         return instance;
     }
 
-    private FuncionarioDAO() {
+    private MotoristalogDAO() {
         entityManager = getEntityManager();
     }
 
@@ -39,25 +41,32 @@ public class FuncionarioDAO {
         return entityManager;
     }
 
-    public Funcionario getById(final int id) {
-        return entityManager.find(Funcionario.class, id);
+    public Motorista getById(final int id) {
+        return entityManager.find(Motorista.class, id);
     }
 
-    public ArrayList<Funcionario> getAll() {
-        return (ArrayList<Funcionario>) entityManager.createQuery("from "+
-                Funcionario.class.getSimpleName()+" WHERE status = true").getResultList();
-    }
-    
-    public ArrayList<Funcionario> getBusca(String busca) {
-        return (ArrayList<Funcionario>) entityManager.createQuery("from "+
-                Funcionario.class.getSimpleName()+" where nome like '%"+busca+"%' or"
-                        + " cpf like '%"+busca+"%'"+" and status = true").getResultList();
+    public ArrayList<Motorista> getAll() {
+        return (ArrayList<Motorista>) entityManager.createQuery("FROM "+Motorista.class.getName()+
+                " WHERE status = 'true'").getResultList();
     }
 
-    public void persist(Funcionario funcionario) {
+    public void persist(Motorista motorista) {
+        try {
+            if(Util.calcularIdade(motorista.getData_venc_habilitacao())>20){
+                entityManager.getTransaction().begin();
+                entityManager.persist(motorista);
+                entityManager.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    public void merge(Motorista motorista) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(funcionario);
+            entityManager.merge(motorista);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,23 +74,10 @@ public class FuncionarioDAO {
         }
     }
 
-    public void merge(Funcionario funcionario) {
+    public void remove(Motorista motorista) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(funcionario);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        }
-    }
-
-    public void remove(Funcionario funcionario) {
-        try {
-            entityManager.getTransaction().begin();
-//            entityManager.remove(funcionario);
-            funcionario.setStatus(false);
-            entityManager.merge(funcionario);
+            entityManager.remove(motorista);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,8 +87,8 @@ public class FuncionarioDAO {
 
     public void removeById(int id) {
         try {
-            Funcionario funcionario = getById(id);
-            remove(funcionario);
+            Motorista motorista = getById(id);
+            remove(motorista);
         } catch (Exception e) {
             e.printStackTrace();
         }
