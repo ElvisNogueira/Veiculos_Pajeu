@@ -27,20 +27,18 @@ public class Camioneta_cargalog{
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
     
-    @Column(nullable = false, length = 30)
+    
     private String acionamento_embreagemAntigo;
     
-    @Column(nullable = false)
+    
     private int potencia_motorAntigo;
-    @Column(nullable = false)
     private float desempenhoAntigo, capacidade_cargaAntigo, 
             distancia_eixosAntigo, capaccidade_tanqueAntigo;
     
     private String acionamento_embreagemNovo;
     
-    @Column(nullable = false)
+    
     private int potencia_motorNovo;
-    @Column(nullable = false)
     private float desempenhoNovo, capacidade_cargaNovo, 
             distancia_eixosNovo, capaccidade_tanqueNovo;
     

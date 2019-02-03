@@ -24,26 +24,20 @@ public class Categorialog {
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
     
-    @Column(nullable = false)
+    
     private String nome;
-    @Column(nullable = false)
     private float valor_aluguel_controle, valor_aluguel_livre;
     private int num_horas_limpeza, num_horas_revisao;
-    @Column(nullable = false)
     private boolean ar_condicionado, dvd, camara_re,mp3,
             direcao_hidraulica;
-    @Column(nullable = false)
     private String tipo_comboio, tamanho;
     
-    @Column(nullable = false)
+    
     private String nomeNovo;
-    @Column(nullable = false)
     private float valor_aluguel_controleNovo, valor_aluguel_livreNovo;
     private int num_horas_limpezaNovo, num_horas_revisaoNovo;
-    @Column(nullable = false)
     private boolean ar_condicionadoNovo, dvdNovo, camara_reNovo,mp3Novo,
             direcao_hidraulicaNovo;
-    @Column(nullable = false)
     private String tipo_comboioNovo, tamanhoNovo;
     
     private Date data_de_modificacao ;

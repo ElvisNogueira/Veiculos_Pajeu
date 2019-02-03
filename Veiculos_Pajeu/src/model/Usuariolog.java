@@ -30,14 +30,12 @@ public class Usuariolog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    @Column(nullable = false, length = 20)
+    
     private String tipo;
-    @Column(nullable = false)
     private String login,senha;
 
-    @Column(nullable = false, length = 20)
+    
     private String tipoNovo;
-    @Column(nullable = false)
     private String loginNovo,senhaNovo;
     
     private Date data_de_modificacao ;

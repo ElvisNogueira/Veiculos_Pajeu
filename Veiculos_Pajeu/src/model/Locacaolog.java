@@ -27,18 +27,14 @@ public class Locacaolog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    @Column(nullable = false, length = 25)
+    
     private String tipo_locacao;
-    @Column(nullable = false, length = 15)
     private String status;
-    @Column(nullable = false)
     private int duracao_estiimada;
-    @Column(nullable = false)
     private Date data_retirada, data_devolucao;
     
-    @Column(nullable = true)
+    
     private Time hora_retirada, hora_devolucao;
-    @Column(nullable = false)
     private float taxa_higienizacao, taxa_combuustivel,
             valor_locacao, km_inicial, km_final;
     @ManyToOne

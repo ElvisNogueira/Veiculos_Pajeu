@@ -101,8 +101,8 @@ public class CadastroFuncionarioControlador implements Initializable{
          usuario.setTipo(tipoUsuariosComboBox.getSelectionModel().getSelectedItem());
          
          
-//        LocalDate ld = dataNascField.getValue();
-        Date data = Util.getDate(dataNascField.getEditor().getText());
+        LocalDate ld = dataNascField.getValue();
+        Date data = new Date(ld.getYear(), ld.getMonthValue(), ld.getDayOfMonth());
         funcionario.setCpf(cpfField.getText());
         funcionario.setData_nasc(data);
         funcionario.setTelefone(telefoneField.getText());
@@ -155,7 +155,7 @@ public class CadastroFuncionarioControlador implements Initializable{
         
         Date d = usuario.getFuncionario().getData_nasc();
         
-        dataNascField.setValue(LocalDate.of(d.getYear(), d.getMonth(), d.getDate()));
+        dataNascField.setValue(LocalDate.of(d.getYear()-1900, d.getMonth()-1, d.getDate()));
         cpfField.setText(usuario.getFuncionario().getCpf());
         telefoneField.setText(usuario.getFuncionario().getTelefone());
         nomeField.setText(usuario.getFuncionario().getNome());

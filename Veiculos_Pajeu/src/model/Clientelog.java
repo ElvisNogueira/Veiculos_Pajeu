@@ -32,16 +32,11 @@ public class Clientelog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    
-    @Column(nullable = false)
     private String nome;
-    @Column(nullable = false, length = 14)
     private String telefone;
     
     
-    @Column(nullable = false)
     private String nomeNovo;
-    @Column(nullable = false, length = 14)
     private String telefoneNovo;
     
     private Date data_de_modificacao ;

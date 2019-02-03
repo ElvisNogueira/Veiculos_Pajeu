@@ -28,7 +28,6 @@ public class Financeiro {
     private Date data;
     @Column(nullable = false)
     private float valor;
-    @Column(nullable = false)
     private String observacao;
     @OneToOne
     @JoinColumn(name = "id_conta")

@@ -31,22 +31,16 @@ public class Funcionariolog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    @Column(nullable = false)
+    
     private String nome;
-    @Column(nullable = false, length = 14)
     private String telefone;
-    @Column(nullable = false, unique = true, length = 14)
     private String cpf;
-    @Column(nullable = false)
     private Date data_nasc;
 
-    @Column(nullable = false)
+    
     private String nomeNovo;
-    @Column(nullable = false, length = 14)
     private String telefoneNovo;
-    @Column(nullable = false, unique = true, length = 14)
     private String cpfNovo;
-    @Column(nullable = false)
     private Date data_nascNovo;
 
     private Date data_de_modificacao;

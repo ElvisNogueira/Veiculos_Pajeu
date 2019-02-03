@@ -26,14 +26,11 @@ public class Reservalog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    @Column(nullable = false, length = 25)
+    
     private String tipo_locacao;
-    @Column(nullable = false)
     private int duracao_estimada;//Em dias
-    @Column(nullable = false)
     private Date data_retirada;
     private Time hora_retirada;
-    @Column(nullable = false)
     private float valor_entrada;
     @ManyToOne
     @JoinColumn(name = "id_cliente")
@@ -42,14 +39,11 @@ public class Reservalog {
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
     
-    @Column(nullable = false, length = 25)
+    
     private String tipo_locacaoNovo;
-    @Column(nullable = false)
     private int duracao_estimadaNovo;//Em dias
-    @Column(nullable = false)
     private Date data_retiradaNovo;
     private Time hora_retiradaNovo;
-    @Column(nullable = false)
     private float valor_entradaNovo;
     @ManyToOne
     @JoinColumn(name = "id_clienteNovo")

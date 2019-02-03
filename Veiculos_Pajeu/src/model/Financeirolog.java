@@ -25,11 +25,9 @@ public class Financeirolog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    @Column(nullable = false)
+    
     private Date data;
-    @Column(nullable = false)
     private float valor;
-    @Column(nullable = false)
     private String observacao;
     @OneToOne
     @JoinColumn(name = "id_conta")
@@ -38,11 +36,9 @@ public class Financeirolog {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
     
-    @Column(nullable = false)
+    
     private Date dataNovo;
-    @Column(nullable = false)
     private float valorNovo;
-    @Column(nullable = false)
     private String observacaoNovo;
     @OneToOne
     @JoinColumn(name = "id_contaNovo")

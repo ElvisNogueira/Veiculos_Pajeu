@@ -94,7 +94,7 @@ public class CadastroFinanceiroControlador implements Initializable{
         f.setObservacao(observacaoArea.getText());
         f.setUsuario(Fachada.getUserLogado());
         f.setValor(Float.parseFloat(valorField.getText()));
-        
+        System.out.println(f.getValor()+"");
         if(flag)
             Fachada.getInstance().mergeFinanceiro(f);
         else
@@ -107,7 +107,7 @@ public class CadastroFinanceiroControlador implements Initializable{
         flag = true;
         
         contaComboBox.getSelectionModel().select(f.getConta());
-        LocalDate ld = LocalDate.of(f.getData().getYear(), f.getData().getMonth(), f.getData().getDay());
+        LocalDate ld = LocalDate.of(f.getData().getYear()-1900, f.getData().getMonth()-1, f.getData().getDay());
         dataPagamento.setValue(ld);
         observacaoArea.setText(f.getObservacao());
         

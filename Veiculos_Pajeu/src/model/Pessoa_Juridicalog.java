@@ -26,14 +26,12 @@ public class Pessoa_Juridicalog{
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
     
-    @Column(nullable = false, length = 18, unique = true)
+    
     private String cnpj;
-    @Column(nullable = false, length = 10, unique = true)
     private String inscricao_estadual;
     
-    @Column(nullable = false, length = 18, unique = true)
+    
     private String cnpjNovo;
-    @Column(nullable = false, length = 10, unique = true)
     private String inscricao_estadualNovo;
     
     private Date data_de_modificacao ;

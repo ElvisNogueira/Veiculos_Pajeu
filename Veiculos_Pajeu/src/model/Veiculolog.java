@@ -27,17 +27,12 @@ public class Veiculolog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    @Column(nullable = false, length = 7)
+    
     private String placa;
-    @Column(nullable = false, length = 50)
     private String fabricante;
-    @Column(nullable = false, length = 17)
     private String numChassi;
-    @Column(nullable = false, length = 20)
     private String num_motor, modelo, tipo_combuustivel,cor;
-    @Column(nullable = false)
     private float km_atual, torqe_motor;
-    @Column(nullable = false)
     private int num_portas, ano_modelo, ano_fabricacao,
             num_passageiros;
     @ManyToOne
@@ -47,17 +42,12 @@ public class Veiculolog {
     @JoinColumn(name = "id_locadora")
     Locadora locadora;
     
-    @Column(nullable = false, length = 7)
+    
     private String placaNovo;
-    @Column(nullable = false, length = 50)
     private String fabricanteNovo;
-    @Column(nullable = false, length = 17)
     private String numChassiNovo;
-    @Column(nullable = false, length = 20)
     private String num_motorNovo, modeloNovo, tipo_combuustivelNovo,corNovo;
-    @Column(nullable = false)
     private float km_atualNovo, torqe_motorNovo;
-    @Column(nullable = false)
     private int num_portasNovo, ano_modeloNovo, ano_fabricacaoNovo,
             num_passageirosNovo;
     @ManyToOne

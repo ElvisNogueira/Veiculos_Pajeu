@@ -25,10 +25,11 @@ public class Locadoralog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    @Column(nullable = false, length = 18, unique = true)
+    
+    
     private String cnpj;
     
-    @Column(nullable = false, length = 18, unique = true)
+    
     private String cnpjNovo;
     
     private Date data_de_modificacao ;
