@@ -32,15 +32,12 @@ public class Funcionariolog {
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
     
-    private String nome;
-    private String telefone;
-    private String cpf;
+    @Column(nullable = true)
+    private String nome,telefone,cpf;
     private Date data_nasc;
 
-    
-    private String nomeNovo;
-    private String telefoneNovo;
-    private String cpfNovo;
+    @Column(nullable = true)
+    private String nomeNovo,telefoneNovo, cpfNovo;
     private Date data_nascNovo;
 
     private Date data_de_modificacao;

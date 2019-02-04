@@ -26,10 +26,10 @@ public class Locadoralog {
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
     
-    
+    @Column(nullable = true)
     private String cnpj;
     
-    
+    @Column(nullable = true)
     private String cnpjNovo;
     
     private Date data_de_modificacao ;

@@ -28,14 +28,18 @@ public class Pessoa_Fisicalog{
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
 
-    
+    @Column(nullable = true)
     private String cpf;
+    @Column(nullable = true)
     private Date data_nasc;
+    @Column(nullable = true)
     private String sexo;
 
-    
+    @Column(nullable = true)
     private String cpfNovo;
+    @Column(nullable = true)
     private Date data_nascNovo;
+    @Column(nullable = true)
     private String sexoNovo;
     
     private Date data_de_modificacao ;

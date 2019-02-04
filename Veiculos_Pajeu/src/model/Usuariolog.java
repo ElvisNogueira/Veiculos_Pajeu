@@ -31,12 +31,8 @@ public class Usuariolog {
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
     
-    private String tipo;
-    private String login,senha;
-
-    
-    private String tipoNovo;
-    private String loginNovo,senhaNovo;
+    @Column(nullable = true)
+    private String tipo,login,senha,tipoNovo,loginNovo,senhaNovo;
     
     private Date data_de_modificacao ;
     private String operacao_realizada;

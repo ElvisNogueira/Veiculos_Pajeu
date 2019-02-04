@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,16 +24,17 @@ import javax.persistence.ManyToOne;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Veiculolog {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
-    
-    private String placa;
-    private String fabricante;
-    private String numChassi;
-    private String num_motor, modelo, tipo_combuustivel,cor;
+
+    @Column(nullable = true)
+    private String placa, fabricante, numChassi, num_motor, modelo, tipo_combuustivel, cor;
+    @Column(nullable = true)
     private float km_atual, torqe_motor;
+    @Column(nullable = true)
     private int num_portas, ano_modelo, ano_fabricacao,
             num_passageiros;
     @ManyToOne
@@ -42,12 +44,11 @@ public class Veiculolog {
     @JoinColumn(name = "id_locadora")
     Locadora locadora;
     
-    
-    private String placaNovo;
-    private String fabricanteNovo;
-    private String numChassiNovo;
-    private String num_motorNovo, modeloNovo, tipo_combuustivelNovo,corNovo;
+    @Column(nullable = true)
+    private String placaNovo,fabricanteNovo,numChassiNovo,num_motorNovo, modeloNovo, tipo_combuustivelNovo, corNovo;
+    @Column(nullable = true)
     private float km_atualNovo, torqe_motorNovo;
+    @Column(nullable = true)
     private int num_portasNovo, ano_modeloNovo, ano_fabricacaoNovo,
             num_passageirosNovo;
     @ManyToOne
@@ -57,8 +58,11 @@ public class Veiculolog {
     @JoinColumn(name = "id_locadoraNovo")
     Locadora locadoraNovo;
 
+    private Date data_de_modificacao ;
+    private String operacao_realizada;
+    
     public Veiculolog() {
-        
+
     }
 
     @Override
@@ -226,6 +230,24 @@ public class Veiculolog {
         return fabricante;
     }
 
+    public Date getData_de_modificacao() {
+        return data_de_modificacao;
+    }
+
+    public void setData_de_modificacao(Date data_de_modificacao) {
+        this.data_de_modificacao = data_de_modificacao;
+    }
+
+    public String getOperacao_realizada() {
+        return operacao_realizada;
+    }
+
+    public void setOperacao_realizada(String operacao_realizada) {
+        this.operacao_realizada = operacao_realizada;
+    }
+
+    
+    
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
     }
@@ -453,7 +475,5 @@ public class Veiculolog {
     public void setLocadoraNovo(Locadora locadoraNovo) {
         this.locadoraNovo = locadoraNovo;
     }
-    
-    
-    
+
 }

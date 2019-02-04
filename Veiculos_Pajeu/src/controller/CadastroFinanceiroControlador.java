@@ -27,7 +27,7 @@ import app.App;
 
 
 public class CadastroFinanceiroControlador implements Initializable{
-    Financeiro f = new Financeiro();
+    Financeiro f;
     boolean flag;
     static CadastroFinanceiroControlador controlador;
     @FXML
@@ -87,6 +87,7 @@ public class CadastroFinanceiroControlador implements Initializable{
 
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
+        f = new Financeiro();
         Date d  = new Date(dataPagamento.getValue().getYear()-1900, dataPagamento.getValue().getMonthValue()-1,
                 dataPagamento.getValue().getDayOfMonth());
         f.setConta(contaComboBox.getSelectionModel().getSelectedItem());
@@ -95,16 +96,16 @@ public class CadastroFinanceiroControlador implements Initializable{
         f.setUsuario(Fachada.getUserLogado());
         f.setValor(Float.parseFloat(valorField.getText()));
         System.out.println(f.getValor()+"");
-        if(flag)
+        if(f.getId()!=0)
             Fachada.getInstance().mergeFinanceiro(f);
         else
             Fachada.getInstance().persistFinanceiro(f);
         flag = false;
+        limpar();
     }
 
     
     public void set(Financeiro f){
-        flag = true;
         
         contaComboBox.getSelectionModel().select(f.getConta());
         LocalDate ld = LocalDate.of(f.getData().getYear()-1900, f.getData().getMonth()-1, f.getData().getDay());
@@ -123,7 +124,6 @@ public class CadastroFinanceiroControlador implements Initializable{
     
     public void initCadastro(){
         limpar();
-        contaComboBox.setEditable(true);
         dataPagamento.setEditable(true);
         observacaoArea.setEditable(true);
         

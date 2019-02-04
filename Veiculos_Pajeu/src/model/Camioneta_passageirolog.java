@@ -26,11 +26,15 @@ public class Camioneta_passageirolog{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
+    
+    @Column(nullable = true)
     private String airbagAntigo;
+    @Column(nullable = true)
     private boolean cinto_seg_traseiros_retAntigo, controle_poluicao_arAntigo,
             rodas_liga_leveAntigo, direcao_assistidaAntigo;
-    
+    @Column(nullable = true)
     private String airbagNovo;
+    @Column(nullable = true)
     private boolean cinto_seg_traseiros_retNovo, controle_poluicao_arNovo,
             rodas_liga_leveNovo, direcao_assistidaNovo;
     

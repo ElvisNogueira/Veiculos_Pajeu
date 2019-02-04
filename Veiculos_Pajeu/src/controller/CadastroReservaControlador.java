@@ -84,7 +84,9 @@ public class CadastroReservaControlador implements Initializable{
     void cadastrarButtonAction(ActionEvent event) {
         reserva.setCategoria(categoriaComboBox.getSelectionModel().getSelectedItem());
         LocalDate ld = data_retiradaField.getValue();
-        reserva.setData_retirada(Util.getDate(ld.toString()));
+        Date d  = new Date(ld.getYear()-1900, ld.getMonthValue()-1,
+                ld.getDayOfMonth());
+        reserva.setData_retirada(d);
         reserva.setDuracao_estimada(Integer.parseInt(duracaoEstimada.getText()));
         reserva.setHora_retirada(new Time(horaRetirada_hora.getValue(), horaRetirada_min.getValue(), 0));
         reserva.setTipo_locacao(tipoLocacaoComboBox.getSelectionModel().getSelectedItem());
@@ -139,7 +141,6 @@ public class CadastroReservaControlador implements Initializable{
     
     public void initCadastro(){
         limpar();
-        categoriaComboBox.setEditable(true);
         data_retiradaField.setEditable(true);
         duracaoEstimada.setEditable(true);
         horaRetirada_min.setEditable(true);
@@ -155,7 +156,7 @@ public class CadastroReservaControlador implements Initializable{
     
     @FXML
     void entradaClicked(MouseEvent event) {
-        valorEntradaField.setText(categoriaComboBox.getSelectionModel().getSelectedItem().getValor_aluguel_controle()+"");
+        valorEntradaField.setText(categoriaComboBox.getSelectionModel().getSelectedItem().getValor_aluguel_controle()*0.5+"");
 
     }
     
@@ -233,6 +234,7 @@ public class CadastroReservaControlador implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controlador = this;
+        valorEntradaField.setEditable(false);
         horaRetirada_min.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, Util.horaAtual().getMinutes()));
         horaRetirada_hora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, Util.horaAtual().getHours()));
         carregarComboBoxes();

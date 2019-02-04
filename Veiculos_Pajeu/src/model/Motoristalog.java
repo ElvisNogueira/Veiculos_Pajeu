@@ -26,13 +26,17 @@ public class Motoristalog {
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
     
+    @Column(nullable = true)
     private Date data_venc_habilitacao;
+    @Column(nullable = true)
     private String num_habilitacao;
     @OneToOne
     @JoinColumn(name = "id_pessoa_Fisica")
     private Pessoa_Fisica pessoa_Fisica;
     
+    @Column(nullable = true)
     private Date data_venc_habilitacaoNovo;
+    @Column(nullable = true)
     private String num_habilitacaoNovo;
     @OneToOne
     @JoinColumn(name = "id_pessoa_FisicaNovo")

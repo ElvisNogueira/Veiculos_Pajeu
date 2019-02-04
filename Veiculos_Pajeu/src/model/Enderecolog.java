@@ -24,19 +24,11 @@ public class Enderecolog {
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
     
+   @Column(nullable = true)
+    private String rua,bairro, cidade,uf,cep,numero;
    
-    private String rua;
-    private String bairro, cidade;
-    private String uf;
-    private String cep;
-    private String numero;
-   
-    
-    private String ruaNovo;
-    private String bairroNovo, cidadeNovo;
-    private String ufNovo;
-    private String cepNovo;
-    private String numeroNovo;
+    @Column(nullable = true)
+    private String ruaNovo,bairroNovo, cidadeNovo,ufNovo,cepNovo,numeroNovo;
     
     private Date data_de_modificacao ;
     private String operacao_realizada;

@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import static model.Relatorio_reserva_.nome_cliente;
+
 import org.hibernate.annotations.Immutable;
 
 /**

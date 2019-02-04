@@ -17,7 +17,7 @@ import util.Util;
 import app.App;
 
 public class CadastrarContaControlador implements Initializable{
-    Conta conta = new Conta();
+    Conta conta;
 
     @FXML
     private ImageView homeButton;
@@ -39,6 +39,7 @@ public class CadastrarContaControlador implements Initializable{
     
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
+        conta = new Conta();
         conta.setNome(nomeField.getText());
         conta.setTipo(tipoComboBox.getSelectionModel().getSelectedItem());
         

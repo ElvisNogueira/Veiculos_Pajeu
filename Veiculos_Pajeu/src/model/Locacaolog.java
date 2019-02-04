@@ -57,12 +57,12 @@ public class Locacaolog {
     private String statusNovo;
     @Column(nullable = false)
     private int duracao_estiimadaNovo;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date data_retiradaNovo, data_devolucaoNovo;
     
     @Column(nullable = true)
     private Time hora_retiradaNovo, hora_devolucaoNovo;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private float taxa_higienizacaoNovo, taxa_combuustivelNovo,
             valor_locacaoNovo, km_inicialNovo, km_finalNovo;
     @ManyToOne

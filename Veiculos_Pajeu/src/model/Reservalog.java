@@ -27,10 +27,15 @@ public class Reservalog {
     @Column(name = "id", insertable = false, updatable = false)
     private int id;
     
+    @Column(nullable = true)
     private String tipo_locacao;
+    @Column(nullable = true)
     private int duracao_estimada;//Em dias
+    @Column(nullable = true)
     private Date data_retirada;
+    @Column(nullable = true)
     private Time hora_retirada;
+    @Column(nullable = true)
     private float valor_entrada;
     @ManyToOne
     @JoinColumn(name = "id_cliente")
@@ -39,11 +44,15 @@ public class Reservalog {
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
     
-    
+    @Column(nullable = true)
     private String tipo_locacaoNovo;
+    @Column(nullable = true)
     private int duracao_estimadaNovo;//Em dias
+    @Column(nullable = true)
     private Date data_retiradaNovo;
+    @Column(nullable = true)
     private Time hora_retiradaNovo;
+    @Column(nullable = true)
     private float valor_entradaNovo;
     @ManyToOne
     @JoinColumn(name = "id_clienteNovo")

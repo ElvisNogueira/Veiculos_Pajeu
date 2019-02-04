@@ -125,7 +125,7 @@ public class App extends Application {
         relatorioReservaScene = new Scene(relatorioReserva);
         relaorioLocacaoScene = new Scene(relaorioLocacao);
 
-        stage.setScene(cadFuncionarioScene);
+        stage.setScene(loginScene);
         palco.setTitle("Pajeú Veículos");
         Image e = new Image("imagens/logoIcone.png");
         palco.getIcons().add(e);

@@ -29,6 +29,7 @@ public class Financeirolog {
     private Date data;
     @Column(nullable = true)
     private float valor;
+    @Column(nullable = true)
     private String observacao;
     @OneToOne
     @JoinColumn(name = "id_conta")
@@ -37,9 +38,11 @@ public class Financeirolog {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
     
-    
+    @Column(nullable = true)
     private Date dataNovo;
+    @Column(nullable = true)
     private float valorNovo;
+    @Column(nullable = true)
     private String observacaoNovo;
     @OneToOne
     @JoinColumn(name = "id_contaNovo")

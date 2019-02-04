@@ -26,7 +26,9 @@ public class Contalog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private Long id;
+    @Column(nullable = true)
     String tipoAntigo, tipoNovo;
+    @Column(nullable = true)
     private String nomeAntigo, nomeNovo;
 
     private Date data_de_modificacao;
