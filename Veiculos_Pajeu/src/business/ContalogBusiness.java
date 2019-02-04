@@ -7,9 +7,11 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.ContaDAO;
+import dao.ContalogDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Conta;
+import model.Contalog;
 
 /**
  *
@@ -17,7 +19,7 @@ import model.Conta;
  */
 public class ContalogBusiness {
     private static ContalogBusiness instance;
-    private ContaDAO dao;
+    private ContalogDAO dao;
     
     public static ContalogBusiness getInstance(){
         if (instance == null) {
@@ -27,36 +29,16 @@ public class ContalogBusiness {
     }
     
     private ContalogBusiness(){
-        dao = ContaDAO.getInstance();
+        dao = ContalogDAO.getInstance();
     }
     
-    public Conta getById(int id){
+    public Contalog getById(int id){
         return dao.getById(id);
     } 
     
-    public Conta getByNome(String nome){
-        return dao.getByNome(nome);
-    }
     
-    public ArrayList<Conta> getAll(){
+    public ArrayList<Contalog> getAll(){
         return dao.getAll();
     }
     
-    public ArrayList<Conta> getBusca(String busca){
-        return dao.getBusca(busca);
-    }
-    
-    public void persist(Conta conta){
-        dao.persist(conta);
-    }
-    
-    public void merge(Conta conta) {
-        dao.merge(conta);
-    }
-    public void remove(Conta conta) {
-        dao.remove(conta);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

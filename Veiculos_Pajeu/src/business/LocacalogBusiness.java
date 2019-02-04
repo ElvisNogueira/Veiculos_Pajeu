@@ -7,9 +7,11 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.LocacaoDAO;
+import dao.LocacaologDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Locacao;
+import model.Locacaolog;
 
 /**
  *
@@ -17,7 +19,7 @@ import model.Locacao;
  */
 public class LocacalogBusiness {
     private static LocacalogBusiness instance;
-    private LocacaoDAO dao;
+    private LocacaologDAO dao;
     
     public static LocacalogBusiness getInstance(){
         if (instance == null) {
@@ -27,28 +29,15 @@ public class LocacalogBusiness {
     }
     
     private LocacalogBusiness(){
-        dao = LocacaoDAO.getInstance();
+        dao = LocacaologDAO.getInstance();
     }
     
-    public Locacao getById(int id){
+    public Locacaolog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Locacao> getAll(){
+    public ArrayList<Locacaolog> getAll(){
         return dao.getAll();
     }
     
-    public void persist(Locacao locacao){
-        dao.persist(locacao);
-    }
-    
-    public void merge(Locacao locacao) {
-        dao.merge(locacao);
-    }
-    public void remove(Locacao locacao) {
-        dao.remove(locacao);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

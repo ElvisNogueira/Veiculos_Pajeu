@@ -7,9 +7,11 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.Pessoa_JuridicaDAO;
+import dao.Pessoa_JuridicalogDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Pessoa_Juridica;
+import model.Pessoa_Juridicalog;
 
 /**
  *
@@ -17,7 +19,7 @@ import model.Pessoa_Juridica;
  */
 public class Pessoa_JuridicalogBusiness {
     private static Pessoa_JuridicalogBusiness instance;
-    private Pessoa_JuridicaDAO dao;
+    private Pessoa_JuridicalogDAO dao;
     
     public static Pessoa_JuridicalogBusiness getInstance(){
         if (instance == null) {
@@ -27,28 +29,15 @@ public class Pessoa_JuridicalogBusiness {
     }
     
     private Pessoa_JuridicalogBusiness(){
-        dao = Pessoa_JuridicaDAO.getInstance();
+        dao = Pessoa_JuridicalogDAO.getInstance();
     }
     
-    public Pessoa_Juridica getById(int id){
+    public Pessoa_Juridicalog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Pessoa_Juridica> getAll(){
+    public ArrayList<Pessoa_Juridicalog> getAll(){
         return dao.getAll();
     }
     
-    public void persist(Pessoa_Juridica pessoa_Juridica){
-        dao.persist(pessoa_Juridica);
-    }
-    
-    public void merge(Pessoa_Juridica pessoa_Juridica) {
-        dao.merge(pessoa_Juridica);
-    }
-    public void remove(Pessoa_Juridica pessoa_Juridica) {
-        dao.remove(pessoa_Juridica);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

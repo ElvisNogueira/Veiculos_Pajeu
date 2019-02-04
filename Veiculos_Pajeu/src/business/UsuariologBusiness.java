@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import model.Usuario;
 import util.Util;
 import app.App;
+import dao.UsuariologDAO;
+import model.Usuariolog;
 
 /**
  *
@@ -21,7 +23,7 @@ import app.App;
 public class UsuariologBusiness {
 
     private static UsuariologBusiness instance;
-    private UsuarioDAO dao;
+    private UsuariologDAO dao;
 
     public static UsuariologBusiness getInstance() {
         if (instance == null) {
@@ -31,62 +33,14 @@ public class UsuariologBusiness {
     }
 
     private UsuariologBusiness() {
-        dao = UsuarioDAO.getInstance();
+        dao = UsuariologDAO.getInstance();
     }
 
-    public Usuario getById(int id) {
+    public Usuariolog getById(int id) {
         return dao.getById(id);
     }
 
-    public ArrayList<Usuario> getAll() {
+    public ArrayList<Usuariolog> getAll() {
         return dao.getAll();
-    }
-
-    public void persist(Usuario usuario) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-//        if (Util.validarSenha(usuario.getSenha())) {
-            try {
-//            usuario.setSenha(Util.criptografar(usuario.getSenha()));
-            dao.persist(usuario);
-            App.mostrarAlert(Util.SUCESSO_CADASTRO,"Cadastro realizado com suucesso!");
-        } catch (Exception e) {
-                App.mostrarAlert(Util.ERRO_CADASTRO,"Erro ao effetuar cadastro!");
-        }
-//        } else {
-//            System.err.println("Senha inválida!");
-//        }
-//        } else {
-//            System.err.println("Senha inválida!");
-//        }
-    }
-
-    public void merge(Usuario usuario) {
-        dao.merge(usuario);
-    }
-
-    public void remove(Usuario usuario) {
-        dao.remove(usuario);
-    }
-
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
-
-    public boolean login(String login, String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {      
-        return dao.login(login, senha);
-    }
-
-    public boolean trocarSenha(String novaSenha, String antigaSenha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-//        if(Util.validarSenha(novaSenha))
-            return dao.trocarSenha(Fachada.getUserLogado(), novaSenha, antigaSenha);
-//        else
-//            System.err.println("Senha iinválida!");
-//        return false;
-    }
-
-    public boolean redefinirSenha(String login) {
-        if (Fachada.getUserLogado().getTipo().equals("Administrador")) {
-            return dao.redefinirSenha(login);
-        }
-        return false;
     }
 }

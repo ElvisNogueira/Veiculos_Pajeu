@@ -11,36 +11,36 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.Categoria;
-import model.Cliente;
-import model.Clientelog;
-import model.Endereco;
+import model.Categorialog;
+import model.Relatorio_financeiro;
+import model.Relatorio_locacao;
 
 /**
  *
  * @author Elvis Nogueira
  */
-public class ClientelogDAO {
+public class Relatorio_locacaoDAO {
 
-    private static ClientelogDAO instance;
+    private static Relatorio_locacaoDAO instance;
     protected EntityManager entityManager;
 
-    public static ClientelogDAO getInstance() {
+    public static Relatorio_locacaoDAO getInstance() {
         if (instance == null) {
-            instance = new ClientelogDAO();
+            instance = new Relatorio_locacaoDAO();
         }
         return instance;
     }
 
-    private ClientelogDAO() {
+    private Relatorio_locacaoDAO() {
         entityManager = new ConnectionFactory().getConnetion();
     }
 
-
-    public Clientelog getById(final int id) {
-        return entityManager.find(Clientelog.class, id);
+    public Relatorio_locacao getById(final int id) {
+        return entityManager.find(Relatorio_locacao.class, id);
     }
 
-    public ArrayList<Clientelog> getAll() {
-         return (ArrayList<Clientelog>) entityManager.createQuery("FROM " + Clientelog.class.getName()).getResultList();
+    public ArrayList<Relatorio_locacao> getAll() {
+        return (ArrayList<Relatorio_locacao>) entityManager.createQuery("FROM "+Relatorio_locacao.class.getName()).getResultList();
     }
+    
 }

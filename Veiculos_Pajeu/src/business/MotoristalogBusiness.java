@@ -7,9 +7,11 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.MotoristaDAO;
+import dao.MotoristalogDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Motorista;
+import model.Motoristalog;
 import util.Util;
 
 /**
@@ -18,7 +20,7 @@ import util.Util;
  */
 public class MotoristalogBusiness {
     private static MotoristalogBusiness instance;
-    private MotoristaDAO dao;
+    private MotoristalogDAO dao;
     
     public static MotoristalogBusiness getInstance(){
         if (instance == null) {
@@ -28,33 +30,16 @@ public class MotoristalogBusiness {
     }
     
     private MotoristalogBusiness(){
-        dao = MotoristaDAO.getInstance();
+        dao = MotoristalogDAO.getInstance();
     }
     
-    public Motorista getById(int id){
+    public Motoristalog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Motorista> getAll(){
+    public ArrayList<Motoristalog> getAll(){
         return dao.getAll();
     }
     
-    public void persist(Motorista motorista){
-        if(Util.calcularIdade(motorista.getPessoa_Fisica().getData_nasc())>=21)
-            dao.persist(motorista);
-        else
-            System.err.println("O motorista deve ter 21 anos ou mais!");
-        
-        
-    }
     
-    public void merge(Motorista motorista) {
-        dao.merge(motorista);
-    }
-    public void remove(Motorista motorista) {
-        dao.remove(motorista);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

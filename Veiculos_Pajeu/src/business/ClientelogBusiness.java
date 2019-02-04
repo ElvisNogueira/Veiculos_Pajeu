@@ -7,9 +7,11 @@ package business;
 
 
 import dao.ClienteDAO;
+import dao.ClientelogDAO;
 import fachada.Fachada;
 import java.util.ArrayList;
 import model.Cliente;
+import model.Clientelog;
 import model.Endereco;
 
 /**
@@ -19,7 +21,7 @@ import model.Endereco;
 public class ClientelogBusiness {
 
     private static ClientelogBusiness instance;
-    private ClienteDAO dao;
+    private ClientelogDAO dao;
 
     public static ClientelogBusiness getInstance() {
         if (instance == null) {
@@ -29,41 +31,14 @@ public class ClientelogBusiness {
     }
 
     private ClientelogBusiness() {
-        dao = ClienteDAO.getInstance();
+        dao = ClientelogDAO.getInstance();
     }
 
-    public Cliente getById(int id) {
+    public Clientelog getById(int id) {
         return dao.getById(id);
     }
 
-    public ArrayList<Cliente> getAll() {
+    public ArrayList<Clientelog> getAll() {
         return dao.getAll();
-    }
-
-    public Cliente getLast() {
-        return dao.getLast();
-    }
-    
-    public ArrayList<Cliente> getBusca(String busca){
-        return dao.getBusca(busca);
-    }
-
-    public void persist(Cliente cliente) {
-        EnderecoBusiness.getInstance().persist(cliente.getEndereco());
-        Endereco end = Fachada.getInstance().getLastEndereco();
-        cliente.setEndereco(end);
-        dao.persist(cliente);
-    }
-
-    public void merge(Cliente cliente) {
-        dao.merge(cliente);
-    }
-
-    public void remove(Cliente cliente) {
-        dao.remove(cliente);
-    }
-
-    public void removeById(int id) {
-        dao.removeById(id);
     }
 }

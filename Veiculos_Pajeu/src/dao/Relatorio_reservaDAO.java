@@ -13,33 +13,34 @@ import javax.persistence.Persistence;
 import model.Categoria;
 import model.Categorialog;
 import model.Relatorio_financeiro;
+import model.Relatorio_reserva;
 
 /**
  *
  * @author Elvis Nogueira
  */
-public class Relatorio_financeiroDAO {
+public class Relatorio_reservaDAO {
 
-    private static Relatorio_financeiroDAO instance;
+    private static Relatorio_reservaDAO instance;
     protected EntityManager entityManager;
 
-    public static Relatorio_financeiroDAO getInstance() {
+    public static Relatorio_reservaDAO getInstance() {
         if (instance == null) {
-            instance = new Relatorio_financeiroDAO();
+            instance = new Relatorio_reservaDAO();
         }
         return instance;
     }
 
-    private Relatorio_financeiroDAO() {
+    private Relatorio_reservaDAO() {
         entityManager = new ConnectionFactory().getConnetion();
     }
 
-    public Relatorio_financeiro getById(final int id) {
-        return entityManager.find(Relatorio_financeiro.class, id);
+    public Relatorio_reserva getById(final int id) {
+        return entityManager.find(Relatorio_reserva.class, id);
     }
 
-    public ArrayList<Relatorio_financeiro> getAll() {
-        return (ArrayList<Relatorio_financeiro>) entityManager.createQuery("FROM "+Relatorio_financeiro.class.getName()).getResultList();
+    public ArrayList<Relatorio_reserva> getAll() {
+        return (ArrayList<Relatorio_reserva>) entityManager.createQuery("FROM "+Relatorio_reserva.class.getName()).getResultList();
     }
     
     public ArrayList<Relatorio_financeiro> getBusca(String busca) {

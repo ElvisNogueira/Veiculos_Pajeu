@@ -33,8 +33,8 @@ public class LocacaologDAO {
         entityManager = new ConnectionFactory().getConnetion();
     }
 
-    public Locacao getById(final int id) {
-        return entityManager.find(Locacao.class, id);
+    public Locacaolog getById(final int id) {
+        return entityManager.find(Locacaolog.class, id);
     }
 
     public ArrayList<Locacaolog> getAll() {

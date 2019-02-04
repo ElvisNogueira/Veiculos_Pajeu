@@ -7,9 +7,11 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.VeiculoDAO;
+import dao.VeiculologDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Veiculo;
+import model.Veiculolog;
 
 /**
  *
@@ -17,7 +19,7 @@ import model.Veiculo;
  */
 public class VeiculologBusiness {
     private static VeiculologBusiness instance;
-    private VeiculoDAO dao;
+    private VeiculologDAO dao;
     
     public static VeiculologBusiness getInstance(){
         if (instance == null) {
@@ -27,32 +29,15 @@ public class VeiculologBusiness {
     }
     
     private VeiculologBusiness(){
-        dao = VeiculoDAO.getInstance();
+        dao = VeiculologDAO.getInstance();
     }
     
-    public Veiculo getById(int id){
+    public Veiculolog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Veiculo> getAll(){
+    public ArrayList<Veiculolog> getAll(){
         return dao.getAll();
     }
     
-    public ArrayList<Veiculo> getBusca(String busca) {
-        return dao.getBusca(busca);
-    }
-    
-    public void persist(Veiculo veiculo){
-        dao.persist(veiculo);
-    }
-    
-    public void merge(Veiculo veiculo) {
-        dao.merge(veiculo);
-    }
-    public void remove(Veiculo veiculo) {
-        dao.remove(veiculo);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

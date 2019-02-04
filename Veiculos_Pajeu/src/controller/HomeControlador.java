@@ -130,7 +130,7 @@ public class HomeControlador implements Initializable{
 
     @FXML
     void relatoriosPanelClicked(MouseEvent event) {
-
+        App.trocarTela(Util.TELA_RELATORIOS, Util.ABRIR);
     }
 
     @FXML

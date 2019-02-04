@@ -7,10 +7,12 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.ReservaDAO;
+import dao.ReservalogDAO;
 import java.sql.Date;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Reserva;
+import model.Reservalog;
 
 /**
  *
@@ -18,7 +20,7 @@ import model.Reserva;
  */
 public class ReservalogBusiness {
     private static ReservalogBusiness instance;
-    private ReservaDAO dao;
+    private ReservalogDAO dao;
     
     public static ReservalogBusiness getInstance(){
         if (instance == null) {
@@ -28,32 +30,15 @@ public class ReservalogBusiness {
     }
     
     private ReservalogBusiness(){
-        dao = ReservaDAO.getInstance();
+        dao = ReservalogDAO.getInstance();
     }
     
-    public Reserva getById(int id){
+    public Reservalog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Reserva> getAll(){
+    public ArrayList<Reservalog> getAll(){
         return dao.getAll();
     }
     
-    public ArrayList<Reserva> getData(Date d1, Date d2) {
-        return dao.getData(d1, d2);
-    }
-    
-    public void persist(Reserva reserva){
-        dao.persist(reserva);
-    }
-    
-    public void merge(Reserva reserva) {
-        dao.merge(reserva);
-    }
-    public void remove(Reserva reserva) {
-        dao.remove(reserva);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

@@ -8,10 +8,12 @@ package business;
 import dao.Camioneta_cargaDAO;
 import dao.EnderecoDAO;
 import dao.LocadoraDAO;
+import dao.LocadoralogDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Endereco;
 import model.Locadora;
+import model.Locadoralog;
 
 /**
  *
@@ -19,7 +21,7 @@ import model.Locadora;
  */
 public class LocadoralogBusiness {
     private static LocadoralogBusiness instance;
-    private LocadoraDAO dao;
+    private LocadoralogDAO dao;
     
     public static LocadoralogBusiness getInstance(){
         if (instance == null) {
@@ -29,39 +31,15 @@ public class LocadoralogBusiness {
     }
     
     private LocadoralogBusiness(){
-        dao = LocadoraDAO.getInstance();
+        dao = LocadoralogDAO.getInstance();
     }
     
-    public Locadora getById(int id){
+    public Locadoralog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Locadora> getAll(){
+    public ArrayList<Locadoralog> getAll(){
         return dao.getAll();
     }
     
-    public Locadora getLastId(){
-        return dao.getLastId();
-    }
-    
-    public void persist(Locadora locadora){
-        EnderecoDAO.getInstance().persist(locadora.getEndereco());
-        ArrayList<Endereco> enderecos = EnderecoBusiness.getInstance().getAll();
-        Endereco end = enderecos.get(enderecos.size()-1);
-        locadora.setEndereco(end);
-        dao.persist(locadora);
-    }
-    
-    public void merge(Locadora locadora) {
-        EnderecoDAO.getInstance().merge(locadora.getEndereco());
-        Endereco end = EnderecoDAO.getInstance().getById(locadora.getId());
-        locadora.setEndereco(end);
-        dao.merge(locadora);
-    }
-    public void remove(Locadora locadora) {
-        dao.remove(locadora);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

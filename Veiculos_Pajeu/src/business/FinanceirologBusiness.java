@@ -7,9 +7,11 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.FinanceiroDAO;
+import dao.FinanceirologDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Financeiro;
+import model.Financeirolog;
 
 /**
  *
@@ -17,7 +19,7 @@ import model.Financeiro;
  */
 public class FinanceirologBusiness {
     private static FinanceirologBusiness instance;
-    private FinanceiroDAO dao;
+    private FinanceirologDAO dao;
     
     public static FinanceirologBusiness getInstance(){
         if (instance == null) {
@@ -27,28 +29,14 @@ public class FinanceirologBusiness {
     }
     
     private FinanceirologBusiness(){
-        dao = FinanceiroDAO.getInstance();
+        dao = FinanceirologDAO.getInstance();
     }
     
-    public Financeiro getById(int id){
+    public Financeirolog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Financeiro> getAll(){
+    public ArrayList<Financeirolog> getAll(){
         return dao.getAll();
-    }
-    
-    public void persist(Financeiro financeiro){
-        dao.persist(financeiro);
-    }
-    
-    public void merge(Financeiro financeiro) {
-        dao.merge(financeiro);
-    }
-    public void remove(Financeiro financeiro) {
-        dao.remove(financeiro);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
     }
 }

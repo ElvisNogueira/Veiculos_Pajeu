@@ -7,10 +7,12 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.FuncionarioDAO;
+import dao.FuncionariologDAO;
 import fachada.Fachada;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Funcionario;
+import model.Funcionariolog;
 
 /**
  *
@@ -18,7 +20,7 @@ import model.Funcionario;
  */
 public class FuncionariologBusiness {
     private static FuncionariologBusiness instance;
-    private FuncionarioDAO dao;
+    private FuncionariologDAO dao;
     
     public static FuncionariologBusiness getInstance(){
         if (instance == null) {
@@ -28,32 +30,15 @@ public class FuncionariologBusiness {
     }
     
     private FuncionariologBusiness(){
-        dao = FuncionarioDAO.getInstance();
+        dao = FuncionariologDAO.getInstance();
     }
     
-    public Funcionario getById(int id){
+    public Funcionariolog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Funcionario> getAll(){
+    public ArrayList<Funcionariolog> getAll(){
         return dao.getAll();
     }
     
-    public ArrayList<Funcionario> getBusca(String busca){
-        return dao.getBusca(busca);                
-    }
-    
-    public void persist(Funcionario funcionario){
-        dao.persist(funcionario);
-    }
-    
-    public void merge(Funcionario funcionario) {
-        dao.merge(funcionario);
-    }
-    public void remove(Funcionario funcionario) {
-        dao.remove(funcionario);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

@@ -7,9 +7,11 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.Camioneta_passageiroDAO;
+import dao.Camioneta_passageirologDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Camioneta_passageiro;
+import model.Camioneta_passageirolog;
 
 /**
  *
@@ -17,7 +19,7 @@ import model.Camioneta_passageiro;
  */
 public class Camioneta_passageirologBusiness {
     private static Camioneta_passageirologBusiness instance;
-    private Camioneta_passageiroDAO dao;
+    private Camioneta_passageirologDAO dao;
     
     public static Camioneta_passageirologBusiness getInstance(){
         if (instance == null) {
@@ -27,28 +29,15 @@ public class Camioneta_passageirologBusiness {
     }
     
     private Camioneta_passageirologBusiness(){
-        dao = Camioneta_passageiroDAO.getInstance();
+        dao = Camioneta_passageirologDAO.getInstance();
     }
     
-    public Camioneta_passageiro getById(int id){
+    public Camioneta_passageirolog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Camioneta_passageiro> getAll(){
+    public ArrayList<Camioneta_passageirolog> getAll(){
         return dao.getAll();
     }
     
-    public void persist(Camioneta_passageiro camioneta_passageiro){
-        dao.persist(camioneta_passageiro);
-    }
-    
-    public void merge(Camioneta_passageiro camioneta_passageiro) {
-        dao.merge(camioneta_passageiro);
-    }
-    public void remove(Camioneta_passageiro camioneta_passageiro) {
-        dao.remove(camioneta_passageiro);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

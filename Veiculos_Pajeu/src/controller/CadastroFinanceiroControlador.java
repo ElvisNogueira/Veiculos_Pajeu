@@ -87,7 +87,7 @@ public class CadastroFinanceiroControlador implements Initializable{
 
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
-        Date d  = new Date(dataPagamento.getValue().getYear(), dataPagamento.getValue().getMonthValue(),
+        Date d  = new Date(dataPagamento.getValue().getYear()-1900, dataPagamento.getValue().getMonthValue()-1,
                 dataPagamento.getValue().getDayOfMonth());
         f.setConta(contaComboBox.getSelectionModel().getSelectedItem());
         f.setData(d);

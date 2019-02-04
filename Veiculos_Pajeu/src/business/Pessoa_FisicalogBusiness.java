@@ -7,11 +7,13 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.Pessoa_FisicaDAO;
+import dao.Pessoa_FisicalogDAO;
 import fachada.Fachada;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Endereco;
 import model.Pessoa_Fisica;
+import model.Pessoa_Fisicalog;
 
 /**
  *
@@ -19,7 +21,7 @@ import model.Pessoa_Fisica;
  */
 public class Pessoa_FisicalogBusiness {
     private static Pessoa_FisicalogBusiness instance;
-    private Pessoa_FisicaDAO dao;
+    private Pessoa_FisicalogDAO dao;
     
     public static Pessoa_FisicalogBusiness getInstance(){
         if (instance == null) {
@@ -29,33 +31,16 @@ public class Pessoa_FisicalogBusiness {
     }
     
     private Pessoa_FisicalogBusiness(){
-        dao = Pessoa_FisicaDAO.getInstance();
+        dao = Pessoa_FisicalogDAO.getInstance();
     }
     
-    public Pessoa_Fisica getById(int id){
+    public Pessoa_Fisicalog getById(int id){
         return dao.getById(id);
     } 
     
-    public Pessoa_Fisica getLast(){
-        return dao.getLast();
-    }
     
-    
-    public ArrayList<Pessoa_Fisica> getAll(){
+    public ArrayList<Pessoa_Fisicalog> getAll(){
         return dao.getAll();
     }
     
-    public void persist(Pessoa_Fisica pessoa_Fisica){
-        dao.persist(pessoa_Fisica);
-    }
-    
-    public void merge(Pessoa_Fisica pessoa_Fisica) {
-        dao.merge(pessoa_Fisica);
-    }
-    public void remove(Pessoa_Fisica pessoa_Fisica) {
-        dao.remove(pessoa_Fisica);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

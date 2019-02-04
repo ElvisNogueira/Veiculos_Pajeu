@@ -7,9 +7,11 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.CategoriaDAO;
+import dao.CategorialogDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Categoria;
+import model.Categorialog;
 
 /**
  *
@@ -17,7 +19,7 @@ import model.Categoria;
  */
 public class CategorialogBusiness {
     private static CategorialogBusiness instance;
-    private CategoriaDAO dao;
+    private CategorialogDAO dao;
     
     public static CategorialogBusiness getInstance(){
         if (instance == null) {
@@ -27,32 +29,15 @@ public class CategorialogBusiness {
     }
     
     private CategorialogBusiness(){
-        dao = CategoriaDAO.getInstance();
+        dao = CategorialogDAO.getInstance();
     }
     
-    public Categoria getById(int id){
+    public Categorialog getById(int id){
         return dao.getById(id);
     } 
     
-    public ArrayList<Categoria> getAll(){
+    public ArrayList<Categorialog> getAll(){
         return dao.getAll();
     }
     
-    public ArrayList<Categoria> getBusca(String busca){
-        return dao.getBusca(busca);
-    }
-    
-    public void persist(Categoria categoria){
-        dao.persist(categoria);
-    }
-    
-    public void merge(Categoria categoria) {
-        dao.merge(categoria);
-    }
-    public void remove(Categoria categoria) {
-        dao.remove(categoria);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }

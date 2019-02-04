@@ -14,6 +14,7 @@ import javax.persistence.StoredProcedureQuery;
 import model.Conta;
 import model.Endereco;
 import model.Pessoa_Juridica;
+import model.Pessoa_Juridicalog;
 
 /**
  *
@@ -34,62 +35,12 @@ public class Pessoa_JuridicalogDAO {
         entityManager = new ConnectionFactory().getConnetion();
     }
 
-    public Pessoa_Juridica getById(final int id) {
-        return entityManager.find(Pessoa_Juridica.class, id);
+    public Pessoa_Juridicalog getById(final int id) {
+        return entityManager.find(Pessoa_Juridicalog.class, id);
     }
 
-    public ArrayList<Pessoa_Juridica> getAll() {
-        return (ArrayList<Pessoa_Juridica>) entityManager.createQuery("FROM " + Pessoa_Juridica.class.getName()
-                +" WHERE status = 'true'").getResultList();
+    public ArrayList<Pessoa_Juridicalog> getAll() {
+        return (ArrayList<Pessoa_Juridicalog>) entityManager.createQuery("FROM " + Pessoa_Juridicalog.class.getName()).getResultList();
     }
 
-    public void persist(Pessoa_Juridica pessoa_Juridica) {
-        try {
-            StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("criarcodigo");
-            query.setParameter("tipo", "PJ");
-            query.execute();
-            
-            String cod = (String) query.getOutputParameterValue("SAIDA");
-            pessoa_Juridica.setCodigo(cod);
-            entityManager.getTransaction().begin();
-            entityManager.persist(pessoa_Juridica);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        }
-    }
-
-    public void merge(Pessoa_Juridica pessoa_Juridica) {
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(pessoa_Juridica);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        }
-    }
-
-    public void remove(Pessoa_Juridica pessoa_Juridica) {
-        try {
-            entityManager.getTransaction().begin();
-//            entityManager.remove(pessoa_Juridica);
-            pessoa_Juridica.setStatus(false);
-            entityManager.merge(pessoa_Juridica);
-            entityManager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            entityManager.getTransaction().rollback();
-        }
-    }
-
-    public void removeById(int id) {
-        try {
-            Pessoa_Juridica pessoa_Juridica = getById(id);
-            remove(pessoa_Juridica);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
 }

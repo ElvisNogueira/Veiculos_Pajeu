@@ -130,12 +130,49 @@ public class RelatorioFinanceiroControlador implements Initializable{
     }
     
     public ObservableList carregar(){
-        ArrayList<FinanceiroAux> financeiroAuxs = new ArrayList<>();
+        ArrayList<Relatorio_financeiro> aux = Fachada.getInstance().getAllRelatorio_financeiro();
+        ArrayList<Relatorio_financeiro> relatorio_financeiros = new ArrayList<>();
         
-        for(Financeiro f : Fachada.getInstance().getAllFinanceiro())
-            financeiroAuxs.add(new FinanceiroAux(f.getId(), f.getConta().getNome(), f.getObservacao(), 
-                    f.getConta().getTipo()));
-        return FXCollections.observableList(financeiroAuxs);
+        if(tipoComboBox.getSelectionModel().getSelectedIndex()==0){
+            if(dataInicio.getEditor().getText().isEmpty() && datafFim.getEditor().getText().isEmpty()){
+                relatorio_financeiros = aux;
+            }else{
+                Date d1  = new Date(dataInicio.getValue().getYear()-1900, dataInicio.getValue().getMonthValue()-1,
+                dataInicio.getValue().getDayOfMonth());
+                Date d2  = new Date(datafFim.getValue().getYear()-1900, datafFim.getValue().getMonthValue()-1,
+                datafFim.getValue().getDayOfMonth());
+                
+                for(Relatorio_financeiro f : Fachada.getInstance().getAllRelatorio_financeiro()){
+                    if(f.getData().before(d2) && f.getData().after(d1)){
+                        relatorio_financeiros.add(f);
+                    }
+                }
+            }                
+        }else{
+            if(dataInicio.getEditor().getText().isEmpty() && datafFim.getEditor().getText().isEmpty()){
+                for(Relatorio_financeiro f : Fachada.getInstance().getAllRelatorio_financeiro()){
+                    if(f.equals(tipoComboBox.getSelectionModel().getSelectedItem())){
+                        relatorio_financeiros.add(f);
+                    }
+                }
+                relatorio_financeiros = aux;
+            }else{
+                Date d1  = new Date(dataInicio.getValue().getYear()-1900, dataInicio.getValue().getMonthValue()-1,
+                dataInicio.getValue().getDayOfMonth());
+                Date d2  = new Date(datafFim.getValue().getYear()-1900, datafFim.getValue().getMonthValue()-1,
+                datafFim.getValue().getDayOfMonth());
+                
+                for(Relatorio_financeiro f : Fachada.getInstance().getAllRelatorio_financeiro()){
+                    if((f.getData().before(d2) && f.getData().after(d1)) &&
+                        (f.equals(tipoComboBox.getSelectionModel().getSelectedItem()))){
+                            relatorio_financeiros.add(f);
+                    }
+                }
+            }
+        }
+        
+        
+        return FXCollections.observableList(relatorio_financeiros);
     }
     
     private class FinanceiroAux{

@@ -30,7 +30,8 @@ public class Util {
             TELA_CAD_LOCACAO = "cadLocacao", TELA_CAD_CLIENTE = "cadCliente", TELA_CAD_RESERVA = "cadReserva",
             TELA_CAD_FINANCEIRO = "cadFinanceiro", TELA_RELATORIO_FINANCEIRO = "relatoriooFinanceiro", 
             TELA_CONFIGURACOES = "configuracoes",TELA_CAD_LOCADORA="cadLocadora", TELA_CATEGORIA = "categoria",
-            TELA_CAD_CONTA = "cadConta", TELA_ALERTA_BACKUP="alertaBackup", TELA_CAD_MOTORISTA="cadMotorista";
+            TELA_CAD_CONTA = "cadConta", TELA_ALERTA_BACKUP="alertaBackup", TELA_CAD_MOTORISTA="cadMotorista",
+            TELA_RELATORIOS = "relatorios";
     public final static int ERRO_CADASTRO = 0, ERRO_LOGIN = 1, SUCESSO_CADASTRO = 2;
     public final static int IR = 0, VOLTAR = 1, ABRIR = 2;
 

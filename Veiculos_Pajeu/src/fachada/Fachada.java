@@ -6,22 +6,41 @@
 package fachada;
 
 import business.Camioneta_cargaBusiness;
+import business.Camioneta_cargalogBusiness;
 import business.Camioneta_passageiroBusiness;
+import business.Camioneta_passageirologBusiness;
 import business.CategoriaBusiness;
+import business.CategorialogBusiness;
 import business.ClienteBusiness;
+import business.ClientelogBusiness;
 import business.ConfiguracoesBusiness;
 import business.ContaBusiness;
+import business.ContalogBusiness;
 import business.EnderecoBusiness;
+import business.EnderecoologBusiness;
 import business.FinanceiroBusiness;
+import business.FinanceirologBusiness;
 import business.FuncionarioBusiness;
+import business.FuncionariologBusiness;
 import business.LocacaBusiness;
+import business.LocacalogBusiness;
 import business.LocadoraBusiness;
+import business.LocadoralogBusiness;
 import business.MotoristaBusiness;
+import business.MotoristalogBusiness;
 import business.Pessoa_FisicaBusiness;
+import business.Pessoa_FisicalogBusiness;
 import business.Pessoa_JuridicaBusiness;
+import business.Pessoa_JuridicalogBusiness;
+import business.Relatorio_financeiroBusiness;
+import business.Relatorio_locacaoBusiness;
+import business.Relatorio_reservaBusiness;
 import business.ReservaBusiness;
+import business.ReservalogBusiness;
 import business.UsuarioBusiness;
+import business.UsuariologBusiness;
 import business.VeiculoBusiness;
+import business.VeiculologBusiness;
 import dao.Camioneta_cargaDAO;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -30,22 +49,41 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Camioneta_carga;
+import model.Camioneta_cargalog;
 import model.Camioneta_passageiro;
+import model.Camioneta_passageirolog;
 import model.Categoria;
+import model.Categorialog;
 import model.Cliente;
+import model.Clientelog;
 import model.Configuracoes;
 import model.Conta;
+import model.Contalog;
 import model.Endereco;
+import model.Enderecolog;
 import model.Financeiro;
+import model.Financeirolog;
 import model.Funcionario;
+import model.Funcionariolog;
 import model.Locacao;
+import model.Locacaolog;
 import model.Locadora;
+import model.Locadoralog;
 import model.Motorista;
+import model.Motoristalog;
 import model.Pessoa_Fisica;
+import model.Pessoa_Fisicalog;
 import model.Pessoa_Juridica;
+import model.Pessoa_Juridicalog;
+import model.Relatorio_financeiro;
+import model.Relatorio_locacao;
+import model.Relatorio_reserva;
 import model.Reserva;
+import model.Reservalog;
 import model.Usuario;
+import model.Usuariolog;
 import model.Veiculo;
+import model.Veiculolog;
 
 /**
  *
@@ -70,6 +108,27 @@ public class Fachada {
     private UsuarioBusiness usuarioBusiness;
     private VeiculoBusiness veiculoBusiness;
     private ConfiguracoesBusiness configuracoesBusiness;
+    
+    private Camioneta_cargalogBusiness camioneta_cargalogBusiness;
+    private Camioneta_passageirologBusiness camioneta_passageirologBusiness;
+    private CategorialogBusiness categorialogBusiness;
+    private ClientelogBusiness clientelogBusiness;
+    private ContalogBusiness contalogBusiness;
+    private EnderecoologBusiness enderecologBusiness;
+    private FinanceirologBusiness financeirologBusiness;
+    private FuncionariologBusiness funcionariologBusiness;
+    private LocacalogBusiness locacalogBusiness;
+    private LocadoralogBusiness locadoralogBusiness;
+    private MotoristalogBusiness motoristalogBusiness;
+    private Pessoa_FisicalogBusiness pessoa_FisicalogBusiness;
+    private Pessoa_JuridicalogBusiness pessoa_JuridicalogBusiness;
+    private ReservalogBusiness reservalogBusiness;
+    private UsuariologBusiness usuariologBusiness;
+    private VeiculologBusiness veiculologBusiness;
+    private Relatorio_financeiroBusiness relatorio_financeiroBusiness;
+    private Relatorio_locacaoBusiness relatorio_locacaoBusiness;
+    private Relatorio_reservaBusiness relatorio_reservaBusiness;
+    
     private static Usuario userLogado;
 
     private static Fachada instance;
@@ -99,6 +158,27 @@ public class Fachada {
         usuarioBusiness = usuarioBusiness.getInstance();
         veiculoBusiness = veiculoBusiness.getInstance();
         configuracoesBusiness = configuracoesBusiness.getInstance();
+        relatorio_financeiroBusiness = relatorio_financeiroBusiness.getInstance();
+        relatorio_locacaoBusiness = relatorio_locacaoBusiness.getInstance();
+        relatorio_reservaBusiness = relatorio_reservaBusiness.getInstance();
+        
+        
+        camioneta_cargalogBusiness = camioneta_cargalogBusiness.getInstance();
+        camioneta_passageirologBusiness = camioneta_passageirologBusiness.getInstance();
+        categorialogBusiness = categorialogBusiness.getInstance();
+        clientelogBusiness = clientelogBusiness.getInstance();
+        contalogBusiness = contalogBusiness.getInstance();
+        enderecologBusiness = enderecologBusiness.getInstance();
+        financeirologBusiness = financeirologBusiness.getInstance();
+        funcionariologBusiness = funcionariologBusiness.getInstance();
+        locacalogBusiness = locacalogBusiness.getInstance();
+        locadoralogBusiness = locadoralogBusiness.getInstance();
+        motoristalogBusiness = motoristalogBusiness.getInstance();
+        pessoa_FisicalogBusiness = pessoa_FisicalogBusiness.getInstance();
+        pessoa_JuridicalogBusiness = pessoa_JuridicalogBusiness.getInstance();
+        reservalogBusiness = reservalogBusiness.getInstance();
+        usuariologBusiness = usuariologBusiness.getInstance();
+        veiculologBusiness = veiculologBusiness.getInstance();
 
     }
 
@@ -603,5 +683,158 @@ public class Fachada {
         Fachada.userLogado = userLogado;
     }
     
+    public Veiculolog getByIdVeiculolog(int id){
+        return veiculologBusiness.getById(id);
+    } 
     
+    public ArrayList<Veiculolog> getAllVeiculolog(){
+        return veiculologBusiness.getAll();
+    }
+    
+    public Usuariolog getByIdUsuariolog(int id) {
+        return usuariologBusiness.getById(id);
+    }
+
+    public ArrayList<Usuariolog> getAllUsuariolog() {
+        return usuariologBusiness.getAll();
+    }
+    
+    public Reservalog getByIdReservalog(int id){
+        return reservalogBusiness.getById(id);
+    } 
+    
+    public ArrayList<Reservalog> getAllReservalog(){
+        return reservalogBusiness.getAll();
+    }
+    
+     public Pessoa_Juridicalog getByIdPessoa_Juridicalog(int id){
+        return pessoa_JuridicalogBusiness.getById(id);
+    } 
+    
+    public ArrayList<Pessoa_Juridicalog> getAllPessoa_Juridicalog(){
+        return pessoa_JuridicalogBusiness.getAll();
+    }
+    
+    public Pessoa_Fisicalog getByIdPessoa_FisicalogPessoa_Fisicalog(int id){
+        return pessoa_FisicalogBusiness.getById(id);
+    } 
+    
+    
+    public ArrayList<Pessoa_Fisicalog> getAllPessoa_Fisicalog(){
+        return pessoa_FisicalogBusiness.getAll();
+    }
+    
+    
+    public Motoristalog getByIdMotoristalog(int id){
+        return motoristalogBusiness.getById(id);
+    } 
+    
+    public ArrayList<Motoristalog> getAllMotoristalog(){
+        return motoristalogBusiness.getAll();
+    }
+    
+    public Locadoralog getByIdLocadoralog(int id){
+        return locadoralogBusiness.getById(id);
+    } 
+    
+    public ArrayList<Locadoralog> getAllLocadoralog(){
+        return locadoralogBusiness.getAll();
+    }
+    
+    public Locacaolog getByIdLocacaolog(int id){
+        return locacalogBusiness.getById(id);
+    } 
+    
+    public ArrayList<Locacaolog> getAllLocacaolog(){
+        return locacalogBusiness.getAll();
+    }
+    
+    public Funcionariolog getByIdFuncionariolog(int id){
+        return funcionariologBusiness.getById(id);
+    } 
+    
+    public ArrayList<Funcionariolog> getAllFuncionariolog(){
+        return funcionariologBusiness.getAll();
+    }
+    
+    public Financeirolog getByIdFinanceirolog(int id){
+        return financeirologBusiness.getById(id);
+    } 
+    
+    public ArrayList<Financeirolog> getAllFinanceirolog(){
+        return financeirologBusiness.getAll();
+    }
+    
+    public Enderecolog getByIdEnderecolog(int id){
+        return enderecologBusiness.getById(id);
+    } 
+    
+    public ArrayList<Enderecolog> getAllEnderecolog(){
+        return enderecologBusiness.getAll();
+    }
+    
+    public Contalog getByIdContalog(int id){
+        return contalogBusiness.getById(id);
+    } 
+    
+    
+    public ArrayList<Contalog> getAllContalog(){
+        return contalogBusiness.getAll();
+    }
+    
+    public Clientelog getByIdClientelog(int id) {
+        return clientelogBusiness.getById(id);
+    }
+
+    public ArrayList<Clientelog> getAllClientelog() {
+        return clientelogBusiness.getAll();
+    }
+    
+    public Categorialog getByIdCategorialog(int id){
+        return categorialogBusiness.getById(id);
+    } 
+    
+    public ArrayList<Categorialog> getAllCategorialog(){
+        return categorialogBusiness.getAll();
+    }
+    
+    public Camioneta_passageirolog getByIdCamioneta_passageirolog(int id){
+        return camioneta_passageirologBusiness.getById(id);
+    } 
+    
+    public ArrayList<Camioneta_passageirolog> getAllCamioneta_passageirolog(){
+        return camioneta_passageirologBusiness.getAll();
+    }
+    
+    public Camioneta_cargalog getByIdCamioneta_cargalog(int id){
+        return camioneta_cargalogBusiness.getById(id);
+    } 
+    
+    public ArrayList<Camioneta_cargalog> getAllCamioneta_cargalog(){
+        return camioneta_cargalogBusiness.getAll();
+    }
+    
+    public Relatorio_locacao getByIdRelatorio_locacao(int id){
+        return relatorio_locacaoBusiness.getById(id);
+    } 
+    
+    public ArrayList<Relatorio_locacao> getAllRelatorio_locacao(){
+        return relatorio_locacaoBusiness.getAll();
+    }
+    
+    public Relatorio_reserva getByIdRelatorio_reserva(int id){
+        return relatorio_reservaBusiness.getById(id);
+    } 
+    
+    public ArrayList<Relatorio_reserva> getAllRelatorio_reserva(){
+        return relatorio_reservaBusiness.getAll();
+    }
+    
+    public ArrayList<Relatorio_financeiro> getAllRelatorio_financeiro(){
+        return relatorio_financeiroBusiness.getAll();
+    }
+    
+    public ArrayList<Relatorio_financeiro> getBuscaRelatorio_financeiro(String busca) {
+        return relatorio_financeiroBusiness.getBusca(busca);
+    }
 }

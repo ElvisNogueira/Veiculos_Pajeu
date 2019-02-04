@@ -7,9 +7,11 @@ package business;
 
 import dao.Camioneta_cargaDAO;
 import dao.EnderecoDAO;
+import dao.EnderecologDAO;
 import java.util.ArrayList;
 import model.Camioneta_carga;
 import model.Endereco;
+import model.Enderecolog;
 
 /**
  *
@@ -17,7 +19,7 @@ import model.Endereco;
  */
 public class EnderecoologBusiness {
     private static EnderecoologBusiness instance;
-    private EnderecoDAO dao;
+    private EnderecologDAO dao;
     
     public static EnderecoologBusiness getInstance(){
         if (instance == null) {
@@ -27,32 +29,15 @@ public class EnderecoologBusiness {
     }
     
     private EnderecoologBusiness(){
-        dao = EnderecoDAO.getInstance();
+        dao = EnderecologDAO.getInstance();
     }
     
-    public Endereco getById(int id){
+    public Enderecolog getById(int id){
         return dao.getById(id);
     } 
     
-    public Endereco getLast(){
-        return dao.getLast();
-    }
-    
-    public ArrayList<Endereco> getAll(){
+    public ArrayList<Enderecolog> getAll(){
         return dao.getAll();
     }
     
-    public void persist(Endereco endereco){
-        dao.persist(endereco);
-    }
-    
-    public void merge(Endereco endereco) {
-        dao.merge(endereco);
-    }
-    public void remove(Endereco endereco) {
-        dao.remove(endereco);
-    }
-    public void removeById(int id) {
-        dao.removeById(id);
-    }
 }
