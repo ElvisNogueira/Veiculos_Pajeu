@@ -183,6 +183,7 @@ public class CarrosCadastradosControlador implements Initializable{
 
     @FXML
     void novoButtonAction(ActionEvent event) {
+        CadastroVeiculoControlador.get().initCadastro();
         App.trocarTela(Util.TELA_CAD_CARRO, Util.ABRIR);
     }
 

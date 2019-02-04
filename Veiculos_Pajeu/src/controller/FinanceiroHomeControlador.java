@@ -130,6 +130,7 @@ public class FinanceiroHomeControlador implements Initializable{
 
     @FXML
     void novoButtonAction(ActionEvent event) {
+        CadastroFinanceiroControlador.get().initCadastro();
         App.trocarTela(Util.TELA_CAD_FINANCEIRO, Util.ABRIR);
     }
 

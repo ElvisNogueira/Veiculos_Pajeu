@@ -406,7 +406,7 @@ public class CadastroVeiculoControlador implements Initializable {
         direcaoAssistidaCheckBox.setSelected(false);
         rodaLigaLeveCheckBox.setSelected(false);
     }
-
+    
     public void bloquear(Veiculo veiculo) {
         setVeiculo(veiculo);
         camionetaCargaRadioButton.setSelected(true);
@@ -446,6 +446,47 @@ public class CadastroVeiculoControlador implements Initializable {
         controlePolicaoArCheckBox.setDisable(true);
         direcaoAssistidaCheckBox.setDisable(true);
         rodaLigaLeveCheckBox.setDisable(true);
+    }
+
+    public void initCadastro() {
+        limparCampos(veiculo);
+        camionetaCargaRadioButton.setSelected(true);
+        acionamentoEmbreagemComboBox.setEditable(true);
+        anoFabricacao.setEditable(true);
+        anoModeloField.setEditable(true);
+        capTanqueField.setEditable(true);
+        capacidadeCargaField.setEditable(true);
+        categoriaComboBox.setEditable(true);
+        corField.setEditable(true);
+        fabricanteField.setEditable(true);
+        kmAtualField.setEditable(true);
+        locadoraComboBox.setEditable(true);
+        modeloField.setEditable(true);
+        numChassiField.setEditable(true);
+        numMotor.setEditable(true);
+        numPassageirosField.setEditable(true);
+        numPortasField.setEditable(true);
+        numPlacaField.setEditable(true);
+        tipoCombustivelComboBox.setEditable(true);
+        torqueMotor.setEditable(true);
+        desempenhoField.setEditable(true);
+        distEixoField.setEditable(true);
+        potenciaMotor.setEditable(true);
+        camCargaTitledPane.setExpanded(true);
+        camCargaTitledPane.setDisable(true);
+
+        camPassageiroTitledPane.setExpanded(false);
+        camPassageiroTitledPane.setDisable(true);
+
+        camionetaPassagRadioButton.setDisable(false);
+
+        camCargaTitledPane.setExpanded(false);
+        camCargaTitledPane.setDisable(false);
+        airbagComboBox.setDisable(false);
+        cintoSegTraseiroRetCheckBox.setDisable(false);
+        controlePolicaoArCheckBox.setDisable(false);
+        direcaoAssistidaCheckBox.setDisable(false);
+        rodaLigaLeveCheckBox.setDisable(false);
     }
 
     @FXML

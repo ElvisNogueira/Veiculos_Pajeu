@@ -84,7 +84,8 @@ public class ReservaControlador implements Initializable{
 
     @FXML
     void editarButtonAction(ActionEvent event) {
-        
+        CadastroReservaControlador.get().set(reservaTable.getSelectionModel().getSelectedItem());
+        App.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR);
     }
 
     @FXML
@@ -99,17 +100,17 @@ public class ReservaControlador implements Initializable{
 
     @FXML
     void excluirButtonAction(ActionEvent event) {
-
+        Fachada.getInstance().removeReserva(reservaTable.getSelectionModel().getSelectedItem());
     }
 
     @FXML
     void excluirButtonClicked(MouseEvent event) {
-
+        
     }
 
     @FXML
     void excluirButtonEntered(MouseEvent event) {
-
+        
     }
 
     @FXML
@@ -144,6 +145,7 @@ public class ReservaControlador implements Initializable{
 
     @FXML
     void novoButtonAction(ActionEvent event) {
+        CadastroReservaControlador.get().initCadastro();
         App.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR);
     }
 
@@ -159,8 +161,11 @@ public class ReservaControlador implements Initializable{
 
     @FXML
     void reservaTableClicked(MouseEvent event) {
-        CadastroReservaControlador.get().bloquear(reservaTable.getSelectionModel().getSelectedItem());
-        App.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR);
+        if(event.getClickCount()==2){
+            CadastroReservaControlador.get().bloquear(reservaTable.getSelectionModel().getSelectedItem());
+            App.trocarTela(Util.TELA_CAD_RESERVA, Util.ABRIR); 
+        }
+        
     }
 
     @FXML
@@ -182,6 +187,7 @@ public class ReservaControlador implements Initializable{
     void realizarReservaAction(ActionEvent event) {
         Locacao l = new Locacao();
         Reserva r = reservaTable.getSelectionModel().getSelectedItem();
+        CadastroLocacaoControlador.get().efetivarReserva(r);
 //        l.setData_devolucao(data_devolucao);
     }
 

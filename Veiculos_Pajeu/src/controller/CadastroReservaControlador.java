@@ -137,6 +137,16 @@ public class CadastroReservaControlador implements Initializable{
        valorEntradaField.setEditable(false);
     }
     
+    public void initCadastro(){
+        limpar();
+        categoriaComboBox.setEditable(true);
+        data_retiradaField.setEditable(true);
+        duracaoEstimada.setEditable(true);
+        horaRetirada_min.setEditable(true);
+        horaRetirada_hora.setEditable(true);
+        valorEntradaField.setEditable(true);
+    }
+    
     
     @FXML
     void atualizarBuuttonClicked(MouseEvent event) {

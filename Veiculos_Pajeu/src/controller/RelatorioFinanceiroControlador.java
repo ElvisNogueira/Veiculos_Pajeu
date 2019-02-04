@@ -62,12 +62,16 @@ public class RelatorioFinanceiroControlador implements Initializable{
 
     @FXML
     void atualizarButtonClicked(MouseEvent event) {
-
+        tipoComboBox.getSelectionModel().select(-1);
+        dataInicio.getEditor().setText("");
+        datafFim.getEditor().setText("");
+        
+        inicializarTabela();
     }
 
     @FXML
     void buscarClicked(MouseEvent event) {
-
+        inicializarTabela();
     }
 
     @FXML
@@ -132,10 +136,11 @@ public class RelatorioFinanceiroControlador implements Initializable{
     public ObservableList carregar(){
         ArrayList<Relatorio_financeiro> aux = Fachada.getInstance().getAllRelatorio_financeiro();
         ArrayList<Relatorio_financeiro> relatorio_financeiros = new ArrayList<>();
-        
-        if(tipoComboBox.getSelectionModel().getSelectedIndex()==0){
+        System.out.println(tipoComboBox.getSelectionModel().getSelectedIndex());
+        if(tipoComboBox.getSelectionModel().getSelectedIndex()==-1){
             if(dataInicio.getEditor().getText().isEmpty() && datafFim.getEditor().getText().isEmpty()){
                 relatorio_financeiros = aux;
+                System.err.println("aqi");
             }else{
                 Date d1  = new Date(dataInicio.getValue().getYear()-1900, dataInicio.getValue().getMonthValue()-1,
                 dataInicio.getValue().getDayOfMonth());
@@ -155,7 +160,7 @@ public class RelatorioFinanceiroControlador implements Initializable{
                         relatorio_financeiros.add(f);
                     }
                 }
-                relatorio_financeiros = aux;
+//                relatorio_financeiros = aux;
             }else{
                 Date d1  = new Date(dataInicio.getValue().getYear()-1900, dataInicio.getValue().getMonthValue()-1,
                 dataInicio.getValue().getDayOfMonth());

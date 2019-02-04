@@ -182,8 +182,7 @@ public class RelatorioClienteControlador implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        comboBox.getItems().add(1, "Pessoa Física");
-        comboBox.getItems().add(2, "Pessoa Jurídica");
+        comboBox.getItems().addAll("Pessoa Física","Pessoa Jurídica");
         inicializarTabela();        
     }
     

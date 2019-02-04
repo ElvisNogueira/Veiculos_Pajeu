@@ -29,6 +29,7 @@ import model.Motorista;
 import model.Veiculo;
 import util.Util;
 import app.App;
+import model.Reserva;
 
 public class CadastroLocacaoControlador implements Initializable {
 
@@ -268,6 +269,14 @@ public class CadastroLocacaoControlador implements Initializable {
         tipoComboBox.setEditable(false);
         valorLocacaoField.setEditable(false);;
         veiculoComboBox.setEditable(false);;
+    }
+    
+    public void efetivarReserva(Reserva r) {        
+        DuracaoEstimadaField.setText(r.getDuracao_estimada()+"");
+        clienteComboBox.getSelectionModel().select(r.getCliente());
+
+        idReservaField.setText(r.getId()+"");
+        tipoComboBox.getSelectionModel().select(r.getTipo_locacao());
     }
 
     @FXML

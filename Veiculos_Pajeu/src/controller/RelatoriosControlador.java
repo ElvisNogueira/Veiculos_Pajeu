@@ -81,7 +81,7 @@ public class RelatoriosControlador {
 
     @FXML
     void locacaoAction(ActionEvent event) {
-
+        App.trocarTela(Util.TELA_RELATORIO_LOCACAO, Util.ABRIR);
     }
 
     @FXML

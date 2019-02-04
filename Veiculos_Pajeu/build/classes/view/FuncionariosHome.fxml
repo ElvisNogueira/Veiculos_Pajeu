@@ -95,5 +95,11 @@
             <Font name="Impact" size="25.0" />
          </font>
       </Label>
+      <Button fx:id="redefinirSenha" layoutX="28.0" layoutY="493.0" mnemonicParsing="false" onAction="#redefinirSenhaAction" text="Redefinir Senha">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="reseetarSenha" layoutX="148.0" layoutY="493.0" mnemonicParsing="false" onAction="#reseetarSenhaAction" prefHeight="25.0" prefWidth="107.0" text="Resetar Senha" />
    </children>
 </Pane>

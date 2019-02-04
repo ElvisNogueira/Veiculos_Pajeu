@@ -120,6 +120,15 @@ public class CadastroFinanceiroControlador implements Initializable{
         
         valorField.setEditable(false);
     }
+    
+    public void initCadastro(){
+        limpar();
+        contaComboBox.setEditable(true);
+        dataPagamento.setEditable(true);
+        observacaoArea.setEditable(true);
+        
+        valorField.setEditable(true);
+    }
     public void limpar(){
         contaComboBox.getSelectionModel().select(0);
         dataPagamento.setValue(LocalDate.now());

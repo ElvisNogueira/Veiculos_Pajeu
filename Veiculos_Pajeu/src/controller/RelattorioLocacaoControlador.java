@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import fachada.Fachada;
@@ -26,7 +31,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 import model.Relatorio_locacao;
 
-public class RelattorioLocacaoControlador implements Initializable{
+/**
+ *
+ * @author Elvis Nogueira
+ */
+public class RelattorioLocacaoControlador implements Initializable {
 
     @FXML
     private ImageView homeButton;
@@ -39,7 +48,7 @@ public class RelattorioLocacaoControlador implements Initializable{
 
     @FXML
     private TableView<Relatorio_locacao> locacaoTable;
-    
+
     @FXML
     private TableColumn<Relatorio_locacao, String> nomeColuna;
 
@@ -48,7 +57,6 @@ public class RelattorioLocacaoControlador implements Initializable{
 
     @FXML
     private TableColumn<Relatorio_locacao, String> modeloColuna;
-
 
     @FXML
     private TextField buscaField;
@@ -67,7 +75,7 @@ public class RelattorioLocacaoControlador implements Initializable{
 
     @FXML
     void atualizarBuuttonClicked(MouseEvent event) {
-        
+
     }
 
     @FXML
@@ -84,7 +92,6 @@ public class RelattorioLocacaoControlador implements Initializable{
     void buscaFielKeyReleased(KeyEvent event) {
 
     }
-
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
@@ -150,10 +157,10 @@ public class RelattorioLocacaoControlador implements Initializable{
     void voltarButtonExited(MouseEvent event) {
         voltarButton.setCursor(Cursor.DEFAULT);
     }
-    
+
     @FXML
     void locacaoTableClicked(MouseEvent event) {
-        
+
     }
 
     @Override
@@ -161,55 +168,56 @@ public class RelattorioLocacaoControlador implements Initializable{
         inicializarTabela();
     }
 
-    public void inicializarTabela(){
+    public void inicializarTabela() {
         dataRetiradaColuna.setCellValueFactory(new PropertyValueFactory("data_retirada"));
         modeloColuna.setCellValueFactory(new PropertyValueFactory("modelo"));
         nomeColuna.setCellValueFactory(new PropertyValueFactory("nome"));
         carregarTabela();
     }
-    
-    private ObservableList carregarTabela(){
+
+    private ObservableList carregarTabela() {
         ArrayList<Relatorio_locacao> aux = Fachada.getInstance().getAllRelatorio_locacao();
         ArrayList<Relatorio_locacao> relatorio_locacaos = new ArrayList<>();
-        
-        if(buscaField.getText().toLowerCase().isEmpty()){
-            if(dataInicio.getEditor().getText().isEmpty() && dataFim.getEditor().getText().isEmpty()){
+
+        if (buscaField.getText().toLowerCase().isEmpty()) {
+            if (dataInicio.getEditor().getText().isEmpty() && dataFim.getEditor().getText().isEmpty()) {
                 relatorio_locacaos = aux;
-            }else{
-                Date d1  = new Date(dataInicio.getValue().getYear()-1900, dataInicio.getValue().getMonthValue()-1,
-                dataInicio.getValue().getDayOfMonth());
-                Date d2  = new Date(dataFim.getValue().getYear()-1900, dataFim.getValue().getMonthValue()-1,
-                dataFim.getValue().getDayOfMonth());
-                
-                for(Relatorio_locacao f : Fachada.getInstance().getAllRelatorio_locacao()){
-                    if(f.getData_retirada().before(d2) && f.getData_retirada().after(d1)){
+            } else {
+                Date d1 = new Date(dataInicio.getValue().getYear() - 1900, dataInicio.getValue().getMonthValue() - 1,
+                        dataInicio.getValue().getDayOfMonth());
+                Date d2 = new Date(dataFim.getValue().getYear() - 1900, dataFim.getValue().getMonthValue() - 1,
+                        dataFim.getValue().getDayOfMonth());
+
+                for (Relatorio_locacao f : Fachada.getInstance().getAllRelatorio_locacao()) {
+                    if (f.getData_retirada().before(d2) && f.getData_retirada().after(d1)) {
                         relatorio_locacaos.add(f);
-                    }
-                }
-            }                
-        }else{
-            if(dataInicio.getEditor().getText().isEmpty() && dataFim.getEditor().getText().isEmpty()){
-                for(Relatorio_locacao f : aux){
-                    if(f.getNome().toLowerCase().contains(buscaField.getText().toLowerCase())){
-                        relatorio_locacaos.add(f);
-                    }
-                }
-                relatorio_locacaos = aux;
-            }else{
-                Date d1  = new Date(dataInicio.getValue().getYear()-1900, dataInicio.getValue().getMonthValue()-1,
-                dataInicio.getValue().getDayOfMonth());
-                Date d2  = new Date(dataFim.getValue().getYear()-1900, dataFim.getValue().getMonthValue()-1,
-                dataFim.getValue().getDayOfMonth());
-                
-                for(Relatorio_locacao f : aux){
-                    if((f.getData_retirada().before(d2) && f.getData_retirada().after(d1)) &&
-                        (f.getNome().toLowerCase().contains(buscaField.getText().toLowerCase()))){
-                            relatorio_locacaos.add(f);
                     }
                 }
             }
-        
-        
-        return FXCollections.observableArrayList(relatorio_locacaos);
-    }
+        } else {
+            if (dataInicio.getEditor().getText().isEmpty() && dataFim.getEditor().getText().isEmpty()) {
+                for (Relatorio_locacao f : aux) {
+                    if (f.getNome().toLowerCase().contains(buscaField.getText().toLowerCase())) {
+                        relatorio_locacaos.add(f);
+                    }
+                }
+                relatorio_locacaos = aux;
+            } else {
+                Date d1 = new Date(dataInicio.getValue().getYear() - 1900, dataInicio.getValue().getMonthValue() - 1,
+                        dataInicio.getValue().getDayOfMonth());
+                Date d2 = new Date(dataFim.getValue().getYear() - 1900, dataFim.getValue().getMonthValue() - 1,
+                        dataFim.getValue().getDayOfMonth());
 
+                for (Relatorio_locacao f : aux) {
+                    if ((f.getData_retirada().before(d2) && f.getData_retirada().after(d1))
+                            && (f.getNome().toLowerCase().contains(buscaField.getText().toLowerCase()))) {
+                        relatorio_locacaos.add(f);
+                    }
+                }
+            }
+
+            return FXCollections.observableArrayList(relatorio_locacaos);
+        }
+        return null;
+    }
+}

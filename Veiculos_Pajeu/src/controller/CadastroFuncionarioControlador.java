@@ -119,7 +119,15 @@ public class CadastroFuncionarioControlador implements Initializable{
         usuario.setFuncionario(funcionario);
         
         if(flag)
-            Fachada.getInstance().mergeUsuario(usuario);            
+            if(senhaField.isEditable()){
+                String novaSenha = senhaField.getText();
+                String confSenha = confSenhaField.getText();
+                if(novaSenha.equals(confSenha))
+                    Fachada.getInstance().trocarSenha(novaSenha, usuario.getSenha());
+                else
+                    App.mostrarAlert(Util.ERRO_LOGIN, "Senhas não coincidem!");
+            }else                
+                Fachada.getInstance().mergeUsuario(usuario);            
         else            
             Fachada.getInstance().persistUsuario(usuario);
         flag = false;
@@ -169,7 +177,10 @@ public class CadastroFuncionarioControlador implements Initializable{
         flag = true;
     }
     
+    
+    
     public void bloquearCampos(Usuario usuario){
+        
         setFuncionario(usuario);
         loginField.setEditable(false);
         senhaField.setEditable(false);
@@ -187,6 +198,38 @@ public class CadastroFuncionarioControlador implements Initializable{
         numeroField.setEditable(false);
         ruaField.setEditable(false);
         ufComboBox.setEditable(false);    
+        
+        flag = true;
+    }
+    
+    public void redefinirSenha(Usuario usuario){
+        
+        bloquearCampos(usuario);
+        senhaField.setEditable(true);
+        confSenhaField.setEditable(true);    
+        
+        flag = true;
+    }
+    
+    public void initCadastro(){
+        
+        limparCampos();
+        loginField.setEditable(true);
+        senhaField.setEditable(true);
+        confSenhaField.setEditable(true);
+        tipoUsuariosComboBox.getSelectionModel().select(0);
+        
+        
+        dataNascField.setEditable(true);
+        cpfField.setEditable(true);
+        telefoneField.setEditable(true);
+        nomeField.setEditable(true);
+        bairroField.setEditable(true);
+        cepField.setEditable(true);
+        cidadeField.setEditable(true);
+        numeroField.setEditable(true);
+        ruaField.setEditable(true);
+        ufComboBox.setEditable(true);    
         
         flag = true;
     }

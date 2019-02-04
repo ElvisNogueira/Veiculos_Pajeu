@@ -65,6 +65,12 @@ public class FuncionariosHomeControlador implements Initializable {
 
     @FXML
     private ImageView irButton;
+    
+    @FXML
+    private Button redefinirSenha;
+
+    @FXML
+    private Button reseetarSenha;
 
     @FXML
     void atualizarButtonClicked(MouseEvent event) {
@@ -105,6 +111,7 @@ public class FuncionariosHomeControlador implements Initializable {
 
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
+        CadastroFuncionarioControlador.get().initCadastro();
         App.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
     }
 
@@ -213,6 +220,30 @@ public class FuncionariosHomeControlador implements Initializable {
         return FXCollections.observableList(Fachada.getInstance().getBuscaFuncionario(buscaField.getText()));
     }
 
+    @FXML
+    void redefinirSenhaAction(ActionEvent event) {
+        Funcionario funcionario = funcionariosTable.getSelectionModel().getSelectedItem();
+        for (Usuario usuario : Fachada.getInstance().getAllUsuario()) {
+            if (usuario.getFuncionario().getId() == funcionario.getId()) {
+                CadastroFuncionarioControlador.get().redefinirSenha(usuario);
+                App.trocarTela(Util.TELA_CAD_FUNCIONARIO, Util.ABRIR);
+            }
+
+        }
+    }
+    
+    @FXML
+    void reseetarSenhaAction(ActionEvent event) {
+        if(Fachada.getUserLogado().getTipo().equals("Administrador")){
+            Funcionario funcionario = funcionariosTable.getSelectionModel().getSelectedItem();
+        for (Usuario usuario : Fachada.getInstance().getAllUsuario()) {
+            if (usuario.getFuncionario().getId() == funcionario.getId()) {
+                Fachada.getInstance().redefinirSenhaUsuario(usuario.getLogin());
+            }
+        }
+        }
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         inicializarTabela();
