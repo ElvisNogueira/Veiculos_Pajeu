@@ -30,14 +30,14 @@ public class Locacao {
     private String tipo_locacao;
     @Column(nullable = false, length = 15)
     private String status;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int duracao_estiimada;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date data_retirada, data_devolucao;
     
     @Column(nullable = true)
     private Time hora_retirada, hora_devolucao;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private float taxa_higienizacao, taxa_combuustivel,
             valor_locacao, km_inicial, km_final;
     @ManyToOne

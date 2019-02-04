@@ -152,17 +152,25 @@ public class CadastroLocacaoControlador implements Initializable {
         locacao = new Locacao();
 
         locacao.setDuracao_estiimada(Integer.parseInt(DuracaoEstimadaField.getText()));
-        locacao.setKm_final(Float.parseFloat(km_finalField.getText()));
+        if(!km_finalField.getText().isEmpty())
+            locacao.setKm_final(Float.parseFloat(km_finalField.getText()));
         locacao.setKm_inicial(Float.parseFloat(km_inicialField.getText()));
         locacao.setMotorista(motoristaComboBox.getSelectionModel().getSelectedItem());
         if (!idReservaField.getText().isEmpty()) {
             locacao.setReserva(Fachada.getInstance().getByIdReserva(Integer.parseInt(idReservaField.getText())));
         }
+        
+        if(!taxaCombField.getText().isEmpty())
+            locacao.setTaxa_combuustivel(Float.parseFloat(taxaCombField.getText()));
+        if(!taxaHigienizacaoField.getText().isEmpty())
+            locacao.setTaxa_higienizacao(Float.parseFloat(taxaHigienizacaoField.getText()));
+        
         locacao.setStatus(statusComboBox.getSelectionModel().getSelectedItem());
-        locacao.setTaxa_combuustivel(Float.parseFloat(taxaCombField.getText()));
-        locacao.setTaxa_higienizacao(Float.parseFloat(taxaHigienizacaoField.getText()));
+        
+        
         locacao.setTipo_locacao(tipoComboBox.getSelectionModel().getSelectedItem());
-        locacao.setValor_locacao(Float.parseFloat(valorLocacaoField.getText()));
+        if(!valorLocacaoField.getText().isEmpty())
+            locacao.setValor_locacao(Float.parseFloat(valorLocacaoField.getText()));
         locacao.setVeiculo(veiculoComboBox.getSelectionModel().getSelectedItem());
 
         if (flag) {
@@ -220,7 +228,10 @@ public class CadastroLocacaoControlador implements Initializable {
 
     @FXML
     void atualizarButtonClicked(MouseEvent event) {
-
+        carregarTipoStatusComboBox();
+        carregarClienteComboBox();
+        carregarMotorista();
+        carregarVeiculoComboBox();
     }
 
     public void set(Locacao locacao) {
@@ -396,6 +407,7 @@ public class CadastroLocacaoControlador implements Initializable {
     private void carregarTipoStatusComboBox() {
         tipoComboBox.getItems().addAll("Plano controle", "Plano Livre");
         statusComboBox.getItems().addAll("Em andamento", "Encerrada");
+        statusComboBox.getSelectionModel().select("Em andamento");
     }
 
     private void carregarClienteComboBox() {

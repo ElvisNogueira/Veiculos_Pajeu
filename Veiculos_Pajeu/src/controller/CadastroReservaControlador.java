@@ -31,6 +31,7 @@ import model.Locacao;
 import model.Reserva;
 import util.Util;
 import app.App;
+import model.Cliente;
 
 public class CadastroReservaControlador implements Initializable{
     boolean flag;
@@ -40,6 +41,13 @@ public class CadastroReservaControlador implements Initializable{
     ArrayList<Categoria> categorias = new ArrayList<>();
     ObservableList<Categoria> obsCategorias;
 
+    @FXML
+    private ComboBox<Cliente> clienteComboBox;
+
+    
+    @FXML
+    private ImageView addClienteButton;
+    
     @FXML
     private ImageView homeButton;
 
@@ -76,12 +84,28 @@ public class CadastroReservaControlador implements Initializable{
     @FXML
     private Spinner<Integer> horaRetirada_min;
     
+    @FXML
+    void addClienteButtonClicked(MouseEvent event) {
+        App.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
+    }
+
+    @FXML
+    void addClienteButtonEntered(MouseEvent event) {
+        addClienteButton.setCursor(Cursor.HAND);
+    }
+
+    @FXML
+    void addClienteButtonExited(MouseEvent event) {
+        addClienteButton.setCursor(Cursor.DEFAULT);
+    }
+    
     public static CadastroReservaControlador get(){
         return controlador;
     }
 
     @FXML
     void cadastrarButtonAction(ActionEvent event) {
+        reserva = new Reserva();
         reserva.setCategoria(categoriaComboBox.getSelectionModel().getSelectedItem());
         LocalDate ld = data_retiradaField.getValue();
         Date d  = new Date(ld.getYear()-1900, ld.getMonthValue()-1,
@@ -91,6 +115,7 @@ public class CadastroReservaControlador implements Initializable{
         reserva.setHora_retirada(new Time(horaRetirada_hora.getValue(), horaRetirada_min.getValue(), 0));
         reserva.setTipo_locacao(tipoLocacaoComboBox.getSelectionModel().getSelectedItem());
         reserva.setValor_entrada(Float.parseFloat(valorEntradaField.getText()));
+        reserva.setCliente(clienteComboBox.getSelectionModel().getSelectedItem());
         if(flag)
             Fachada.getInstance().mergeReserva(reserva);
         else{
@@ -114,7 +139,7 @@ public class CadastroReservaControlador implements Initializable{
         horaRetirada_hora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 
                 reserva.getHora_retirada().getHours()));
         tipoLocacaoComboBox.getSelectionModel().select(reserva.getTipo_locacao());
-        
+        clienteComboBox.getSelectionModel().select(reserva.getCliente());
         
        valorEntradaField.setText(reserva.getValor_entrada()+"");
     }
@@ -152,6 +177,7 @@ public class CadastroReservaControlador implements Initializable{
     @FXML
     void atualizarBuuttonClicked(MouseEvent event) {
         carregarComboBoxes();
+        carregarClienteComboBox();
     }
     
     @FXML
@@ -234,6 +260,7 @@ public class CadastroReservaControlador implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controlador = this;
+     carregarClienteComboBox();
         valorEntradaField.setEditable(false);
         horaRetirada_min.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, Util.horaAtual().getMinutes()));
         horaRetirada_hora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, Util.horaAtual().getHours()));
@@ -264,5 +291,12 @@ public class CadastroReservaControlador implements Initializable{
         obsCategorias = FXCollections.observableList(categorias);
         
         categoriaComboBox.setItems(obsCategorias);
+    }
+    
+    private void carregarClienteComboBox() {
+        ArrayList<Cliente> clientes = Fachada.getInstance().getAllCliente();
+        ObservableList<Cliente> obsClientes = FXCollections.observableArrayList(clientes);
+
+        clienteComboBox.setItems(obsClientes);
     }
 }

@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroMotoristaControlador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroMotoristaControlador">
    <children>
       <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
          <menus>
@@ -68,7 +68,7 @@
       <TextField fx:id="numCNHField" layoutX="423.0" layoutY="168.0" prefHeight="25.0" prefWidth="227.0" />
       <Label layoutX="39.0" layoutY="217.0" text="Cliente:" />
       <ComboBox fx:id="clienteComboBox" layoutX="100.0" layoutY="213.0" prefHeight="25.0" prefWidth="525.0" promptText="                                                      &lt;Selecione o cliente&gt;" />
-      <ImageView fx:id="addCliente" fitHeight="20.0" fitWidth="20.0" layoutX="629.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="addCliente" fitHeight="20.0" fitWidth="20.0" layoutX="629.0" layoutY="216.0" onMouseClicked="#addClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/icons8-plus-math-20.png" />
          </image>

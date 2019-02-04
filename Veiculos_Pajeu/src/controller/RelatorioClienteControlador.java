@@ -198,10 +198,10 @@ public class RelatorioClienteControlador implements Initializable{
 //        ArrayList<Pessoa_Juridica> pj = new ArrayList<>();
         ArrayList<Cliente> c = new ArrayList<>();
         
-        if(comboBox.getSelectionModel().getSelectedIndex()==1){
+        if(comboBox.getSelectionModel().getSelectedIndex()==0){
             for(Pessoa_Fisica pf : Fachada.getInstance().getAllPessoa_Fisica())
                 c.add(pf);
-        }else if(comboBox.getSelectionModel().getSelectedIndex()==2){
+        }else if(comboBox.getSelectionModel().getSelectedIndex()==1){
             for(Pessoa_Juridica pj : Fachada.getInstance().getAllPessoa_Juridica())
                 c.add(pj);
         }else{

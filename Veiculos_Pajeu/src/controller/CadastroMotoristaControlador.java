@@ -138,6 +138,11 @@ public class CadastroMotoristaControlador implements Initializable{
         inicializarComboBox();
     }
     
+    @FXML
+    void addClicked(MouseEvent event) {
+        App.trocarTela(Util.TELA_CAD_CLIENTE, Util.ABRIR);
+    }
+    
     public void inicializarComboBox(){
         controlador = this;
         clienteComboBox.setItems(FXCollections.observableList(Fachada.getInstance().getAllPessoa_Fisica()));

@@ -135,6 +135,7 @@ public class RelatorioReservaControlador implements Initializable {
         ArrayList<Relatorio_reserva> relatorio_reservas = new ArrayList<>();
         if (dataInicio.getEditor().getText().isEmpty() && dataFim.getEditor().getText().isEmpty()) {
             relatorio_reservas = aux;
+            System.err.println("Aqui");
         } else {
             Date d1 = new Date(dataInicio.getValue().getYear() - 1900, dataInicio.getValue().getMonthValue() - 1,
                     dataInicio.getValue().getDayOfMonth());

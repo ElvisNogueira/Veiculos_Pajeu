@@ -5,6 +5,7 @@
  */
 package dao;
 
+import app.App;
 import connection.ConnectionFactory;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
@@ -45,12 +46,16 @@ public class MotoristaDAO {
 
     public void persist(Motorista motorista) {
         try {
-            if(Util.calcularIdade(motorista.getData_venc_habilitacao())>20){
+            if(Util.calcularIdade(motorista.getPessoa_Fisica().getData_nasc())>20){
                 entityManager.getTransaction().begin();
                 entityManager.persist(motorista);
                 entityManager.getTransaction().commit();
+                App.mostrarAlert(Util.SUCESSO_CADASTRO, "Cadastro realizado com sucesso!");
+            }else{
+                App.mostrarAlert(Util.ERRO_CADASTRO, "Motoristas devem ter mais de 21 anos!");
             }
         } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao fazer cadastro!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -61,7 +66,9 @@ public class MotoristaDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(motorista);
             entityManager.getTransaction().commit();
+            App.mostrarAlert(Util.SUCESSO_CADASTRO, "Cadastro realizado com sucesso!");
         } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao editar!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }

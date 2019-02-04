@@ -5,6 +5,7 @@
  */
 package dao;
 
+import app.App;
 import connection.ConnectionFactory;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.Conta;
 import model.Locacao;
+import util.Util;
 
 /**
  *
@@ -47,7 +49,9 @@ public class LocacaoDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(locacao);
             entityManager.getTransaction().commit();
+            App.mostrarAlert(Util.SUCESSO_CADASTRO, "Cadastrado com sucesso!");
         } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao cadastrar");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -58,7 +62,9 @@ public class LocacaoDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(locacao);
             entityManager.getTransaction().commit();
+            App.mostrarAlert(Util.SUCESSO_CADASTRO, "Sucesso ao editar!");
         } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao editar");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }

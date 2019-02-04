@@ -108,6 +108,9 @@ public class CadastroClienteControlador implements Initializable {
 
     @FXML
     void cadastrarButonAction(ActionEvent event) {
+        pessoa_Fisica = new Pessoa_Fisica();
+        pessoa_Juridica = new Pessoa_Juridica();
+        
         endereco.setBairro(bairroField.getText());
         endereco.setCep(cepField.getText());
         endereco.setCidade(cidadeField.getText());
@@ -143,6 +146,7 @@ public class CadastroClienteControlador implements Initializable {
                 Fachada.getInstance().persistPessoa_Juridica(pessoa_Juridica);
             }
         }
+        limparCampos();
 
         App.voltar();
     }
@@ -203,7 +207,7 @@ public class CadastroClienteControlador implements Initializable {
 
     }
 
-    public void limparCampos(Cliente cliente) {
+    public void limparCampos() {
         flag = false;
 
         codField.setText("");

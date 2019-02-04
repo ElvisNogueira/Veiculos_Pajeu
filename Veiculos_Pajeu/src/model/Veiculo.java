@@ -294,13 +294,7 @@ public class Veiculo {
     
     @Override
     public String toString() {
-        return "Veiculo{" + "id=" + id + ", placa=" + placa + ", fabricante=" + fabricante + ", \n"
-                + "numChassi=" + numChassi + ", num_motor=" + num_motor + ", modelo=" + modelo + ", \n"
-                + "tipo_combuustivel=" + tipo_combuustivel + ", cor=" + cor + ", \n"
-                + "km_atual=" + km_atual + ", torqe_motor=" + torqe_motor + ", \n"
-                + "num_portas=" + num_portas + ", ano_modelo=" + ano_modelo + ", \n"
-                + "ano_fabricacao=" + ano_fabricacao + ", num_passageiros=" + num_passageiros + ", \n"
-                + "categoria=" + categoria + ", locadora=" + locadora + '}';
+        return getModelo()+", "+getPlaca();
     }
     
     

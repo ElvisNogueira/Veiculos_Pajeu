@@ -188,6 +188,7 @@ public class ReservaControlador implements Initializable{
         Locacao l = new Locacao();
         Reserva r = reservaTable.getSelectionModel().getSelectedItem();
         CadastroLocacaoControlador.get().efetivarReserva(r);
+        App.trocarTela(Util.TELA_CAD_LOCACAO, 0);
 //        l.setData_devolucao(data_devolucao);
     }
 
@@ -208,7 +209,7 @@ public class ReservaControlador implements Initializable{
     
     private void inicializarTabela(){
         dataRetiradaColuna.setCellValueFactory(new PropertyValueFactory("data_retirada"));
-        nomeClienteColuna.setCellValueFactory(new PropertyValueFactory("nome"));
+        nomeClienteColuna.setCellValueFactory(new PropertyValueFactory("cliente"));
         idColuna.setCellValueFactory(new PropertyValueFactory("id"));
         
         reservaTable.setItems(carregarTabela());
