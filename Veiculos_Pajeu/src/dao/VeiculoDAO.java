@@ -5,12 +5,14 @@
  */
 package dao;
 
+import app.App;
 import connection.ConnectionFactory;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.Veiculo;
+import util.Util;
 
 /**
  *
@@ -53,7 +55,9 @@ public class VeiculoDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(veiculo);
             entityManager.getTransaction().commit();
+            App.mostrarAlert(Util.SUCESSO_CADASTRO, "Cadastrado com sucesso!");
         } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro no cadastro!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -64,7 +68,9 @@ public class VeiculoDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(veiculo);
             entityManager.getTransaction().commit();
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Edição realizada com sucesso!");
         } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro na edição!");
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }

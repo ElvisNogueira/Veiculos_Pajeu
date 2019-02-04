@@ -5,12 +5,14 @@
  */
 package dao;
 
+import app.App;
 import connection.ConnectionFactory;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.Financeiro;
+import util.Util;
 
 /**
  *
@@ -46,7 +48,9 @@ public class FinanceiroDAO {
             entityManager.getTransaction().begin();
             entityManager.persist(financeiro);
             entityManager.getTransaction().commit();
+            App.mostrarAlert(Util.SUCESSO_CADASTRO, "Cadastrado com sucesso!");
         } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Erro ao cadastrar!");
             entityManager.getTransaction().rollback();
             e.printStackTrace();
         }
@@ -57,7 +61,9 @@ public class FinanceiroDAO {
             entityManager.getTransaction().begin();
             entityManager.merge(financeiro);
             entityManager.getTransaction().commit();
+            App.mostrarAlert(Util.SUCESSO_CADASTRO, "Editado com sucesso!");
         } catch (Exception e) {
+            App.mostrarAlert(Util.ERRO_CADASTRO, "Editado com sucesso!");
             entityManager.getTransaction().rollback();
             e.printStackTrace();
         }

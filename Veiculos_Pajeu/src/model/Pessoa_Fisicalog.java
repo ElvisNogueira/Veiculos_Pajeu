@@ -38,6 +38,9 @@ public class Pessoa_Fisicalog{
     private Date data_nascNovo;
     private String sexoNovo;
     
+    private Date data_de_modificacao ;
+    private String operacao_realizada;
+    
     public Pessoa_Fisicalog() {
     }
 
