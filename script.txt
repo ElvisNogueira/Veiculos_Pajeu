@@ -1,0 +1,526 @@
+
+
+
+CREATE OR REPLACE FUNCTION contaLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO contalog(nomeNovo,tipoNovo,data_de_modificacao,operacao_realizada) 
+		VALUES (new.nome,new.tipo,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO contalog (nomeAntigo,tipoAntigo,nomeNovo,tipoNovo,data_de_modificacao,operacao_realizada) 
+		VALUES (old.nome,old.tipo,new.nome,new.tipo,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO contalog (nomeAntigo,tipoAntigo,data_de_modificacao,operacao_realizada) VALUES 
+		(old.nome,old.tipo,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION camioneta_cargaLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO camioneta_cargalog(acionamento_EmbreagemNovo,capacidade_tanqueNovo,capacidade_cargaNovo,
+				desempenhoNovo,distancia_eixosNovo,potencia_motorNovo,id_veiculo,data_de_modificacao,
+				operacao_realizada) 
+		VALUES	(new.acionamento_embreagem,new.capaccidade_tanque,new.capacidade_carga,new.desempenho,new.distancia_eixos,new.potencia_motor,id_veiculo,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO camioneta_cargalog(acionamento_EmbreagemAntigo,capacidade_tanqueAntigo,capacidade_cargaAntigo,	desempenhoAntigo,distancia_eixosAntigo,potencia_motorAntigo,acionamento_EmbreagemNovo,capacidade_tanqueNovo,capacidade_cargaNovo,
+				desempenhoNovo,distancia_eixosNovo,potencia_motorNovo,id_veiculo,data_de_modificacao,
+				operacao_realizada) 
+		VALUES	(old.acionamento_embreagem,old.capaccidade_tanque,old.capacidade_carga,old.desempenho,old.distancia_eixos,old.potencia_motor,old.acionamento_embreagem,new.capaccidade_tanque,new.capacidade_carga,new.desempenho,new.distancia_eixos,new.potencia_motor,id_veiculo,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO camioneta_cargalog(acionamento_EmbreagemAntigo,capacidade_tanqueAntigo,capacidade_cargaAntigo,	desempenhoAntigo,distancia_eixosAntigo,potencia_motorAntigo,data_de_modificacao,operacao_realizada) VALUES 	(old.acionamento_embreagem,old.capaccidade_tanque,old.capacidade_carga,old.desempenho,old.distancia_eixos,old.potencia_motor,old.acionamento_embreagem,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION camioneta_passageiroLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO camioneta_passaeirolog(airbagNovo,cinto_seg_traseiro_retNovo,controle_poluicao_arNovo,
+			direcao_assistidaNovo,rodas_liga_leveNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(new.airbag,new.cinto_seg_traseiro_ret,new.controle_poluicao_ar,new.direcao_assistida,
+		new.rodas_liga_leve,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO camioneta_passaeirolog(airbagNovo,cinto_seg_traseiro_retNovo,controle_poluicao_arNovo,
+			direcao_assistidaNovo,rodas_liga_leveNovo,airbagArtigo,cinto_seg_traseiro_retArtigo,
+			controle_poluicao_arArtigo,direcao_assistidaArtigo,rodas_liga_leveArtigo,data_de_modificacao,
+			operacao_realizada) 
+		VALUES	(new.airbag,new.cinto_seg_traseiro_ret,new.controle_poluicao_ar,new.direcao_assistida,
+			new.rodas_liga_leve,old.airbag,old.cinto_seg_traseiro_ret,old.controle_poluicao_ar,
+			old.direcao_assistida,old.rodas_liga_leve,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO camioneta_passaeirolog(oairbagArtigo,cinto_seg_traseiro_retArtigo,
+			controle_poluicao_arArtigo,direcao_assistidaArtigo,rodas_liga_leveArtigo,data_de_modificacao,
+			operacao_realizada) 
+		VALUES (old.acionamento_embreagem,old.capaccidade_tanque,old.capacidade_carga,old.desempenho,
+			old.distancia_eixos,old.potencia_motor,old.acionamento_embreagem,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION categoriaLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO categorialog(ar_condicionadoNovo,camara_reNovo,direcao_hidraulicaNovo,dvdNovo,
+			mp3Novo,nomeNovo,num_horas_limpezaNovo,num_horas_revisaoNovo,tamanhoNovo,tipo_comboioNovo,
+			valor_aluguel_controleNovo,valor_aluguel_livreNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(new.ar_condicionado,new.camara_re,new.direcao_hidraulica,new.dvd,new.mp3,new.nome,
+			new.num_horas_limpeza,new.num_horas_revisao,new.tamanho,new.tipo_comboio,new.valor_aluguel_controle,
+			new.valor_aluguel_livre,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO categorialog(ar_condicionadoNovo,camara_reNovo,direcao_hidraulicaNovo,dvdNovo,
+			mp3Novo,nomeNovo,num_horas_limpezaNovo,num_horas_revisaoNovo,tamanhoNovo,tipo_comboioNovo,
+			valor_aluguel_controleNovo,valor_aluguel_livreNovo,ar_condicionadoAntigo,camara_reAntigo,
+			direcao_hidraulicaAntigo,dvdAntigo,mp3Antigo,nomeAntigo,num_horas_limpezaAntigo,
+			num_horas_revisaoAntigo,tamanhoAntigo,tipo_comboioAntigo,valor_aluguel_controleAntigo,
+			valor_aluguel_livreAntigo,data_de_modificacao,operacao_realizada) 
+		VALUES	(new.ar_condicionado,new.camara_re,new.direcao_hidraulica,new.dvd,new.mp3,new.nome,
+			new.num_horas_limpeza,new.num_horas_revisao,new.tamanho,new.tipo_comboio,new.valor_aluguel_controle,
+			new.valor_aluguel_livre, old.ar_condicionado,old.camara_re,old.direcao_hidraulica,old.dvd,old.mp3,old.nome,
+			old.num_horas_limpeza,old.num_horas_revisao,old.tamanho,old.tipo_comboio,old.valor_aluguel_controle,
+			old.valor_aluguel_livre,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO categorialog(ar_condicionadoAntigo,camara_reAntigo,
+			direcao_hidraulicaAntigo,dvdAntigo,mp3Antigo,nomeAntigo,num_horas_limpezaAntigo,
+			num_horas_revisaoAntigo,tamanhoAntigo,tipo_comboioAntigo,valor_aluguel_controleAntigo,
+			valor_aluguel_livreAntigo,data_de_modificacao,operacao_realizada) 
+		VALUES (old.acionamento_embreagem,old.capaccidade_tanque,old.capacidade_carga,old.desempenho,
+			old.distancia_eixos,old.potencia_motor,old.acionamento_embreagem,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION clienteLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO clientelog(nomeNovo,telefoneNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(new.nome,new.telefone,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO clientelog(nome,telefone,nomeNovo,telefoneNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(old.nome,old.telefone,new.nome,new.telefone,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO clientelog(nome,telefone,data_de_modificacao,operacao_realizada) 
+		VALUES (old.nome,old.telefone,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION enderecoLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO enderecolog(bairroNovo,cepNovo,cidadeNovo,numeroNovo,ruaNovo,ufNovo,data_de_modificacao,
+			operacao_realizada) 
+		VALUES	(new.bairro,new.cep,new.cidade,new.numero,new.rua,new.uf,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO enderecolog(bairro,cep,cidade,numero,rua,uf,bairroNovo,cepNovo,cidadeNovo,numeroNovo,
+			ruaNovo,ufNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(old.bairro,old.cep,old.cidade,old.numero,old.rua,old.uf,new.bairro,new.cep,new.cidade,
+			new.numero,new.rua,new.uf,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO enderecolog(bairro,cep,cidade,numero,rua,uf,data_de_modificacao,operacao_realizada) 
+		VALUES (old.bairro,old.cep,old.cidade,old.numero,old.rua,old.uf,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION financeiroLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO financeirolog (dataNovo,observacaoNovo,valorNovo,id_contaNovo,id_usuarioNovo,
+			data_de_modificacao,operacao_realizada) 
+		VALUES	(new.data,new.observacao,new.valor,new.id_conta,new.id_usuario,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO financeirolog (data,observacao,valor,id_conta,id_usuario,dataNovo,observacaoNovo,
+			valorNovo,id_contaNovo,id_usuarioNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(old.data,old.observacao,old.valor,old.id_conta,old.id_usuario,new.data,new.observacao,
+		new.valor,new.id_conta,new.id_usuario,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO financeirolog (data,observacao,valor,id_conta,id_usuario,data_de_modificacao,operacao_realizada) 
+		VALUES (old.data,old.observacao,old.valor,old.id_conta,old.id_usuario,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION funcionarioLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO funcionariolog(cpfNovo,data_nascNovo,nomeNovo,telefoneNovo,data_de_modificacao,
+			operacao_realizada) 
+		VALUES	(new.cpf,new.data_nasc,new.nome,new.telefone,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO funcionariolog (cpfAntigo,data_nascAntigo,nomeAntigo,telefoneAntigo,id_enderecoAntigo,cpfNovo,
+			data_nascNovo,nomeNovo,telefoneNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(old.cpf,old.data_nasc,old.nome,old.telefone,old.id_endereco,new.cpf,new.data_nasc,
+			new.nome,new.telefone,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO funcionariolog (cpfAntigo,data_nascAntigo,nomeAntigo,telefoneAntigo,id_enderecoAntigo,data_de_modificacaoAntigo,
+			operacao_realizadaAntigo)	
+				VALUES (old.cpf,old.data_nasc,old.nome,old.telefone,old.id_endereco,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION locacaoLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO locacaolog (data_devolucaoNovo,data_retiradaNovo,duuracao_estiimadaNovo,
+			hora_devolucaoNovo,hora_retiradaNovo,km_finalNovo,km_inicialNovo,statusNovo,
+			taxa_combuustivelNovo,taxa_higienizacaoNovo,tipo_locacaoNovo,valor_locacaoNovo,
+			id_motoristaNovo,id_reservaNovo,id_veiculoNovo,data_de_modificacao,
+			operacao_realizada) 
+		VALUES	(new.data_devolucao,new.data_retirada,new.duracao_estiimada,new.hora_devolucao,
+			new.hora_retirada,new.km_final,new.km_inicial,new.status,new.taxa_combuustivel,
+			new.taxa_higienizacao,new.tipo_locacao,new.valor_locacao,new.id_cliente,new.id_motorista,
+			new.id_reserva,new.id_veiculo,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO locacaolog (data_devolucao,data_retirada,duuracao_estiimada,hora_devolucao,
+			hora_retirada,km_final,km_inicial,status,taxa_combuustivel,taxa_higienizacao,tipo_locacao,
+			valor_locacao,id_cliente,id_motorista,id_reserva,id_veiculo,data_devolucaoNovo,data_retiradaNovo,duuracao_estiimadaNovo,
+			hora_devolucaoNovo,hora_retiradaNovo,km_finalNovo,km_inicialNovo,statusNovo,
+			taxa_combuustivelNovo,taxa_higienizacaoNovo,tipo_locacaoNovo,valor_locacaoNovo,
+			id_motoristaNovo,id_reservaNovo,id_veiculoNovo,data_de_modificacao,	operacao_realizada) 
+		VALUES	(old.data_devolucao,old.data_retirada,old.duracao_estiimada,old.hora_devolucao,
+			old.hora_retirada,old.km_final,old.km_inicial,old.status,old.taxa_combuustivel,
+			old.taxa_higienizacao,old.tipo_locacao,old.valor_locacao,old.id_cliente,old.id_motorista,
+			old.id_reserva,old.id_veiculo,new.data_devolucao,new.data_retirada,new.duracao_estiimada,new.hora_devolucao,
+			new.hora_retirada,new.km_final,new.km_inicial,new.status,new.taxa_combuustivel,
+			new.taxa_higienizacao,new.tipo_locacao,new.valor_locacao,new.id_cliente,new.id_motorista,
+			new.id_reserva,new.id_veiculo,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO locacaolog (data_devolucao,data_retirada,duuracao_estiimada,hora_devolucao,
+			hora_retirada,km_final,km_inicial,status,taxa_combuustivel,taxa_higienizacao,tipo_locacao,
+			valor_locacao,id_cliente,id_motorista,id_reserva,id_veiculo,data_de_modificacao,
+			operacao_realizada)	
+				VALUES (old.data_devolucao,old.data_retirada,old.duracao_estiimada,old.hora_devolucao,
+			old.hora_retirada,old.km_final,old.km_inicial,old.status,old.taxa_combuustivel,
+			old.taxa_higienizacao,old.tipo_locacao,old.valor_locacao,old.id_cliente,old.id_motorista,
+			old.id_reserva,old.id_veiculo,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION locadoraLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO locadoralog(cnpjNovo,data_de_modificacao,
+			operacao_realizada) 
+		VALUES	(new.cnpj,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO locadoralog (cnpjNovo,cnpj,data_de_modificacao,operacao_realizada) 
+		VALUES	(old.cnpj,new.cnpj,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO locadoralog (cnpj) VALUES (old.cnpj,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION motoristaLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO motoristalog (data_vec_habilitacaoNovo,num_habilitacaoNovo,id_pessoa_fisicaNovo,
+			data_de_modificacao,operacao_realizada) 
+		VALUES	(new.data_vec_habilitacao,new.num_habilitacao,new.id_pessoa_fisica,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO motoristalog (data_vec_habilitacaoNovo,num_habilitacaoNovo,id_pessoa_fisicaNovo,
+			data_vec_habilitacao,num_habilitacao,id_pessoa_fisica,data_de_modificacao,operacao_realizada) 
+		VALUES	(new.data_vec_habilitacao,new.num_habilitacao,new.id_pessoa_fisica,
+			old.data_vec_habilitacao,old.num_habilitacao,old.id_pessoa_fisica,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO motoristalog (data_vec_habilitacao,num_habilitacao,id_pessoa_fisica,
+			data_de_modificacao,operacao_realizada) VALUES (old.data_vec_habilitacao,
+			old.num_habilitacao,old.id_pessoa_fisica,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION pessoa_fisicaLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO pessoa_fisicalog (cpfNovo,data_nascNovo,sexoNovo,data_de_modificacao,
+			operacao_realizada) VALUES	(new.cpf,new.data_nasc,new.sexo,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO pessoa_fisicalog (cpf,data_nasc,sexo,cpfNovo,data_nascNovo,
+			sexoNovo,id_clienteNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(old.cpf,old.data_nasc,old.sexo,new.cpf,new.data_nasc,new.sexo,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO pessoa_fisicalog (cpf,data_nasc,sexo,data_de_modificacao,
+			operacao_realizada) VALUES (old.cpf,old.data_nasc,old.sexo,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION pessoa_juridicaLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO pessoa_juridicalog (cnpjNovo,inscricao_estadualNovo,id_clienteNovo,
+			data_de_modificacao,operacao_realizada) VALUES	(new.cnpj,new.inscricao_estadual,
+			new.id_cliente,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO pessoa_juridicalog (cnpj,inscricao_estadual,id_cliente,cnpjNovo,
+			inscricao_estadualNovo,id_clienteNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(old.cnpj,old.inscricao_estadual,old.id_cliente,new.cnpj,new.inscricao_estadual,
+			new.id_cliente,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO pessoa_juridicalog (cnpj,inscricao_estadual,id_cliente,data_de_modificacao,
+			operacao_realizada) VALUES (old.cnpj,old.inscricao_estadual,old.id_cliente,now(),
+			'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION reservaLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO  reservalog (data_retiradaNovo,duracao_estimadaNovo,hora_retiradaNovo,
+			tipo_locacaoNovo,valor_entradaNovo,id_categoriaNovo,id_clienteNovo,data_de_modificacao,
+			operacao_realizada) VALUES	(new.data_retirada,new.duracao_estimada,new.hora_retirada,
+			new.tipo_locacao,new.valor_entrada,new.id_categoria,new.id_cliente,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO  reservalog (data_retirada,duracao_estimada,hora_retirada,tipo_locacao,
+			valor_entrada,id_categoria,id_cliente,data_retiradaNovo,duracao_estimadaNovo,
+			hora_retiradaNovo,tipo_locacaoNovo,valor_entradaNovo,id_categoriaNovo,id_clienteNovo,
+			data_de_modificacao,operacao_realizada) 
+		VALUES	(old.data_retirada,old.duracao_estimada,old.hora_retirada,
+			old.tipo_locacao,old.valor_entrada,old.id_categoria,old.id_cliente,new.data_retirada,
+			new.duracao_estimada,new.hora_retirada,new.tipo_locacao,new.valor_entrada,
+			new.id_categoria,new.id_cliente,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO reservalog (data_retirada,duracao_estimada,hora_retirada,tipo_locacao,
+			valor_entrada,id_categoria,id_cliente,data_de_modificacao,
+			operacao_realizada) VALUES (old.data_retirada,old.duracao_estimada,old.hora_retirada,
+			old.tipo_locacao,old.valor_entrada,old.id_categoria,old.id_cliente,now(),
+			'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION usuarioLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO usuariolog (loginNovo,senhaNovo,tipoNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(new.login,new.senha,new.tipo,now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO usuariolog (login,senha,tipo,loginNovo,senhaNovo,tipoNovo,data_de_modificacao,
+			operacao_realizada) 
+		VALUES	(old.login,old.senha,old.tipo,new.login,new.senha,new.tipo,now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO usuariolog (login,senha,tipo,data_de_modificacao,operacao_realizada) 
+		VALUES (ld.login,old.senha,old.tipo,now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION veiculoLog_function()
+	RETURNS TRIGGER AS $trigger$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO veiculolog (ano_fabricacaoNovo,ano_modeloNovo,corNovo,fabricanteNovo,
+			km_atualNovo,modeloNovo,numchassiNovo,num_motorNovo,num_passageirosNovo,
+			num_portasNovo,placaNovo,tipo_combuustivelNovo,torqe_motorNovo,id_categoriaNovo,
+			id_locadoraNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(new.ano_fabricacao,new.ano_modelo,new.cor,new.fabricante.new.km_atual,
+			new.modelo,new.numchassi,new.num_motor,new.num_passageiros,new.num_portas,
+			new.placa,new.tipo_combuustivel,new.torqe_motor,new.id_categoria,new.id_locadora,
+			now(),'INSERT');
+	ELSIF (TG_OP = 'UPDATE') THEN
+		INSERT INTO veiculolog (ano_fabricacao,ano_modelo,cor,fabricante,km_atual,modelo,numchassi,
+			num_motor,num_passageiros,num_portas,placa,tipo_combuustivel,torqe_motor,id_categoria,
+			id_locadora,ano_fabricacaoNovo,ano_modeloNovo,corNovo,fabricanteNovo,
+			km_atualNovo,modeloNovo,numchassiNovo,num_motorNovo,num_passageirosNovo,
+			num_portasNovo,placaNovo,tipo_combuustivelNovo,torqe_motorNovo,id_categoriaNovo,
+			id_locadoraNovo,data_de_modificacao,operacao_realizada) 
+		VALUES	(old.ano_fabricacao,old.ano_modelo,old.cor,old.fabricante.old.km_atual,
+			old.modelo,old.numchassi,old.num_motor,old.num_passageiros,old.num_portas,
+			old.placa,old.tipo_combuustivel,old.torqe_motor,old.id_categoria,old.id_locadora,
+			new.ano_fabricacao,new.ano_modelo,new.cor,new.fabricante.new.km_atual,
+			new.modelo,new.numchassi,new.num_motor,new.num_passageiros,new.num_portas,
+			new.placa,new.tipo_combuustivel,new.torqe_motor,new.id_categoria,new.id_locadora,
+			now(),'UPDATE');
+	ELSIF (TG_OP = 'DELETE') THEN
+		INSERT INTO veiculolog (ano_fabricacao,ano_modelo,cor,fabricante,km_atual,modelo,numchassi,
+			num_motor,num_passageiros,num_portas,placa,tipo_combuustivel,torqe_motor,id_categoria,
+			id_locadora,data_de_modificacao,operacao_realizada) 
+		VALUES (old.ano_fabricacao,old.ano_modelo,old.cor,old.fabricante.old.km_atual,
+			old.modelo,old.numchassi,old.num_motor,old.num_passageiros,old.num_portas,
+			old.placa,old.tipo_combuustivel,old.torqe_motor,old.id_categoria,old.id_locadora,
+			now(),'DELETE');
+	END IF;
+	return new;
+END;
+$trigger$ LANGUAGE plpgsql;
+
+
+
+
+
+	
+
+	
+	
+CREATE TRIGGER trigger_log_contas
+AFTER INSERT OR UPDATE OR DELETE ON conta
+FOR EACH ROW
+EXECUTE PROCEDURE contaLog_function();
+
+
+CREATE TRIGGER trigger_log_camioneta_carga
+AFTER INSERT OR UPDATE OR DELETE ON camioneta_carga
+FOR EACH ROW
+EXECUTE PROCEDURE camioneta_cargaLog_function();
+
+
+CREATE TRIGGER trigger_log_camioneta_passageiro
+AFTER INSERT OR UPDATE OR DELETE ON camioneta_passageiro
+FOR EACH ROW
+EXECUTE PROCEDURE camioneta_passageiroLog_function();
+
+
+CREATE TRIGGER trigger_log_categoria
+AFTER INSERT OR UPDATE OR DELETE ON categoria
+FOR EACH ROW
+EXECUTE PROCEDURE categoriaLog_function();
+
+
+CREATE TRIGGER trigger_log_cliente
+AFTER INSERT OR UPDATE OR DELETE ON cliente
+FOR EACH ROW
+EXECUTE PROCEDURE clienteLog_function();
+
+
+CREATE TRIGGER trigger_log_endereco
+AFTER INSERT OR UPDATE OR DELETE ON endereco
+FOR EACH ROW
+EXECUTE PROCEDURE enderecoLog_function();
+
+
+CREATE TRIGGER trigger_log_financeiro
+AFTER INSERT OR UPDATE OR DELETE ON financeiro
+FOR EACH ROW
+EXECUTE PROCEDURE financeiroLog_function();
+
+
+CREATE TRIGGER trigger_log_funcionario
+AFTER INSERT OR UPDATE OR DELETE ON funcionario
+FOR EACH ROW
+EXECUTE PROCEDURE funcionarioLog_function();
+
+
+CREATE TRIGGER trigger_log_locacao
+AFTER INSERT OR UPDATE OR DELETE ON locacao
+FOR EACH ROW
+EXECUTE PROCEDURE locacaoLog_function();
+
+
+CREATE TRIGGER trigger_log_locadora
+AFTER INSERT OR UPDATE OR DELETE ON locadora
+FOR EACH ROW
+EXECUTE PROCEDURE locadoraLog_function();
+
+
+CREATE TRIGGER trigger_log_motorista
+AFTER INSERT OR UPDATE OR DELETE ON motorista
+FOR EACH ROW
+EXECUTE PROCEDURE motoristaLog_function();
+
+
+CREATE TRIGGER trigger_log_pessoa_fisica
+AFTER INSERT OR UPDATE OR DELETE ON pessoa_fisica
+FOR EACH ROW
+EXECUTE PROCEDURE pessoa_fisicaLog_function();
+
+
+CREATE TRIGGER trigger_log_pessoa_juridica
+AFTER INSERT OR UPDATE OR DELETE ON pessoa_juridica
+FOR EACH ROW
+EXECUTE PROCEDURE pessoa_juridicaLog_function();
+
+
+CREATE TRIGGER trigger_log_reserva
+AFTER INSERT OR UPDATE OR DELETE ON reserva
+FOR EACH ROW
+EXECUTE PROCEDURE reservaLog_function();
+
+
+CREATE TRIGGER trigger_log_usuario
+AFTER INSERT OR UPDATE OR DELETE ON usuario
+FOR EACH ROW
+EXECUTE PROCEDURE usuarioLog_function();
+
+CREATE TRIGGER trigger_log_veiculo
+AFTER INSERT OR UPDATE OR DELETE ON veiculo
+FOR EACH ROW
+EXECUTE PROCEDURE veiculoLog_function();
+
+
+ create or replace view relatorio_financeiro as (SELECT financeiro.id,
+ financeiro.data,
+ conta.nome AS tipo_conta
+ FROM financeiro
+ JOIN conta ON conta.id = financeiro.id_conta);
+
+create or replace view relatorio_locacao as ( SELECT locacao.id,
+    locacao.data_retirada,
+    veiculo.modelo,
+    cliente.nome
+   FROM locacao
+     JOIN veiculo ON veiculo.id = locacao.id_veiculo
+     JOIN cliente ON cliente.id = locacao.id_cliente);
+
+create or replace view relatorio_reserva as ( SELECT reserva.id,
+    reserva.data_retirada,
+    categoria.nome,
+    cliente.nome AS nome_cliente
+   FROM reserva
+     JOIN categoria ON categoria.id = reserva.id_categoria
+     JOIN cliente ON cliente.id = reserva.id_cliente);
