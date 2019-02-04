@@ -38,7 +38,7 @@ public class RelatoriosControlador {
 
     @FXML
     void clientes(ActionEvent event) {
-
+        App.trocarTela(Util.TELA_RELATTORIO_CLIENTES, Util.ABRIR);
     }
 
     @FXML
@@ -91,7 +91,7 @@ public class RelatoriosControlador {
 
     @FXML
     void reservasAction(ActionEvent event) {
-
+        App.trocarTela(Util.TELA_RELATORIO_RESERVA, Util.ABRIR);
     }
 
     @FXML

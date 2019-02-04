@@ -22,8 +22,11 @@ import model.Locacao;
 import model.Reserva;
 import util.Util;
 import app.App;
+import java.sql.Date;
+import java.util.ArrayList;
+import model.Relatorio_locacao;
 
-public class LocacaoControlador implements Initializable{
+public class RelattorioLocacaoControlador implements Initializable{
 
     @FXML
     private ImageView homeButton;
@@ -35,28 +38,20 @@ public class LocacaoControlador implements Initializable{
     private ImageView irButton;
 
     @FXML
-    private Button novoButton;
-
-    @FXML
-    private TableView<Locacao> locacaoTable;
+    private TableView<Relatorio_locacao> locacaoTable;
     
     @FXML
-    private TableColumn<Locacao, Integer> idColuna;
+    private TableColumn<Relatorio_locacao, String> nomeColuna;
 
     @FXML
-    private TableColumn<Locacao, String> nomeColuna;
+    private TableColumn<Relatorio_locacao, Date> dataRetiradaColuna;
 
     @FXML
-    private TableColumn<Locacao, String> placaColuna;
+    private TableColumn<Relatorio_locacao, String> modeloColuna;
+
 
     @FXML
-    private TableColumn<Locacao, String> tipoLocacaoColuna;
-
-    @FXML
-    private Button editarButton;
-
-    @FXML
-    private Button excluirButton;
+    private TextField buscaField;
 
     @FXML
     private ImageView pesquisarButton;
@@ -65,11 +60,14 @@ public class LocacaoControlador implements Initializable{
     private ImageView atualizarBuutton;
 
     @FXML
-    private Button devolverVeiculo;
+    private DatePicker dataInicio;
+
+    @FXML
+    private DatePicker dataFim;
 
     @FXML
     void atualizarBuuttonClicked(MouseEvent event) {
-        inicializarTabela();
+        
     }
 
     @FXML
@@ -83,50 +81,10 @@ public class LocacaoControlador implements Initializable{
     }
 
     @FXML
-    void devolverVeiculoAction(ActionEvent event) {
-        
-    }
-
-    @FXML
-    void devolverVeiculoEntered(MouseEvent event) {
-        devolverVeiculo.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void devolverVeiculoExited(MouseEvent event) {
-        devolverVeiculo.setCursor(Cursor.DEFAULT);
-    }
-
-    @FXML
-    void editarButtonAction(ActionEvent event) {
+    void buscaFielKeyReleased(KeyEvent event) {
 
     }
 
-    @FXML
-    void editarButtonEntered(MouseEvent event) {
-        editarButton.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void editarButtonExited(MouseEvent event) {
-        editarButton.setCursor(Cursor.DEFAULT);
-    }
-
-    @FXML
-    void excluirButtonAction(ActionEvent event) {
-        Fachada.getInstance().removeLocacao(locacaoTable.getSelectionModel().getSelectedItem());
-        inicializarTabela();
-    }
-
-    @FXML
-    void excluirButtonClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void excluirButtonEntered(MouseEvent event) {
-        excluirButton.setCursor(Cursor.HAND);
-    }
 
     @FXML
     void homeButtonClicked(MouseEvent event) {
@@ -156,21 +114,6 @@ public class LocacaoControlador implements Initializable{
     @FXML
     void irButtonExited(MouseEvent event) {
         irButton.setCursor(Cursor.DEFAULT);
-    }
-
-    @FXML
-    void novoButtonAction(ActionEvent event) {
-        App.trocarTela(Util.TELA_CAD_LOCACAO, Util.ABRIR);
-    }
-
-    @FXML
-    void novoButtonEntered(MouseEvent event) {
-        novoButton.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void novoButtonExited(MouseEvent event) {
-        novoButton.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -219,14 +162,54 @@ public class LocacaoControlador implements Initializable{
     }
 
     public void inicializarTabela(){
-        idColuna.setCellValueFactory(new PropertyValueFactory("id"));
-        nomeColuna.setCellValueFactory(new PropertyValueFactory(""));
-        placaColuna.setCellValueFactory(new PropertyValueFactory("placa"));
-        tipoLocacaoColuna.setCellValueFactory(new PropertyValueFactory("tipo_locacao"));
+        dataRetiradaColuna.setCellValueFactory(new PropertyValueFactory("data_retirada"));
+        modeloColuna.setCellValueFactory(new PropertyValueFactory("modelo"));
+        nomeColuna.setCellValueFactory(new PropertyValueFactory("nome"));
         carregarTabela();
     }
     
     private ObservableList carregarTabela(){
-        return FXCollections.observableArrayList(Fachada.getInstance().getAllLocacao());
+        ArrayList<Relatorio_locacao> aux = Fachada.getInstance().getAllRelatorio_locacao();
+        ArrayList<Relatorio_locacao> relatorio_locacaos = new ArrayList<>();
+        
+        if(buscaField.getText().toLowerCase().isEmpty()){
+            if(dataInicio.getEditor().getText().isEmpty() && dataFim.getEditor().getText().isEmpty()){
+                relatorio_locacaos = aux;
+            }else{
+                Date d1  = new Date(dataInicio.getValue().getYear()-1900, dataInicio.getValue().getMonthValue()-1,
+                dataInicio.getValue().getDayOfMonth());
+                Date d2  = new Date(dataFim.getValue().getYear()-1900, dataFim.getValue().getMonthValue()-1,
+                dataFim.getValue().getDayOfMonth());
+                
+                for(Relatorio_locacao f : Fachada.getInstance().getAllRelatorio_locacao()){
+                    if(f.getData_retirada().before(d2) && f.getData_retirada().after(d1)){
+                        relatorio_locacaos.add(f);
+                    }
+                }
+            }                
+        }else{
+            if(dataInicio.getEditor().getText().isEmpty() && dataFim.getEditor().getText().isEmpty()){
+                for(Relatorio_locacao f : aux){
+                    if(f.getNome().toLowerCase().contains(buscaField.getText().toLowerCase())){
+                        relatorio_locacaos.add(f);
+                    }
+                }
+                relatorio_locacaos = aux;
+            }else{
+                Date d1  = new Date(dataInicio.getValue().getYear()-1900, dataInicio.getValue().getMonthValue()-1,
+                dataInicio.getValue().getDayOfMonth());
+                Date d2  = new Date(dataFim.getValue().getYear()-1900, dataFim.getValue().getMonthValue()-1,
+                dataFim.getValue().getDayOfMonth());
+                
+                for(Relatorio_locacao f : aux){
+                    if((f.getData_retirada().before(d2) && f.getData_retirada().after(d1)) &&
+                        (f.getNome().toLowerCase().contains(buscaField.getText().toLowerCase()))){
+                            relatorio_locacaos.add(f);
+                    }
+                }
+            }
+        
+        
+        return FXCollections.observableArrayList(relatorio_locacaos);
     }
-}
+

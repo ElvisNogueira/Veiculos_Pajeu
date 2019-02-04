@@ -27,12 +27,12 @@ public class App extends Application {
     Pane login, home, carrosHome, clientesHome, financeiroHome, funcionariosHome, cadCategoria, carrosCad,
             cadFuncionario, cadCarro, reserva, locacao, cadLocacao, cadReserva,cadCliente,cadFinanceiro,
             relatorioFinanceiro,cadLocadora,configuracoes, categoria,cadConta,alertaBackup,cadMotorista,
-            relatorios;
+            relatorios,relatorioClientes,relatorioReserva;
     static Scene loginScene, homeScene, carrosHomeScene, clientesHomeScene, financeiroHomeScene,
             funcionariosHomeScene, cadCategoriaScene, carrosCadScene,cadFuncionarioScene, cadCarroScene,
             reservaScene, locacaoScene, cadLocacaoScene,cadReservaScene,cadClienteScene,cadFinanceiroScene,
             relatorioFinanceiroScene, cadLocadoraScene, configuracoesScene, categoriaScene,cadContaScene,
-            alertaBackupScene,cadMotoristaScene, relatoriosScene;
+            alertaBackupScene,cadMotoristaScene, relatoriosScene,relatorioClientesScene,relatorioReservaScene;
     
     
     private static ArrayList<String> telasAcessadas;
@@ -77,7 +77,8 @@ public class App extends Application {
 //        alertaBackup = FXMLLoader.load(getClass().getResource("AlertaBackup.fxml"));
         cadMotorista = FXMLLoader.load(getClass().getResource("/view/CadastroMotorista.fxml"));
         relatorios = FXMLLoader.load(getClass().getResource("/view/Relatorios.fxml"));
-        
+        relatorioClientes = FXMLLoader.load(getClass().getResource("/view/RelatorioClientes.fxml"));
+        relatorioReserva = FXMLLoader.load(getClass().getResource("/view/RelatorioReserva.fxml"));
         
         loginScene = new Scene(login);
         homeScene = new Scene(home);
@@ -103,6 +104,8 @@ public class App extends Application {
         cadMotoristaScene = new Scene(cadMotorista);
 //        alertaBackupScene = new Scene(alertaBackup);
         relatoriosScene = new Scene(relatorios);
+        relatorioClientesScene = new Scene(relatorioClientes);
+        relatorioReservaScene = new Scene(relatorioReserva);
         
         stage.setScene(loginScene);
         palco.setTitle("Pajeú Veículos");
@@ -172,6 +175,10 @@ public class App extends Application {
                 palco.setScene(cadMotoristaScene);
             else if(Util.TELA_RELATORIOS.equals(tela))
                 palco.setScene(relatoriosScene);
+            else if(Util.TELA_RELATTORIO_CLIENTES.equals(tela))
+                palco.setScene(relatorioClientesScene);
+            else if(Util.TELA_RELATORIO_RESERVA.equals(tela))
+                palco.setScene(relatorioReservaScene);
             
             if(tipo == Util.ABRIR){
                if(!telasAcessadas.get(telasAcessadas.size()-1).equals(tela)){

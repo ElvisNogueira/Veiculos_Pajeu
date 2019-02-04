@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -8,13 +7,14 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RelatorioReservaControlador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="703.0" stylesheets="@tema.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RelattorioLocacaoControlador">
    <children>
       <MenuBar layoutY="91.0" prefHeight="25.0" prefWidth="703.0">
          <menus>
@@ -55,32 +55,27 @@
             <Image url="@../imagens/icons8-a-direita-dentro-de-um-circulo-50.png" />
          </image>
       </ImageView>
-      <Label layoutX="279.0" layoutY="38.0" text="RESERVAS RELATORIO" textFill="WHITE">
+      <Label layoutX="308.0" layoutY="38.0" text="LOCAÇÕES" textFill="WHITE">
          <font>
             <Font name="Impact" size="25.0" />
          </font>
       </Label>
-      <TableView fx:id="reservaTable" layoutX="64.0" layoutY="193.0" onMouseClicked="#reservaTableClicked" prefHeight="299.0" prefWidth="575.0">
+      <TableView fx:id="locacaoTable" layoutX="64.0" layoutY="193.0" onMouseClicked="#locacaoTableClicked" prefHeight="299.0" prefWidth="575.0">
         <columns>
-          <TableColumn fx:id="nomeCliente" prefWidth="302.0" text="Nome cliente" />
-          <TableColumn fx:id="modelo" prefWidth="164.0" text="Categoria" />
-            <TableColumn fx:id="dataRetiradaColuna" prefWidth="108.0" text="Data Retirada" />
+          <TableColumn fx:id="nomeColuna" prefWidth="286.0" text="Nome cliente" />
+            <TableColumn fx:id="dataRetiradaColuna" prefWidth="125.0" text="Data retirada" />
+            <TableColumn fx:id="modeloColuna" prefWidth="163.0" text="Modelo do carro" />
         </columns>
       </TableView>
-      <ImageView fx:id="pesquisarButton" fitHeight="20.0" fitWidth="20.0" layoutX="472.0" layoutY="163.0" onMouseClicked="#pesquisarButtonClicked" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="buscaField" layoutX="62.0" layoutY="127.0" onKeyReleased="#buscaFielKeyReleased" prefHeight="25.0" prefWidth="575.0" promptText="Pesquise por nome do cliente.." />
+      <ImageView fx:id="pesquisarButton" fitHeight="20.0" fitWidth="20.0" layoutX="578.0" layoutY="163.0" onMouseClicked="#pesquisarButtonClicked" onMouseEntered="#pesquisarButtonEntered" onMouseExited="#pesquisarButtonExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/icons8-pesquisar-20%20(1).png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ImageView>
-      <ImageView fx:id="atualizarBuutton" fitHeight="20.0" fitWidth="20.0" layoutX="617.0" layoutY="163.0" onMouseClicked="#atualizarBuuttonClicked" pickOnBounds="true" preserveRatio="true">
+         </image></ImageView>
+      <ImageView fx:id="atualizarBuutton" fitHeight="20.0" fitWidth="20.0" layoutX="617.0" layoutY="163.0" onMouseClicked="#atualizarBuuttonClicked" onMouseEntered="#atualizarBuuttonEntered" onMouseExited="#atualizarBuuttonExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/icons8-sincronizar-20.png" />
          </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
       </ImageView>
       <DatePicker fx:id="dataInicio" layoutX="63.0" layoutY="159.0" promptText="Data de ínicio" />
       <DatePicker fx:id="dataFim" layoutX="279.0" layoutY="159.0" promptText="Data final" />

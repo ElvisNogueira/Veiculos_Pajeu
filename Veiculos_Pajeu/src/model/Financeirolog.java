@@ -27,6 +27,7 @@ public class Financeirolog {
     private int id;
     
     private Date data;
+    @Column(nullable = true)
     private float valor;
     private String observacao;
     @OneToOne

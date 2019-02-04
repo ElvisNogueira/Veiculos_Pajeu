@@ -164,7 +164,7 @@ public class RelatorioFinanceiroControlador implements Initializable{
                 
                 for(Relatorio_financeiro f : Fachada.getInstance().getAllRelatorio_financeiro()){
                     if((f.getData().before(d2) && f.getData().after(d1)) &&
-                        (f.equals(tipoComboBox.getSelectionModel().getSelectedItem()))){
+                        (f.getTipo_conta().equals(tipoComboBox.getSelectionModel().getSelectedItem()))){
                             relatorio_financeiros.add(f);
                     }
                 }

@@ -19,8 +19,10 @@ import javafx.scene.input.MouseEvent;
 import model.Reserva;
 import util.Util;
 import app.App;
+import java.util.ArrayList;
+import model.Relatorio_reserva;
 
-public class RelatorioReservaControlador implements Initializable{
+public class RelatorioReservaControlador implements Initializable {
 
     @FXML
     private ImageView homeButton;
@@ -32,19 +34,17 @@ public class RelatorioReservaControlador implements Initializable{
     private ImageView irButton;
 
     @FXML
-    private TableView<Reserva> reservaTable;
-    
-    @FXML
-    private TableColumn<Reserva, Integer> idColuna;
+    private TableView<Relatorio_reserva> reservaTable;
 
     @FXML
-    private TableColumn<Reserva, String> nomeClienteColuna;
+    private TableColumn<Relatorio_reserva, String> nomeCliente;
 
     @FXML
-    private TableColumn<Reserva, Date> dataRetiradaColuna;
+    private TableColumn<Relatorio_reserva, String> modelo;
 
-    
-    
+    @FXML
+    private TableColumn<Relatorio_reserva, Date> dataRetiradaColuna;
+
     @FXML
     private ImageView pesquisarButton;
 
@@ -56,8 +56,6 @@ public class RelatorioReservaControlador implements Initializable{
 
     @FXML
     private DatePicker dataFim;
-
-    
 
     @FXML
     void atualizarBuuttonClicked(MouseEvent event) {
@@ -79,7 +77,7 @@ public class RelatorioReservaControlador implements Initializable{
         homeButton.setCursor(Cursor.DEFAULT);
     }
 
-   @FXML
+    @FXML
     void irButtonClicled(MouseEvent event) {
         App.proximo();
     }
@@ -98,7 +96,6 @@ public class RelatorioReservaControlador implements Initializable{
     void pesquisarButtonClicked(MouseEvent event) {
         inicializarTabela();
     }
-
 
     @FXML
     void reservaTableClicked(MouseEvent event) {
@@ -124,24 +121,33 @@ public class RelatorioReservaControlador implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         inicializarTabela();
     }
-    
-    private void inicializarTabela(){
+
+    private void inicializarTabela() {
         dataRetiradaColuna.setCellValueFactory(new PropertyValueFactory("data_retirada"));
-        nomeClienteColuna.setCellValueFactory(new PropertyValueFactory("nome"));
-        idColuna.setCellValueFactory(new PropertyValueFactory("id"));
-        
+        modelo.setCellValueFactory(new PropertyValueFactory("nome"));
+        nomeCliente.setCellValueFactory(new PropertyValueFactory("nome_cliente"));
+
         reservaTable.setItems(carregarTabela());
     }
-    
-    private ObservableList carregarTabela(){
-        String d1 = dataInicio.toString();
-        String d2 = dataFim.toString();
-        if((!d1.isEmpty()) && (!d2.isEmpty())){
-            Date inicio = Util.getDate(d1);
-            Date fim = Util.getDate(d2);
-            return FXCollections.observableArrayList(Fachada.getInstance().getDataReservas(inicio, fim));
+
+    private ObservableList carregarTabela() {
+        ArrayList<Relatorio_reserva> aux = Fachada.getInstance().getAllRelatorio_reserva();
+        ArrayList<Relatorio_reserva> relatorio_reservas = new ArrayList<>();
+        if (dataInicio.getEditor().getText().isEmpty() && dataFim.getEditor().getText().isEmpty()) {
+            relatorio_reservas = aux;
+        } else {
+            Date d1 = new Date(dataInicio.getValue().getYear() - 1900, dataInicio.getValue().getMonthValue() - 1,
+                    dataInicio.getValue().getDayOfMonth());
+            Date d2 = new Date(dataFim.getValue().getYear() - 1900, dataFim.getValue().getMonthValue() - 1,
+                    dataFim.getValue().getDayOfMonth());
+
+            for (Relatorio_reserva f : aux) {
+                if (f.getData_retirada().before(d2) && f.getData_retirada().after(d1)) {
+                    relatorio_reservas.add(f);
+                }
+            }
         }
-        return FXCollections.observableArrayList(Fachada.getInstance().getAllReserva());
+        return FXCollections.observableArrayList(relatorio_reservas);
     }
 
 }
